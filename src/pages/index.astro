@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="홈" description="Codivo Studio - AI 도구와 콘텐츠를 만나보세요">
+	<section class="hero">
+		<h1>Codivo Studio에 오신 것을 환영합니다</h1>
+		<p>여기에 서비스/프로그램 소개 문구가 들어갑니다. 내용은 차차 채워나갈 예정입니다.</p>
+		<div class="cta-group">
+			<a class="cta-primary" href="https://tools.codivostudio.com" target="_blank" rel="noopener noreferrer">
+				도구 사용해보기
+			</a>
+			<a class="cta-secondary" href="/blog/">블로그 보기</a>
+		</div>
+	</section>
+
+	<!-- 애드센스 광고 슬롯 (승인 후 스크립트/단위 교체 예정) -->
+	<section class="ad-slot" aria-hidden="true">
+		<span>광고 영역 (placeholder)</span>
+	</section>
+
+	<section class="placeholder-section">
+		<h2>소개 섹션 (준비 중)</h2>
+		<p>추후 서비스 소개, 기능 설명, 이용 방법 등이 이 영역에 채워집니다.</p>
+	</section>
+</BaseLayout>
+
+<style>
+	.hero {
+		text-align: center;
+		padding: 3rem 0;
+	}
+
+	.hero h1 {
+		font-size: 2rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.hero p {
+		color: var(--color-muted);
+		max-width: 40rem;
+		margin: 0 auto 1.5rem;
+	}
+
+	.cta-group {
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+	}
+
+	.cta-primary,
+	.cta-secondary {
+		display: inline-block;
+		padding: 0.7rem 1.4rem;
+		border-radius: 6px;
+		text-decoration: none;
+		font-weight: 600;
+	}
+
+	.cta-primary {
+		background: var(--color-accent);
+		color: #fff;
+	}
+
+	.cta-secondary {
+		border: 1px solid var(--color-border);
+		color: var(--color-text);
+	}
+
+	.ad-slot {
+		margin: 2rem 0;
+		padding: 2rem;
+		border: 1px dashed var(--color-border);
+		border-radius: 6px;
+		text-align: center;
+		color: var(--color-muted);
+		font-size: 0.85rem;
+	}
+
+	.placeholder-section {
+		padding: 2rem 0;
+	}
+</style>

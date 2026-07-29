@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout title="블로그" description="Codivo Studio 블로그">
+	<h1>블로그</h1>
+
+	<div id="search"></div>
+	<link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+	<script src="/pagefind/pagefind-ui.js" is:inline></script>
+	<script is:inline>
+		window.addEventListener('DOMContentLoaded', () => {
+			if (window.PagefindUI) {
+				new window.PagefindUI({ element: '#search', showSubResults: true });
+			}
+		});
+	</script>
+
+	<ul class="post-list">
+		{
+			posts.map((post) => (
+				<li class="post-item">
+					<a href={`/blog/${post.id}/`}>
+						<h2>{post.data.title}</h2>
+					</a>
+					<p class="post-desc">{post.data.description}</p>
+					<div class="post-meta">
+						<time datetime={post.data.pubDate.toISOString()}>
+							{post.data.pubDate.toLocaleDateString('ko-KR')}
+						</time>
+						{post.data.tags.map((tag: string) => <span class="tag">#{tag}</span>)}
+					</div>
+				</li>
+			))
+		}
+	</ul>
+
+	{posts.length === 0 && <p>아직 등록된 글이 없습니다.</p>}
+</BaseLayout>
+
+<style>
+	.post-list {
+		list-style: none;
+		padding: 0;
+		margin: 2rem 0 0;
+	}
+
+	.post-item {
+		padding: 1.25rem 0;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.post-item h2 {
+		margin: 0 0 0.4rem;
+		font-size: 1.2rem;
+	}
+
+	.post-item a {
+		text-decoration: none;
+		color: var(--color-text);
+	}
+
+	.post-desc {
+		color: var(--color-muted);
+		margin: 0 0 0.5rem;
+	}
+
+	.post-meta {
+		font-size: 0.8rem;
+		color: var(--color-muted);
+		display: flex;
+		gap: 0.75rem;
+	}
+
+	.tag {
+		color: var(--color-accent);
+	}
+</style>
