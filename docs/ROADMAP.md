@@ -7,6 +7,19 @@
 
 ---
 
+## 목차
+
+1. [이전 계획(워드프레스) 대비 승계 사항](#이전-계획워드프레스-대비-승계-사항)
+2. [✅ 완료된 작업](#-완료된-작업)
+3. [🔜 다음 작업 (우선순위 순)](#-다음-작업-우선순위-순)
+4. [SEO 완료 체크리스트](#seo-완료-체크리스트)
+5. [블로그 목표](#블로그-목표)
+6. [다른 환경에서 이어서 진행하는 법](#다른-환경에서-이어서-진행하는-법)
+7. [참고 자료](#참고-자료)
+8. [Claude 작업 규칙](#claude-작업-규칙)
+
+---
+
 ## 이전 계획(워드프레스) 대비 승계 사항
 
 `G:\내 드라이브\Projects\seller_dealer\docs\` 에 있던 워드프레스 계획에서 **그대로 재사용하는 것**:
@@ -15,22 +28,24 @@
 - 도구별 별도 페이지 + iframe 1개씩 원칙
 - 컬러 시스템 (`#FAFAFA` / `#111827` / `#2563EB` / `#FD7125`)
 - About/Contact 카피 원문
-- **이미 배포 완료된 도구 자산** (아래 "완료 — 도구 자체 배포" 참고, 재작업 불필요)
+- **이미 배포 완료된 도구 자산** (아래 "완료된 작업 > 도구 자체 배포" 참고, 재작업 불필요)
 
 **폐기하는 것**: 워드프레스, Gutenberg, Elementor, 워드프레스 유료 호스팅/SSL 계획 전체.
 
 ---
 
-## 진행 상황 (2026-07-29 기준)
+## ✅ 완료된 작업
 
-**완료 — 도구 자체 배포 (워드프레스 계획 때 이미 끝낸 작업, 그대로 유효)**
+### A. 도구 자체 배포 (워드프레스 계획 때 이미 끝낸 작업, 그대로 유효)
+
 - [x] `naver_rank_tracker` GitHub 업로드 → `https://github.com/sysy-netizen/codivo-tools.git` (main)
 - [x] Vercel 배포 → `https://tools.codivostudio.com/` (커스텀 도메인 연결, 200 OK 확인, CNAME 가비아 DNS 등록)
 - [x] `next.config.ts`에 iframe 허용(CSP `frame-ancestors: codivostudio.com`) 설정 완료
 - [x] `invoice-merge`(Streamlit, 대량발송 엑셀변환기) GitHub(`sysy-netizen/invoice-merge`) main에 배포, Streamlit Cloud 자동 재배포
 - [x] Streamlit 앱 iframe 차단 헤더(X-Frame-Options/CSP) 없음을 curl로 확인
 
-**완료 — Astro 사이트 스켈레톤 (2026-07-29, 이 프로젝트에서 신규 진행)**
+### B. Astro 사이트 스캐폴딩 (2026-07-29, 이 프로젝트에서 신규 진행)
+
 - [x] Astro 프로젝트 생성 (`C:\MECRO\codivostudio-web`, Google Drive 동기화 폴더 피해서 로컬 경로에 생성)
   - 주의: Google Drive 동기화 폴더(`G:\내 드라이브\...`)에서 `npm install` 시 EPERM/EBADF 에러로 설치 실패함.
     반드시 로컬 드라이브(`C:\...`)에 생성할 것.
@@ -41,9 +56,7 @@
 - [x] Pagefind 검색 연동 및 동작 확인 (`npm run build` 후 로컬 프리뷰에서 검색 테스트 완료)
 - [x] `npm run build` 성공 확인, Git 초기화 완료 (커밋은 아직 — 사용자 확인 후 진행)
 
----
-
-## 다음 할 일 (실행 순서)
+### C. 배포 및 콘텐츠 (실행 순서 1~9)
 
 1. [x] Git 첫 커밋 생성 (2026-07-29, `2dfeeac`)
 2. [x] GitHub 저장소 생성 및 push (2026-07-29) → https://github.com/sysy-netizen/codivostudio-web (main)
@@ -51,6 +64,7 @@
    - 가비아 네임서버 → `leland.ns.cloudflare.com` / `savanna.ns.cloudflare.com` 변경 완료 (전파 대기 중)
    - `tools.codivostudio.com` CNAME(`cname.vercel-dns.com`, DNS only)을 Cloudflare DNS에 추가 완료 — 스캔 누락분, 수동 추가함
    - 기존 Hiworks 메일 MX/TXT(SPF) 레코드는 Cloudflare DNS로 그대로 이전됨
+   - **전파 확인 완료** (2026-07-29, 8번 항목에서 이어서 확인): `nslookup -type=NS codivostudio.com` → Cloudflare 네임서버(`leland`/`savanna`)로 정상 응답
 4. [x] Cloudflare Pages 프로젝트 생성 → GitHub 저장소 연동 → 자동 배포 확인 (2026-07-29)
    - Cloudflare 계정 이메일 인증 완료, GitHub OAuth 연동(리포지토리 `codivostudio-web`만 권한 허용)
    - 신형 Workers 통합 배포 방식이라 `wrangler.jsonc`(정적 자산 `./dist`) 추가 필요 — 저장소에 커밋/푸시 완료
@@ -71,11 +85,57 @@
    - Mission / Who We Build For / Philosophy(4개) / Contact 섹션 모두 반영
    - Contact는 사용자 확인 후 mailto 버튼만 사용하기로 결정 (Formspree 등 폼 서비스 연동 안 함)
    - 헤더 네비게이션에 "소개" 링크 추가
-   - **다음 작업 시작 전 확인 필요**: DNS 전파 상태 (`nslookup -type=NS codivostudio.com` 실행해서 Cloudflare 네임서버로 나오는지 확인) — 2026-07-29 오후 기준 일부 국내 통신사 DNS에 아직 미반영
-9. [ ] 컬러 시스템 전체 적용 (`#FAFAFA`/`#111827`/`#2563EB`/`#FD7125`)
-10. [ ] 실제 블로그 글 채우기 (샘플 글 2개 교체/추가)
-11. [ ] Google AdSense 신청 및 스크립트 삽입 (콘텐츠 어느 정도 쌓인 후 신청)
-12. [ ] SEO 기본 설정 (sitemap, `astro.config.mjs`의 `site` 값 설정 — 현재 TODO로 남겨둠)
+9. [x] 컬러 시스템 전체 적용 (`#FAFAFA`/`#111827`/`#2563EB`/`#FD7125`) (2026-07-29)
+   - Primary(`#2563EB`)/Accent(`#FD7125`)는 이미 대부분 페이지에 적용된 상태였음, 점검 결과 두 가지 불일치만 발견
+   - `--color-text`를 `#1a1a1a` → `#111827`(스펙값)로 수정 (BaseLayout.astro)
+   - `.eyebrow--light`(CTA/Contact 섹션 "CONTACT" 라벨)에 팔레트에 없는 `#4f8cff`가 하드코딩되어 있던 것을
+     다른 다크 섹션 강조색과 동일하게 `var(--color-highlight)`(#FD7125)로 통일 (index.astro, about/index.astro)
+   - Background(`#FAFAFA`)는 `--color-bg-alt`로 섹션/카드 배경에 이미 폭넓게 적용되어 있어 유지
+     (본문 기본 배경은 흰색 유지 — 섹션 간 명암 대비를 위한 의도된 구조, seller_dealer 계획과 동일한 결과물)
+   - `npm run build` 성공(9 페이지), 로컬 프리뷰에서 컴퓨티드 스타일로 값 확인 완료
+
+---
+
+## 🔜 다음 작업 (우선순위 순)
+
+10. [ ] 실제 블로그 글 작성 — 세부 목표는 [블로그 목표](#블로그-목표) 참고
+11. [ ] SEO 기본 설정 — 세부 체크리스트는 [SEO 완료 체크리스트](#seo-완료-체크리스트) 참고
+12. [ ] Google Search Console 등록
+13. [ ] Google Analytics(GA4) 연결
+14. [ ] Google AdSense 신청 및 스크립트 삽입
+    - **콘텐츠(블로그 글 작성)와 SEO 기본 설정이 끝난 뒤에 진행한다.** 콘텐츠 없이 먼저 신청하지 않음.
+
+---
+
+## SEO 완료 체크리스트
+
+11번 항목("SEO 기본 설정")의 완료 기준. 전부 체크되면 11번을 완료로 표시한다.
+
+- [ ] `site` 설정 (`astro.config.mjs` — 현재 TODO로 비어있음, 실제 도메인 확정 시 채우기)
+- [ ] sitemap
+- [ ] robots.txt
+- [ ] canonical
+- [ ] Open Graph
+- [ ] Twitter Card
+- [ ] JSON-LD
+- [ ] RSS
+- [ ] favicon
+- [ ] 404 페이지
+
+---
+
+## 블로그 목표
+
+10번 항목("실제 블로그 글 작성")의 목표. 현재 샘플 글 2개는 동작 확인용이며 실제 글로 교체/추가 대상.
+
+**목표**: 최소 10개의 실제 글 작성
+
+**다루는 카테고리**
+- AI
+- 업무 자동화
+- 자동차 데이터
+- 온라인 셀러
+- Codivo Studio 개발기
 
 ---
 
@@ -102,3 +162,27 @@
 `G:\내 드라이브\Projects\seller_dealer\docs\` 전체 (WEBSITE_MASTER.md, ROADMAP.md, CURRENT_TASK.md,
 wordpress-content.md) — 워드프레스+Gutenberg 기반 계획, 2026-07-29부로 이 Astro 프로젝트로 대체됨.
 카피/URL 등 재사용 가능한 내용만 [CONTENT.md](./CONTENT.md)로 옮겨왔음.
+
+---
+
+## Claude 작업 규칙
+
+### 작업 시작 전
+
+다음 네 가지를 먼저 설명한 뒤 작업을 시작한다.
+
+- 현재 진행 상태
+- 이번 작업 목표
+- 수정 범위
+- 예상 영향 범위
+
+### 작업 완료 후
+
+다음 여섯 가지를 보고한다.
+
+- 수정한 파일
+- 변경 내용
+- 변경 이유
+- 검증 방법
+- 남은 TODO
+- 다음 추천 작업

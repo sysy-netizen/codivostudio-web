@@ -119,5 +119,5 @@ AI 시대, 모두가 AI를 쉽게 활용할수 있도록 돕는 다리가 되겠
 | Primary | `#2563EB` |
 | Accent | `#FD7125` |
 
-현재 `BaseLayout.astro`의 CSS 변수(`--color-bg`, `--color-text`, `--color-accent` 등)에
-이 값을 반영하는 작업 아직 미완료 (Accent `#FD7125` 미적용 상태) — [CURRENT_TASK.md](./CURRENT_TASK.md) 참고.
+`BaseLayout.astro`의 CSS 변수(`--color-text`, `--color-accent`, `--color-highlight` 등)에 전체 반영 완료
+(2026-07-29) — 자세한 내용은 [ROADMAP.md](./ROADMAP.md) 9번 항목 참고.
