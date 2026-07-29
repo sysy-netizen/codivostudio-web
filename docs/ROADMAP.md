@@ -45,8 +45,8 @@
 
 ## 다음 할 일 (실행 순서)
 
-1. [ ] Git 첫 커밋 생성
-2. [ ] GitHub 저장소 생성 및 push
+1. [x] Git 첫 커밋 생성 (2026-07-29, `2dfeeac`)
+2. [x] GitHub 저장소 생성 및 push (2026-07-29) → https://github.com/sysy-netizen/codivostudio-web (main)
 3. [ ] Cloudflare 계정 생성, 가비아 도메인(`codivostudio.com`) 네임서버를 Cloudflare로 이전
 4. [ ] Cloudflare Pages 프로젝트 생성 → GitHub 저장소 연동 → 자동 배포 확인
 5. [ ] 홈페이지 실제 콘텐츠 작성 (seller_dealer의 `home.html` 카피/구조를 Astro 컴포넌트로 이식)
