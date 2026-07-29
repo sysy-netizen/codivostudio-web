@@ -51,7 +51,13 @@
    - 가비아 네임서버 → `leland.ns.cloudflare.com` / `savanna.ns.cloudflare.com` 변경 완료 (전파 대기 중)
    - `tools.codivostudio.com` CNAME(`cname.vercel-dns.com`, DNS only)을 Cloudflare DNS에 추가 완료 — 스캔 누락분, 수동 추가함
    - 기존 Hiworks 메일 MX/TXT(SPF) 레코드는 Cloudflare DNS로 그대로 이전됨
-4. [ ] Cloudflare Pages 프로젝트 생성 → GitHub 저장소 연동 → 자동 배포 확인
+4. [x] Cloudflare Pages 프로젝트 생성 → GitHub 저장소 연동 → 자동 배포 확인 (2026-07-29)
+   - Cloudflare 계정 이메일 인증 완료, GitHub OAuth 연동(리포지토리 `codivostudio-web`만 권한 허용)
+   - 신형 Workers 통합 배포 방식이라 `wrangler.jsonc`(정적 자산 `./dist`) 추가 필요 — 저장소에 커밋/푸시 완료
+   - 프로젝트명 `codivostudio-web`, Build command `npm run build`, Deploy command `npx wrangler deploy`
+   - 배포 성공 확인: https://codivostudio-web.gkms1216.workers.dev
+   - 커스텀 도메인 연결: `codivostudio.com`, `www.codivostudio.com` (기존 가비아 파킹 A레코드 삭제 후 연결)
+   - `https://codivostudio.com` 실제 접속 확인 완료 (네임서버 전파 완료된 상태)
 5. [ ] 홈페이지 실제 콘텐츠 작성 (seller_dealer의 `home.html` 카피/구조를 Astro 컴포넌트로 이식)
    - Hero, Tools 소개 카드 3개, About 요약, CTA 문의 섹션 — [CONTENT.md](./CONTENT.md) 참고
 6. [ ] `/tools` 페이지 제작 (카드 3개, 링크만, iframe 없음)
