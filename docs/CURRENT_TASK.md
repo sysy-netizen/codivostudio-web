@@ -10,25 +10,24 @@
 
 ## 완료된 작업
 
-ROADMAP.md 기준 1~10번 작업 완료 (Git/GitHub/Cloudflare 배포, 홈·도구·소개 페이지 제작, 컬러 시스템 적용,
-실제 블로그 글 10편 작성).
+ROADMAP.md 기준 1~11번 작업 완료 (Git/GitHub/Cloudflare 배포, 홈·도구·소개 페이지 제작, 컬러 시스템 적용,
+실제 블로그 글 10편 작성, SEO 기본 설정).
 자세한 완료 이력은 [ROADMAP.md](./ROADMAP.md) "완료된 작업" 참고.
 
 ---
 
 ## 현재 작업
 
-**ROADMAP.md 11번 — SEO 기본 설정**
+**ROADMAP.md 12번 — Google Search Console 등록**
 
-- 목표: `site` 설정, sitemap, robots.txt, canonical, Open Graph, Twitter Card, JSON-LD, RSS, favicon, 404 페이지
-- 수정 대상: `astro.config.mjs` 등 SEO 관련 설정
-- 완료 조건: [ROADMAP.md](./ROADMAP.md) "SEO 완료 체크리스트" 10개 항목 전부 체크
+- 목표: Search Console에 codivostudio.com 등록, sitemap.xml 제출
+- 수정 대상: 없음 (외부 서비스 등록 작업, 필요 시 소유권 확인용 메타태그/파일 추가)
+- 완료 조건: Search Console 등록 완료 + sitemap 제출 확인
 
 ---
 
-## 다음 작업 (11번 이후)
+## 다음 작업 (12번 이후)
 
-12. Google Search Console 등록
 13. Google Analytics 4 연결
 14. Google AdSense 신청 (콘텐츠 + SEO 완료 후 진행)
 

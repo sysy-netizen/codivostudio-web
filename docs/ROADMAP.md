@@ -56,7 +56,7 @@
 - [x] Pagefind 검색 연동 및 동작 확인 (`npm run build` 후 로컬 프리뷰에서 검색 테스트 완료)
 - [x] `npm run build` 성공 확인, Git 초기화 완료 (커밋은 아직 — 사용자 확인 후 진행)
 
-### C. 배포 및 콘텐츠 (실행 순서 1~10)
+### C. 배포 및 콘텐츠 (실행 순서 1~11)
 
 1. [x] Git 첫 커밋 생성 (2026-07-29, `2dfeeac`)
 2. [x] GitHub 저장소 생성 및 push (2026-07-29) → https://github.com/sysy-netizen/codivostudio-web (main)
@@ -99,12 +99,21 @@
     - 각 글마다 title/description/slug/tags(SEO 메타데이터) 작성, 가능한 경우 실제 도구(랭킹추적/키워드분석/송장변환기) 페이지로 자연스럽게 내부 링크 연결 — 3개 도구 모두 전용 글 확보
     - `npm run build` 성공(17페이지), 로컬 프리뷰에서 10편 전체 렌더링 및 `/blog/` 목록 노출 확인
     - **주의**: "자동차 실무자가 매일 반복하는 차량 정보 조회, 자동화가 필요한 이유" 글은 실제 소스(외부 서비스명, 실사용 경험) 없이 테스트용으로 작성됨 — 실제 발행 전 재검토 필요
+11. [x] SEO 기본 설정 (2026-07-29)
+    - `astro.config.mjs`에 `site: 'https://codivostudio.com'`, `prefetch: true` 추가
+    - `BaseLayout.astro`에 canonical/robots/author/keywords(선택)/Open Graph/Twitter Card/WebSite+Organization JSON-LD 전체 추가
+    - `src/pages/sitemap.xml.ts`(직접 구현, 라이브러리 미사용), `public/robots.txt`, `src/pages/404.astro` 신규 작성
+    - RSS는 Astro 공식 `@astrojs/rss` 설치 후 `src/pages/rss.xml.ts`로 구현 (유일하게 추가한 의존성)
+    - 블로그 글 스키마에 `category` enum(5개 카테고리) 추가, 기존 글 10편 frontmatter 전부 반영
+    - 블로그 상세 페이지에 BlogPosting JSON-LD 추가, 도구 서브페이지 3개 + 블로그 글 10편(카테고리 쌍)에 내부 링크 보강
+    - `public/og-default.svg` 기본 OG 이미지 추가 — **SVG 임시본**, 일부 SNS 플랫폼 호환성 문제 있어 추후 PNG/JPG(1200×630)로 교체 필요
+    - 이미지 SEO(alt/width/height)는 사이트에 `<img>` 태그가 전무해 적용 대상 없음 — 실제 이미지 추가 시 반영 필요
+    - `npm run build` 성공(18페이지), 로컬 프리뷰에서 sitemap.xml/robots.txt/rss.xml/404/OG 이미지/JSON-LD 렌더링 확인
 
 ---
 
 ## 🔜 다음 작업 (우선순위 순)
 
-11. [ ] SEO 기본 설정 — 세부 체크리스트는 [SEO 완료 체크리스트](#seo-완료-체크리스트) 참고
 12. [ ] Google Search Console 등록
 13. [ ] Google Analytics(GA4) 연결
 14. [ ] Google AdSense 신청 및 스크립트 삽입
@@ -114,18 +123,18 @@
 
 ## SEO 완료 체크리스트
 
-11번 항목("SEO 기본 설정")의 완료 기준. 전부 체크되면 11번을 완료로 표시한다.
+11번 항목("SEO 기본 설정")의 완료 기준 — **완료 (2026-07-29)**.
 
-- [ ] `site` 설정 (`astro.config.mjs` — 현재 TODO로 비어있음, 실제 도메인 확정 시 채우기)
-- [ ] sitemap
-- [ ] robots.txt
-- [ ] canonical
-- [ ] Open Graph
-- [ ] Twitter Card
-- [ ] JSON-LD
-- [ ] RSS
-- [ ] favicon
-- [ ] 404 페이지
+- [x] `site` 설정 (`astro.config.mjs`)
+- [x] sitemap
+- [x] robots.txt
+- [x] canonical
+- [x] Open Graph
+- [x] Twitter Card
+- [x] JSON-LD
+- [x] RSS
+- [x] favicon
+- [x] 404 페이지
 
 ---
 
