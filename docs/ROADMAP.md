@@ -58,8 +58,10 @@
    - 배포 성공 확인: https://codivostudio-web.gkms1216.workers.dev
    - 커스텀 도메인 연결: `codivostudio.com`, `www.codivostudio.com` (기존 가비아 파킹 A레코드 삭제 후 연결)
    - `https://codivostudio.com` 실제 접속 확인 완료 (네임서버 전파 완료된 상태)
-5. [ ] 홈페이지 실제 콘텐츠 작성 (seller_dealer의 `home.html` 카피/구조를 Astro 컴포넌트로 이식)
-   - Hero, Tools 소개 카드 3개, About 요약, CTA 문의 섹션 — [CONTENT.md](./CONTENT.md) 참고
+5. [x] 홈페이지 실제 콘텐츠 작성 (seller_dealer의 `home.html` 카피/구조를 Astro 컴포넌트로 이식) (2026-07-29)
+   - Hero, Tools 소개 카드 3개, About 요약, CTA 문의 섹션 반영 완료
+   - 컬러 시스템 변수 `--color-bg-alt`(#FAFAFA), `--color-highlight`(#FD7125) BaseLayout에 추가
+   - 풀블리드(전체 폭) 배경 섹션 구현, 가로 스크롤 버그 수정 후 로컬 프리뷰로 데스크톱/모바일 확인 완료
 6. [ ] `/tools` 페이지 제작 (카드 3개, 링크만, iframe 없음)
 7. [ ] `/tools/rank-tracker`, `/tools/keyword-analysis`, `/tools/invoice-converter` 페이지 제작 (iframe 각 1개)
    - iframe 소스 주소는 [CONTENT.md](./CONTENT.md) 참고 (이미 배포된 URL 그대로 사용)
