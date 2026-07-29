@@ -115,13 +115,20 @@
     - 소유권 확인 완료 → 사이트맵(`sitemap.xml`) 제출 → "성공"(URL 17개) 확인
     - URL 검사에서 홈페이지가 이미 색인 생성돼 있음을 확인, 최신 버전 재크롤링을 위해 색인 생성 요청 진행
     - curl로 Googlebot User-Agent 시뮬레이션하여 `sitemap.xml`이 Cloudflare에 의해 차단되지 않음을 별도 확인
+13. [x] `tools.codivostudio.com` DNS 장애 대응 (2026-07-29)
+    - 증상: `/tools/rank-tracker/` 등 도구 서브페이지의 iframe이 로드되지 않고 에러처럼 보임
+    - 원인: `tools.codivostudio.com` CNAME 레코드가 Cloudflare DNS에서 사라져 NXDOMAIN 상태였음 (Google/Cloudflare 공용 DNS로 교차 확인)
+    - 조치: 사용자가 Cloudflare 대시보드에서 CNAME(`tools` → `cname.vercel-dns.com`, DNS only) 재추가 → 전파 확인, `tools.codivostudio.com` 200 OK 및 `frame-ancestors` CSP 정상 확인
+14. [x] 도구 서브페이지 iframe 풀블리드(화면 전체 폭) 적용 (2026-07-29)
+    - 랭킹추적/키워드분석/송장변환기 3개 페이지의 `.tool-page__frame`에 홈페이지와 동일한 풀블리드 기법(`100vw` + 음수 마진) 적용, 제목/설명 텍스트는 기존 정렬 폭 유지
+    - `npm run build` 성공, Playwright로 로컬 스크린샷 촬영해 iframe 박스가 화면 좌우 끝까지 확장되는지 확인 (iframe 내부 콘텐츠는 로컬 CSP 제약으로 배포 도메인에서만 최종 확인 가능)
 
 ---
 
 ## 🔜 다음 작업 (우선순위 순)
 
-13. [ ] Google Analytics(GA4) 연결
-14. [ ] Google AdSense 신청 및 스크립트 삽입
+15. [ ] Google Analytics(GA4) 연결
+16. [ ] Google AdSense 신청 및 스크립트 삽입
     - **콘텐츠(블로그 글 작성)와 SEO 기본 설정이 끝난 뒤에 진행한다.** 콘텐츠 없이 먼저 신청하지 않음.
 
 ---
