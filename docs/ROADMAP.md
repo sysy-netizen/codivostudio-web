@@ -67,8 +67,11 @@
    - 헤더 네비게이션 "도구"를 외부 새탭 링크 대신 내부 `/tools/`로 변경
    - `tools.codivostudio.com`은 CSP `frame-ancestors`가 codivostudio.com만 허용 — 로컬(localhost) 프리뷰에서는 iframe이 정상적으로 안 보이는 게 의도된 동작(배포 도메인에서만 임베드 확인 가능)
    - curl로 프로덕션 HTML의 iframe src 3개 모두 정상 삽입 확인. 브라우저 프리뷰 도구 오류로 실제 렌더링 스크린샷 재확인은 못함 — 실사용 시 육안 확인 권장
-8. [ ] `/about` 페이지 제작 (About 카피 + Contact 섹션)
-   - 기존 WPForms 대신 정적 사이트용 폼 서비스 필요 (예: Formspree 무료 티어) — 방식 결정 필요
+8. [x] `/about` 페이지 제작 (About 카피 + Contact 섹션) (2026-07-29)
+   - Mission / Who We Build For / Philosophy(4개) / Contact 섹션 모두 반영
+   - Contact는 사용자 확인 후 mailto 버튼만 사용하기로 결정 (Formspree 등 폼 서비스 연동 안 함)
+   - 헤더 네비게이션에 "소개" 링크 추가
+   - **다음 작업 시작 전 확인 필요**: DNS 전파 상태 (`nslookup -type=NS codivostudio.com` 실행해서 Cloudflare 네임서버로 나오는지 확인) — 2026-07-29 오후 기준 일부 국내 통신사 DNS에 아직 미반영
 9. [ ] 컬러 시스템 전체 적용 (`#FAFAFA`/`#111827`/`#2563EB`/`#FD7125`)
 10. [ ] 실제 블로그 글 채우기 (샘플 글 2개 교체/추가)
 11. [ ] Google AdSense 신청 및 스크립트 삽입 (콘텐츠 어느 정도 쌓인 후 신청)
