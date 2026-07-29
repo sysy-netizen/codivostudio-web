@@ -10,25 +10,24 @@
 
 ## 완료된 작업
 
-ROADMAP.md 기준 1~11번 작업 완료 (Git/GitHub/Cloudflare 배포, 홈·도구·소개 페이지 제작, 컬러 시스템 적용,
-실제 블로그 글 10편 작성, SEO 기본 설정).
+ROADMAP.md 기준 1~12번 작업 완료 (Git/GitHub/Cloudflare 배포, 홈·도구·소개 페이지 제작, 컬러 시스템 적용,
+실제 블로그 글 10편 작성, SEO 기본 설정, Google Search Console 등록).
 자세한 완료 이력은 [ROADMAP.md](./ROADMAP.md) "완료된 작업" 참고.
 
 ---
 
 ## 현재 작업
 
-**ROADMAP.md 12번 — Google Search Console 등록**
+**ROADMAP.md 13번 — Google Analytics 4 연결**
 
-- 목표: Search Console에 codivostudio.com 등록, sitemap.xml 제출
-- 수정 대상: 없음 (외부 서비스 등록 작업, 필요 시 소유권 확인용 메타태그/파일 추가)
-- 완료 조건: Search Console 등록 완료 + sitemap 제출 확인
+- 목표: GA4 속성 생성, 추적 코드를 사이트에 연결
+- 수정 대상: `src/layouts/BaseLayout.astro` (추적 스크립트 삽입)
+- 완료 조건: GA4에서 실시간 방문 데이터 수집 확인
 
 ---
 
-## 다음 작업 (12번 이후)
+## 다음 작업 (13번 이후)
 
-13. Google Analytics 4 연결
 14. Google AdSense 신청 (콘텐츠 + SEO 완료 후 진행)
 
 세부 체크리스트는 [ROADMAP.md](./ROADMAP.md) "다음 작업" / "SEO 완료 체크리스트" 참고.

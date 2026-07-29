@@ -56,7 +56,7 @@
 - [x] Pagefind 검색 연동 및 동작 확인 (`npm run build` 후 로컬 프리뷰에서 검색 테스트 완료)
 - [x] `npm run build` 성공 확인, Git 초기화 완료 (커밋은 아직 — 사용자 확인 후 진행)
 
-### C. 배포 및 콘텐츠 (실행 순서 1~11)
+### C. 배포 및 콘텐츠 (실행 순서 1~12)
 
 1. [x] Git 첫 커밋 생성 (2026-07-29, `2dfeeac`)
 2. [x] GitHub 저장소 생성 및 push (2026-07-29) → https://github.com/sysy-netizen/codivostudio-web (main)
@@ -109,12 +109,17 @@
     - `public/og-default.svg` 기본 OG 이미지 추가 — **SVG 임시본**, 일부 SNS 플랫폼 호환성 문제 있어 추후 PNG/JPG(1200×630)로 교체 필요
     - 이미지 SEO(alt/width/height)는 사이트에 `<img>` 태그가 전무해 적용 대상 없음 — 실제 이미지 추가 시 반영 필요
     - `npm run build` 성공(18페이지), 로컬 프리뷰에서 sitemap.xml/robots.txt/rss.xml/404/OG 이미지/JSON-LD 렌더링 확인
+12. [x] Google Search Console 등록 (2026-07-29)
+    - 속성 유형: URL 접두어(`https://codivostudio.com`), 소유권 확인: HTML 태그 방식
+    - 최초 시도한 HTML 파일 업로드 방식은 실패 — Cloudflare 정적 자산 호스팅이 `.html` 요청을 확장자 없는 경로로 307 리다이렉트해 Google 인증에 실패함. `html_handling` 전역 설정 변경은 사이트 전체 트레일링 슬래시 라우팅(`/about/` 등)을 깨뜨릴 위험이 있어, HTML 태그 방식(`BaseLayout.astro`에 `google-site-verification` 메타 태그 추가)으로 전환해 해결
+    - 소유권 확인 완료 → 사이트맵(`sitemap.xml`) 제출 → "성공"(URL 17개) 확인
+    - URL 검사에서 홈페이지가 이미 색인 생성돼 있음을 확인, 최신 버전 재크롤링을 위해 색인 생성 요청 진행
+    - curl로 Googlebot User-Agent 시뮬레이션하여 `sitemap.xml`이 Cloudflare에 의해 차단되지 않음을 별도 확인
 
 ---
 
 ## 🔜 다음 작업 (우선순위 순)
 
-12. [ ] Google Search Console 등록
 13. [ ] Google Analytics(GA4) 연결
 14. [ ] Google AdSense 신청 및 스크립트 삽입
     - **콘텐츠(블로그 글 작성)와 SEO 기본 설정이 끝난 뒤에 진행한다.** 콘텐츠 없이 먼저 신청하지 않음.
