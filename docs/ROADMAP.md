@@ -62,9 +62,11 @@
    - Hero, Tools 소개 카드 3개, About 요약, CTA 문의 섹션 반영 완료
    - 컬러 시스템 변수 `--color-bg-alt`(#FAFAFA), `--color-highlight`(#FD7125) BaseLayout에 추가
    - 풀블리드(전체 폭) 배경 섹션 구현, 가로 스크롤 버그 수정 후 로컬 프리뷰로 데스크톱/모바일 확인 완료
-6. [ ] `/tools` 페이지 제작 (카드 3개, 링크만, iframe 없음)
-7. [ ] `/tools/rank-tracker`, `/tools/keyword-analysis`, `/tools/invoice-converter` 페이지 제작 (iframe 각 1개)
-   - iframe 소스 주소는 [CONTENT.md](./CONTENT.md) 참고 (이미 배포된 URL 그대로 사용)
+6. [x] `/tools` 페이지 제작 (카드 3개, 링크만, iframe 없음) (2026-07-29)
+7. [x] `/tools/rank-tracker`, `/tools/keyword-analysis`, `/tools/invoice-converter` 페이지 제작 (iframe 각 1개) (2026-07-29)
+   - 헤더 네비게이션 "도구"를 외부 새탭 링크 대신 내부 `/tools/`로 변경
+   - `tools.codivostudio.com`은 CSP `frame-ancestors`가 codivostudio.com만 허용 — 로컬(localhost) 프리뷰에서는 iframe이 정상적으로 안 보이는 게 의도된 동작(배포 도메인에서만 임베드 확인 가능)
+   - curl로 프로덕션 HTML의 iframe src 3개 모두 정상 삽입 확인. 브라우저 프리뷰 도구 오류로 실제 렌더링 스크린샷 재확인은 못함 — 실사용 시 육안 확인 권장
 8. [ ] `/about` 페이지 제작 (About 카피 + Contact 섹션)
    - 기존 WPForms 대신 정적 사이트용 폼 서비스 필요 (예: Formspree 무료 티어) — 방식 결정 필요
 9. [ ] 컬러 시스템 전체 적용 (`#FAFAFA`/`#111827`/`#2563EB`/`#FD7125`)
