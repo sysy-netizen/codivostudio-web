@@ -1,0 +1,876 @@
+<!-- Codivo Studio Home 페이지 — Hero 섹션. Gutenberg 사용자 정의 HTML 블록에 이 파일 전체를 붙여넣으세요. -->
+<div class="cv-home-hero">
+<style>
+.cv-home-hero,
+.cv-home-hero *,
+.cv-home-hero *::before,
+.cv-home-hero *::after {
+  box-sizing: border-box;
+}
+
+.cv-home-hero {
+  background: #FAFAFA;
+  color: #111827;
+  padding: 4rem 0;
+}
+
+.cv-home-hero__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* ── 왼쪽: 문구 ───────────────────────────────────────── */
+.cv-home-hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.cv-home-hero__eyebrow {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #2563EB;
+}
+
+.cv-home-hero__title {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 2.9rem);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: #111827;
+}
+
+.cv-home-hero__desc {
+  margin: 0;
+  max-width: 42ch;
+  font-size: clamp(1rem, 1.4vw, 1.1rem);
+  line-height: 1.7;
+  color: rgba(17, 24, 39, 0.66);
+}
+
+.cv-home-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.cv-home-hero__btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 1.7rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.cv-home-hero__btn--primary {
+  background: #2563EB;
+  color: #FFFFFF;
+}
+.cv-home-hero__btn--primary:hover {
+  background: #FD7125;
+  transform: translateY(-1px);
+}
+
+.cv-home-hero__btn--secondary {
+  background: #FFFFFF;
+  color: #111827;
+  border-color: #E5E7EB;
+}
+.cv-home-hero__btn--secondary:hover {
+  border-color: #FD7125;
+  color: #FD7125;
+  transform: translateY(-1px);
+}
+
+/* ── 오른쪽: 도구 패널 시각 요소 ──────────────────────── */
+.cv-home-hero__visual {
+  width: 100%;
+}
+
+.cv-home-hero__panel {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(17, 24, 39, 0.06);
+  overflow: hidden;
+}
+
+.cv-home-hero__panel-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.85rem 1.1rem;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.cv-home-hero__panel-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #E5E7EB;
+}
+
+.cv-home-hero__panel-label {
+  margin-left: auto;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(17, 24, 39, 0.4);
+}
+
+.cv-home-hero__panel-body {
+  padding: 0.4rem 1.1rem;
+}
+
+.cv-home-hero__tool-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1.1rem 0;
+}
+.cv-home-hero__tool-row + .cv-home-hero__tool-row {
+  border-top: 1px solid #E5E7EB;
+}
+
+.cv-home-hero__tool-icon {
+  flex: none;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 8px;
+  background: #FAFAFA;
+  border: 1px solid #E5E7EB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2563EB;
+}
+.cv-home-hero__tool-icon svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.cv-home-hero__tool-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.cv-home-hero__tool-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.cv-home-hero__tool-desc {
+  font-size: 0.78rem;
+  color: rgba(17, 24, 39, 0.55);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cv-home-hero__tool-viz {
+  flex: none;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.25rem;
+}
+
+/* Rank Tracker: 막대 그래프 */
+.cv-home-hero__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.2rem;
+  height: 1.6rem;
+}
+.cv-home-hero__bar {
+  width: 5px;
+  border-radius: 2px;
+  background: #E5E7EB;
+}
+.cv-home-hero__bar--1 { height: 40%; }
+.cv-home-hero__bar--2 { height: 65%; }
+.cv-home-hero__bar--3 { height: 50%; }
+.cv-home-hero__bar--4 { height: 100%; background: #2563EB; }
+
+/* Keyword Analysis: 태그 목록 */
+.cv-home-hero__tags {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.28rem;
+}
+.cv-home-hero__tag {
+  height: 6px;
+  border-radius: 3px;
+  background: #E5E7EB;
+}
+.cv-home-hero__tag--1 { width: 2.2rem; }
+.cv-home-hero__tag--2 { width: 1.4rem; background: #2563EB; }
+.cv-home-hero__tag--3 { width: 1.8rem; }
+
+/* Excel Converter: 표 그리드 */
+.cv-home-hero__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 7px);
+  grid-template-rows: repeat(2, 7px);
+  gap: 3px;
+}
+.cv-home-hero__cell {
+  border-radius: 2px;
+  background: #E5E7EB;
+}
+.cv-home-hero__cell--hi { background: #2563EB; }
+
+@media (max-width: 860px) {
+  .cv-home-hero {
+    padding: 2.75rem 0;
+  }
+  .cv-home-hero__inner {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+  .cv-home-hero__content {
+    align-items: flex-start;
+    text-align: left;
+  }
+  .cv-home-hero__desc {
+    max-width: 60ch;
+  }
+}
+
+@media (max-width: 480px) {
+  .cv-home-hero__inner {
+    padding: 0 1.25rem;
+  }
+  .cv-home-hero__actions {
+    width: 100%;
+  }
+  .cv-home-hero__btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+  .cv-home-hero__tool-desc {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv-home-hero__btn {
+    transition: none;
+  }
+}
+</style>
+
+<div class="cv-home-hero__inner">
+  <div class="cv-home-hero__content">
+    <span class="cv-home-hero__eyebrow">CODIVO STUDIO</span>
+    <h1 class="cv-home-hero__title">반복되는 업무를<br />더 단순하게 만듭니다.</h1>
+    <p class="cv-home-hero__desc">Codivo Studio는 온라인 판매자와 자동차 관련 실무자를 위한 간단하고 실용적인 웹 도구를 만듭니다.</p>
+    <div class="cv-home-hero__actions">
+      <a class="cv-home-hero__btn cv-home-hero__btn--primary" href="/tools">도구 둘러보기</a>
+      <a class="cv-home-hero__btn cv-home-hero__btn--secondary" href="/about">Codivo Studio 소개</a>
+    </div>
+  </div>
+
+  <div class="cv-home-hero__visual">
+    <div class="cv-home-hero__panel">
+      <div class="cv-home-hero__panel-bar">
+        <span class="cv-home-hero__panel-dot"></span>
+        <span class="cv-home-hero__panel-dot"></span>
+        <span class="cv-home-hero__panel-dot"></span>
+        <span class="cv-home-hero__panel-label">CODIVO TOOLS</span>
+      </div>
+
+      <div class="cv-home-hero__panel-body">
+        <div class="cv-home-hero__tool-row">
+          <span class="cv-home-hero__tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 17h4v4H3z"/>
+              <path d="M10 11h4v10h-4z"/>
+              <path d="M17 4h4v17h-4z"/>
+            </svg>
+          </span>
+          <span class="cv-home-hero__tool-text">
+            <span class="cv-home-hero__tool-name">Rank Tracker</span>
+            <span class="cv-home-hero__tool-desc">실시간 순위 추적</span>
+          </span>
+          <span class="cv-home-hero__tool-viz">
+            <span class="cv-home-hero__bars">
+              <span class="cv-home-hero__bar cv-home-hero__bar--1"></span>
+              <span class="cv-home-hero__bar cv-home-hero__bar--2"></span>
+              <span class="cv-home-hero__bar cv-home-hero__bar--3"></span>
+              <span class="cv-home-hero__bar cv-home-hero__bar--4"></span>
+            </span>
+          </span>
+        </div>
+
+        <div class="cv-home-hero__tool-row">
+          <span class="cv-home-hero__tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="7"/>
+              <path d="m21 21-4.35-4.35"/>
+            </svg>
+          </span>
+          <span class="cv-home-hero__tool-text">
+            <span class="cv-home-hero__tool-name">Keyword Analysis</span>
+            <span class="cv-home-hero__tool-desc">연관 키워드 분석</span>
+          </span>
+          <span class="cv-home-hero__tool-viz">
+            <span class="cv-home-hero__tags">
+              <span class="cv-home-hero__tag cv-home-hero__tag--1"></span>
+              <span class="cv-home-hero__tag cv-home-hero__tag--2"></span>
+              <span class="cv-home-hero__tag cv-home-hero__tag--3"></span>
+            </span>
+          </span>
+        </div>
+
+        <div class="cv-home-hero__tool-row">
+          <span class="cv-home-hero__tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="16" rx="2"/>
+              <path d="M3 10h18"/>
+              <path d="M9 10v10"/>
+            </svg>
+          </span>
+          <span class="cv-home-hero__tool-text">
+            <span class="cv-home-hero__tool-name">Excel Converter</span>
+            <span class="cv-home-hero__tool-desc">대량발송 파일 변환</span>
+          </span>
+          <span class="cv-home-hero__tool-viz">
+            <span class="cv-home-hero__grid">
+              <span class="cv-home-hero__cell"></span>
+              <span class="cv-home-hero__cell"></span>
+              <span class="cv-home-hero__cell"></span>
+              <span class="cv-home-hero__cell"></span>
+              <span class="cv-home-hero__cell cv-home-hero__cell--hi"></span>
+              <span class="cv-home-hero__cell"></span>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Codivo Studio Home 페이지 — Tools 소개 섹션. Gutenberg 사용자 정의 HTML 블록에 이 파일 전체를 붙여넣으세요. -->
+<div class="cv-home-tools">
+<style>
+.cv-home-tools,
+.cv-home-tools *,
+.cv-home-tools *::before,
+.cv-home-tools *::after {
+  box-sizing: border-box;
+}
+
+.cv-home-tools {
+  background: #FFFFFF;
+  color: #111827;
+  padding: 4rem 0;
+}
+
+.cv-home-tools__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.cv-home-tools__head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-bottom: 2.5rem;
+}
+
+.cv-home-tools__eyebrow {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #2563EB;
+}
+
+.cv-home-tools__title {
+  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #111827;
+}
+
+.cv-home-tools__desc {
+  margin: 0;
+  max-width: 52ch;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(17, 24, 39, 0.66);
+}
+
+.cv-home-tools__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.cv-home-tools__card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 1.75rem;
+  background: #FAFAFA;
+  border: 1px solid #E5E7EB;
+  border-radius: 16px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.cv-home-tools__card:hover {
+  border-color: #FD7125;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -8px rgba(17, 24, 39, 0.12);
+}
+
+.cv-home-tools__icon {
+  flex: none;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 10px;
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2563EB;
+}
+.cv-home-tools__icon svg {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.cv-home-tools__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.cv-home-tools__name {
+  font-size: 1.08rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #111827;
+}
+
+.cv-home-tools__desc-card {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(17, 24, 39, 0.6);
+}
+
+.cv-home-tools__link {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #111827;
+}
+.cv-home-tools__card:hover .cv-home-tools__link {
+  color: #FD7125;
+}
+
+@media (max-width: 860px) {
+  .cv-home-tools {
+    padding: 2.75rem 0;
+  }
+  .cv-home-tools__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .cv-home-tools__inner {
+    padding: 0 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv-home-tools__card {
+    transition: none;
+  }
+}
+</style>
+
+<div class="cv-home-tools__inner">
+  <div class="cv-home-tools__head">
+    <span class="cv-home-tools__eyebrow">TOOLS</span>
+    <h2 class="cv-home-tools__title">필요한 도구를 지금 바로 사용해보세요</h2>
+    <p class="cv-home-tools__desc">온라인 셀러를 위해 만든 실전 도구입니다. 아래에서 필요한 도구를 선택해 바로 사용해 보세요.</p>
+  </div>
+
+  <div class="cv-home-tools__grid">
+    <a class="cv-home-tools__card" href="/tools/rank-tracker">
+      <span class="cv-home-tools__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 17h4v4H3z"/>
+          <path d="M10 11h4v10h-4z"/>
+          <path d="M17 4h4v17h-4z"/>
+        </svg>
+      </span>
+      <span class="cv-home-tools__body">
+        <span class="cv-home-tools__name">실시간 랭킹추적</span>
+        <p class="cv-home-tools__desc-card">키워드 검색 시 내 상품이 몇 위에 노출되는지 실시간으로 확인합니다.</p>
+      </span>
+      <span class="cv-home-tools__link">사용하기 →</span>
+    </a>
+
+    <a class="cv-home-tools__card" href="/tools/keyword-analysis">
+      <span class="cv-home-tools__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="7"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
+      </span>
+      <span class="cv-home-tools__body">
+        <span class="cv-home-tools__name">연관 키워드 분석</span>
+        <p class="cv-home-tools__desc-card">연관 키워드의 검색량과 경쟁강도를 한 번에 분석합니다.</p>
+      </span>
+      <span class="cv-home-tools__link">사용하기 →</span>
+    </a>
+
+    <a class="cv-home-tools__card" href="/tools/invoice-converter">
+      <span class="cv-home-tools__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="16" rx="2"/>
+          <path d="M3 10h18"/>
+          <path d="M9 10v10"/>
+        </svg>
+      </span>
+      <span class="cv-home-tools__body">
+        <span class="cv-home-tools__name">대량발송 엑셀변환기</span>
+        <p class="cv-home-tools__desc-card">네이버·쿠팡 주문 파일과 택배 송장 파일을 자동으로 매칭해 하나로 합쳐줍니다.</p>
+      </span>
+      <span class="cv-home-tools__link">사용하기 →</span>
+    </a>
+  </div>
+</div>
+</div>
+
+<!-- Codivo Studio Home 페이지 — About 섹션. Gutenberg 사용자 정의 HTML 블록에 이 파일 전체를 붙여넣으세요. -->
+<div class="cv-home-about">
+<style>
+.cv-home-about,
+.cv-home-about *,
+.cv-home-about *::before,
+.cv-home-about *::after {
+  box-sizing: border-box;
+}
+
+.cv-home-about {
+  background: #FAFAFA;
+  color: #111827;
+  padding: 4.5rem 0;
+}
+
+.cv-home-about__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.cv-home-about__head {
+  max-width: 62ch;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-bottom: 2.75rem;
+}
+
+.cv-home-about__eyebrow {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #2563EB;
+}
+
+.cv-home-about__title {
+  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  color: #111827;
+}
+
+.cv-home-about__desc {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba(17, 24, 39, 0.66);
+}
+
+.cv-home-about__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2.25rem;
+}
+
+.cv-home-about__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 16px;
+}
+
+.cv-home-about__icon {
+  flex: none;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 10px;
+  background: #FAFAFA;
+  border: 1px solid #E5E7EB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2563EB;
+}
+.cv-home-about__icon svg {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.cv-home-about__item-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.cv-home-about__item-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.cv-home-about__item-desc {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(17, 24, 39, 0.6);
+}
+
+.cv-home-about__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #111827;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.cv-home-about__link:hover {
+  color: #FD7125;
+}
+
+@media (max-width: 860px) {
+  .cv-home-about {
+    padding: 3rem 0;
+  }
+  .cv-home-about__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .cv-home-about__inner {
+    padding: 0 1.25rem;
+  }
+}
+</style>
+
+<div class="cv-home-about__inner">
+  <div class="cv-home-about__head">
+    <span class="cv-home-about__eyebrow">ABOUT CODIVO STUDIO</span>
+    <h2 class="cv-home-about__title">복잡한 기능보다,<br />반복을 줄이는 실용적인 도구를 만듭니다</h2>
+    <p class="cv-home-about__desc">Codivo Studio는 온라인 셀러와 자동차 실무자가 매일 마주하는 반복 업무를 가장 단순한 도구로 대신합니다. 화려한 기능보다, 현장에서 실제로 작동하는 완성도를 먼저 봅니다.</p>
+  </div>
+
+  <div class="cv-home-about__grid">
+    <div class="cv-home-about__item">
+      <span class="cv-home-about__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+          <path d="M3 6h18"/>
+          <path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+      </span>
+      <span class="cv-home-about__item-body">
+        <span class="cv-home-about__item-title">온라인 셀러</span>
+        <p class="cv-home-about__item-desc">주문 처리, 순위 확인, 키워드 분석까지 — 반복되는 판매 업무를 대신합니다.</p>
+      </span>
+    </div>
+
+    <div class="cv-home-about__item">
+      <span class="cv-home-about__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 17h14M5 17a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm14 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"/>
+          <path d="M3 17V9l2-5h10l4 5v8"/>
+        </svg>
+      </span>
+      <span class="cv-home-about__item-body">
+        <span class="cv-home-about__item-title">자동차 실무자</span>
+        <p class="cv-home-about__item-desc">차량 정보 조회 등 반복되는 확인 작업을 더 빠르고 정확하게 처리합니다.</p>
+      </span>
+    </div>
+  </div>
+
+  <a class="cv-home-about__link" href="/about">Codivo Studio 더 알아보기 →</a>
+</div>
+</div>
+
+<!-- Codivo Studio Home 페이지 — CTA 문의 섹션. Gutenberg 사용자 정의 HTML 블록에 이 파일 전체를 붙여넣으세요. -->
+<div class="cv-home-cta">
+<style>
+.cv-home-cta,
+.cv-home-cta *,
+.cv-home-cta *::before,
+.cv-home-cta *::after {
+  box-sizing: border-box;
+}
+
+.cv-home-cta {
+  background: #111827;
+  color: #FFFFFF;
+  padding: 4rem 0;
+}
+
+.cv-home-cta__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  text-align: center;
+}
+
+.cv-home-cta__eyebrow {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #4F8CFF;
+}
+
+.cv-home-cta__title {
+  margin: 0;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+}
+
+.cv-home-cta__desc {
+  margin: 0;
+  max-width: 48ch;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.66);
+}
+
+.cv-home-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-top: 0.6rem;
+}
+
+.cv-home-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 1.7rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.cv-home-cta__btn--primary {
+  background: #2563EB;
+  color: #FFFFFF;
+}
+.cv-home-cta__btn--primary:hover {
+  background: #FD7125;
+  transform: translateY(-1px);
+}
+
+.cv-home-cta__btn--secondary {
+  background: transparent;
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.cv-home-cta__btn--secondary:hover {
+  border-color: #FD7125;
+  color: #FD7125;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 860px) {
+  .cv-home-cta {
+    padding: 3rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .cv-home-cta__inner {
+    padding: 0 1.25rem;
+  }
+  .cv-home-cta__actions {
+    width: 100%;
+  }
+  .cv-home-cta__btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv-home-cta__btn {
+    transition: none;
+  }
+}
+</style>
+
+<div class="cv-home-cta__inner">
+  <span class="cv-home-cta__eyebrow">CONTACT</span>
+  <h2 class="cv-home-cta__title">반복되는 업무가 있다면 알려주세요</h2>
+  <p class="cv-home-cta__desc">현재 업무에서 반복하고 있는 작업이나 필요한 도구가 있다면 문의해 주세요. 실제로 사용할 수 있는 단순하고 실용적인 방법을 고민합니다.</p>
+  <div class="cv-home-cta__actions">
+    <a class="cv-home-cta__btn cv-home-cta__btn--primary" href="/tools">도구 둘러보기</a>
+    <a class="cv-home-cta__btn cv-home-cta__btn--secondary" href="/about#contact">문의하기</a>
+  </div>
+</div>
+</div>

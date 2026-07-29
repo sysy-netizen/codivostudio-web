@@ -1,0 +1,291 @@
+<!-- Codivo Studio Rank Tracker 실행 페이지 (/tools/rank-tracker) — 상단 안내 영역. Gutenberg 사용자 정의 HTML 블록에 이 파일 전체를 붙여넣으세요. -->
+<div class="cv-rank-intro">
+<style>
+.cv-rank-intro,
+.cv-rank-intro *,
+.cv-rank-intro *::before,
+.cv-rank-intro *::after {
+  box-sizing: border-box;
+}
+
+.cv-rank-intro {
+  background: #FAFAFA;
+  color: #111827;
+  padding: 3.5rem 0 2.5rem;
+}
+
+.cv-rank-intro__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  text-align: center;
+}
+
+.cv-rank-intro__eyebrow {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #2563EB;
+}
+
+.cv-rank-intro__title {
+  margin: 0;
+  max-width: 24ch;
+  font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: #111827;
+}
+
+.cv-rank-intro__desc {
+  margin: 0;
+  max-width: 60ch;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(17, 24, 39, 0.66);
+}
+
+.cv-rank-intro__note {
+  margin: 0;
+  max-width: 60ch;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(17, 24, 39, 0.45);
+}
+
+@media (max-width: 860px) {
+  .cv-rank-intro {
+    padding: 2.75rem 0 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cv-rank-intro__inner {
+    padding: 0 1.25rem;
+  }
+}
+</style>
+
+<div class="cv-rank-intro__inner">
+  <span class="cv-rank-intro__eyebrow">RANK TRACKER</span>
+  <h1 class="cv-rank-intro__title">네이버 상품 검색 순위 확인</h1>
+  <p class="cv-rank-intro__desc">검색 키워드와 상품 정보를 입력해 네이버 쇼핑 검색 결과에서 내 상품의 노출 순위를 확인하세요.</p>
+  <p class="cv-rank-intro__note">조회 결과는 검색 시점과 네이버 검색 환경에 따라 달라질 수 있습니다.</p>
+</div>
+</div>
+
+<!-- Codivo Studio Rank Tracker 실행 페이지 — 프로그램 실행 영역(iframe). -->
+<div class="cv-rank-app">
+<style>
+.cv-rank-app,
+.cv-rank-app *,
+.cv-rank-app *::before,
+.cv-rank-app *::after {
+  box-sizing: border-box;
+}
+
+.cv-rank-app {
+  background: #FFFFFF;
+  padding: 0 0 2.5rem;
+}
+
+.cv-rank-app__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.cv-rank-app__frame-wrap {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #E5E7EB;
+  border-radius: 16px;
+  background: #FAFAFA;
+}
+
+.cv-rank-app__frame-wrap iframe {
+  display: block;
+  width: 100%;
+  height: 900px;
+  min-height: 900px;
+  border: none;
+}
+
+@media (min-width: 1200px) {
+  .cv-rank-app__frame-wrap iframe {
+    height: max(900px, 80vh);
+  }
+}
+
+@media (max-width: 860px) {
+  .cv-rank-app__frame-wrap iframe {
+    height: 850px;
+    min-height: 850px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cv-rank-app__inner {
+    padding: 0 1rem;
+  }
+
+  .cv-rank-app__frame-wrap {
+    border-radius: 10px;
+  }
+
+  .cv-rank-app__frame-wrap iframe {
+    height: 800px;
+    min-height: 800px;
+  }
+}
+</style>
+
+<div class="cv-rank-app__inner">
+  <div class="cv-rank-app__frame-wrap">
+    <iframe
+      src="https://tools.codivostudio.com/"
+      title="Codivo Studio Rank Tracker"
+      loading="eager"
+      allow="clipboard-read; clipboard-write"
+      referrerpolicy="strict-origin-when-cross-origin">
+    </iframe>
+  </div>
+</div>
+</div>
+
+<!-- Codivo Studio Rank Tracker 실행 페이지 — iframe 아래 보조 안내. -->
+<div class="cv-rank-fallback">
+<style>
+.cv-rank-fallback,
+.cv-rank-fallback *,
+.cv-rank-fallback *::before,
+.cv-rank-fallback *::after {
+  box-sizing: border-box;
+}
+
+.cv-rank-fallback {
+  background: #FFFFFF;
+  color: #111827;
+  padding: 0 0 3rem;
+}
+
+.cv-rank-fallback__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  text-align: center;
+}
+
+.cv-rank-fallback__text {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(17, 24, 39, 0.55);
+}
+
+.cv-rank-fallback__btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #FFFFFF;
+  color: #111827;
+  border: 1px solid #E5E7EB;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.cv-rank-fallback__btn:hover {
+  border-color: #FD7125;
+  color: #FD7125;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 480px) {
+  .cv-rank-fallback__inner {
+    padding: 0 1.25rem;
+  }
+  .cv-rank-fallback__btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv-rank-fallback__btn {
+    transition: none;
+  }
+}
+</style>
+
+<div class="cv-rank-fallback__inner">
+  <p class="cv-rank-fallback__text">프로그램이 정상적으로 표시되지 않으면 새 창에서 열어주세요.</p>
+  <a class="cv-rank-fallback__btn" href="https://tools.codivostudio.com/" target="_blank" rel="noopener noreferrer">새 창에서 Rank Tracker 열기</a>
+</div>
+</div>
+
+<!-- Codivo Studio Rank Tracker 실행 페이지 — 하단 링크. -->
+<div class="cv-rank-links">
+<style>
+.cv-rank-links,
+.cv-rank-links *,
+.cv-rank-links *::before,
+.cv-rank-links *::after {
+  box-sizing: border-box;
+}
+
+.cv-rank-links {
+  background: #FAFAFA;
+  color: #111827;
+  padding: 1.75rem 0;
+  border-top: 1px solid #E5E7EB;
+}
+
+.cv-rank-links__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.cv-rank-links__link {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #111827;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.cv-rank-links__link:hover {
+  color: #FD7125;
+}
+
+@media (max-width: 480px) {
+  .cv-rank-links__inner {
+    padding: 0 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv-rank-links__link {
+    transition: none;
+  }
+}
+</style>
+
+<div class="cv-rank-links__inner">
+  <a class="cv-rank-links__link" href="/tools">다른 도구 보기</a>
+  <a class="cv-rank-links__link" href="/about#contact">문의하기</a>
+</div>
+</div>

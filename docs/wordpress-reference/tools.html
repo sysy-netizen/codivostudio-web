@@ -1,0 +1,344 @@
+<!-- Codivo Studio Tools 메인 페이지 — Hero 섹션. Gutenberg 사용자 정의 HTML 블록에 이 파일 전체를 붙여넣으세요. -->
+<div class="cv-tools-hero">
+<style>
+.cv-tools-hero,
+.cv-tools-hero *,
+.cv-tools-hero *::before,
+.cv-tools-hero *::after {
+  box-sizing: border-box;
+}
+
+.cv-tools-hero {
+  background: #FAFAFA;
+  color: #111827;
+  padding: 4.5rem 0;
+}
+
+.cv-tools-hero__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  text-align: center;
+}
+
+.cv-tools-hero__eyebrow {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #2563EB;
+}
+
+.cv-tools-hero__title {
+  margin: 0;
+  max-width: 22ch;
+  font-size: clamp(2rem, 4vw, 2.9rem);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: #111827;
+}
+
+.cv-tools-hero__desc {
+  margin: 0;
+  max-width: 52ch;
+  font-size: clamp(1rem, 1.4vw, 1.1rem);
+  line-height: 1.75;
+  color: rgba(17, 24, 39, 0.66);
+}
+
+@media (max-width: 860px) {
+  .cv-tools-hero {
+    padding: 2.75rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .cv-tools-hero__inner {
+    padding: 0 1.25rem;
+  }
+}
+</style>
+
+<div class="cv-tools-hero__inner">
+  <span class="cv-tools-hero__eyebrow">TOOLS</span>
+  <h1 class="cv-tools-hero__title">반복 업무를 줄이는 실용적인 도구</h1>
+  <p class="cv-tools-hero__desc">온라인 판매에서 반복되는 작업을 더 빠르고 단순하게 처리할 수 있는 도구를 제공합니다.</p>
+</div>
+</div>
+
+<!-- Codivo Studio Tools 메인 페이지 — Tools Grid 섹션. -->
+<div class="cv-tools-grid-section">
+<style>
+.cv-tools-grid-section,
+.cv-tools-grid-section *,
+.cv-tools-grid-section *::before,
+.cv-tools-grid-section *::after {
+  box-sizing: border-box;
+}
+
+.cv-tools-grid-section {
+  background: #FFFFFF;
+  color: #111827;
+  padding: 4rem 0;
+}
+
+.cv-tools-grid-section__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.cv-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.cv-tools-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.75rem;
+  background: #FAFAFA;
+  border: 1px solid #E5E7EB;
+  border-radius: 16px;
+}
+
+.cv-tools-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.cv-tools-card__icon {
+  flex: none;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 10px;
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2563EB;
+}
+.cv-tools-card__icon svg {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.cv-tools-card__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding-top: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(17, 24, 39, 0.5);
+  white-space: nowrap;
+}
+.cv-tools-card__status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #16A34A;
+}
+
+.cv-tools-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cv-tools-card__name {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #111827;
+}
+
+.cv-tools-card__subtitle {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: rgba(17, 24, 39, 0.55);
+}
+
+.cv-tools-card__audience {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #2563EB;
+}
+
+.cv-tools-card__desc {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: rgba(17, 24, 39, 0.6);
+}
+
+.cv-tools-card__link {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding-top: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #111827;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.cv-tools-card__link:hover {
+  color: #FD7125;
+}
+
+@media (max-width: 860px) {
+  .cv-tools-grid-section {
+    padding: 3rem 0;
+  }
+  .cv-tools-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .cv-tools-grid-section__inner {
+    padding: 0 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv-tools-card__link {
+    transition: none;
+  }
+}
+</style>
+
+<div class="cv-tools-grid-section__inner">
+  <div class="cv-tools-grid">
+    <div class="cv-tools-card">
+      <div class="cv-tools-card__top">
+        <span class="cv-tools-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 17h4v4H3z"/>
+            <path d="M10 11h4v10h-4z"/>
+            <path d="M17 4h4v17h-4z"/>
+          </svg>
+        </span>
+        <span class="cv-tools-card__status"><span class="cv-tools-card__status-dot"></span>이용 가능</span>
+      </div>
+      <div class="cv-tools-card__body">
+        <h3 class="cv-tools-card__name">Rank Tracker</h3>
+        <p class="cv-tools-card__subtitle">네이버 검색 순위 확인 도구</p>
+        <span class="cv-tools-card__audience">온라인 셀러를 위한 도구</span>
+        <p class="cv-tools-card__desc">키워드를 검색해 내 상품이 몇 위에 노출되는지 빠르게 확인합니다.</p>
+      </div>
+      <a class="cv-tools-card__link" href="/tools/rank-tracker">자세히 보기 →</a>
+    </div>
+
+    <div class="cv-tools-card">
+      <div class="cv-tools-card__top">
+        <span class="cv-tools-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="7"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+        </span>
+        <span class="cv-tools-card__status"><span class="cv-tools-card__status-dot"></span>이용 가능</span>
+      </div>
+      <div class="cv-tools-card__body">
+        <h3 class="cv-tools-card__name">Keyword Analysis</h3>
+        <p class="cv-tools-card__subtitle">검색 키워드 분석 도구</p>
+        <span class="cv-tools-card__audience">온라인 판매와 콘텐츠 기획을 위한 도구</span>
+        <p class="cv-tools-card__desc">연관 키워드의 검색량과 경쟁강도를 한 번에 분석합니다.</p>
+      </div>
+      <a class="cv-tools-card__link" href="/tools/keyword-analysis">자세히 보기 →</a>
+    </div>
+
+    <div class="cv-tools-card">
+      <div class="cv-tools-card__top">
+        <span class="cv-tools-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="16" rx="2"/>
+            <path d="M3 10h18"/>
+            <path d="M9 10v10"/>
+          </svg>
+        </span>
+        <span class="cv-tools-card__status"><span class="cv-tools-card__status-dot"></span>이용 가능</span>
+      </div>
+      <div class="cv-tools-card__body">
+        <h3 class="cv-tools-card__name">Invoice Converter</h3>
+        <p class="cv-tools-card__subtitle">주문서·송장 파일 변환 도구</p>
+        <span class="cv-tools-card__audience">온라인 셀러의 반복 업무를 줄이기 위한 도구</span>
+        <p class="cv-tools-card__desc">네이버·쿠팡 주문 파일과 택배 송장 파일을 자동으로 매칭해 하나로 합쳐줍니다.</p>
+      </div>
+      <a class="cv-tools-card__link" href="/tools/invoice-converter">자세히 보기 →</a>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Codivo Studio Tools 메인 페이지 — 안내 섹션. -->
+<div class="cv-tools-notice">
+<style>
+.cv-tools-notice,
+.cv-tools-notice *,
+.cv-tools-notice *::before,
+.cv-tools-notice *::after {
+  box-sizing: border-box;
+}
+
+.cv-tools-notice {
+  background: #FAFAFA;
+  color: #111827;
+  padding: 2.25rem 0;
+  border-top: 1px solid #E5E7EB;
+}
+
+.cv-tools-notice__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.cv-tools-notice__text {
+  margin: 0;
+  font-size: 0.95rem;
+  color: rgba(17, 24, 39, 0.66);
+}
+
+.cv-tools-notice__link {
+  color: #111827;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.cv-tools-notice__link:hover {
+  color: #FD7125;
+}
+
+@media (max-width: 480px) {
+  .cv-tools-notice__inner {
+    padding: 0 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv-tools-notice__link {
+    transition: none;
+  }
+}
+</style>
+
+<div class="cv-tools-notice__inner">
+  <p class="cv-tools-notice__text">필요한 도구가 목록에 없나요? <a class="cv-tools-notice__link" href="/about#contact">문의해주세요 →</a></p>
+</div>
+</div>
