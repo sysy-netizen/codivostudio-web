@@ -1,15 +1,35 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const tools = [
+	{ href: '/tools/rank-tracker', name: '실시간 랭킹추적' },
+	{ href: '/tools/keyword-analysis', name: '연관 키워드 분석' },
+	{ href: '/tools/invoice-converter', name: '대량발송 엑셀변환기' },
+];
+const currentHref = '/tools/invoice-converter';
 ---
 
 <BaseLayout title="대량발송 엑셀변환기" description="네이버·쿠팡 주문 파일과 택배 송장 파일을 자동으로 매칭해 하나로 합쳐줍니다.">
 	<section class="tool-page">
 		<h1 class="tool-page__title">대량발송 엑셀변환기</h1>
 		<p class="tool-page__desc">네이버·쿠팡 주문 파일과 택배 송장 파일을 자동으로 매칭해 하나로 합쳐줍니다.</p>
-		<p class="tool-page__desc">관련 글: <a href="/blog/naver-coupang-order-invoice-merge-automation/">네이버·쿠팡 주문서, 송장 파일과 자동으로 합치는 법</a></p>
+		<p class="tool-page__related">관련 글: <a href="/blog/naver-coupang-order-invoice-merge-automation/">네이버·쿠팡 주문서, 송장 파일과 자동으로 합치는 법</a></p>
+		<nav class="tool-switcher" aria-label="다른 도구로 이동">
+			{
+				tools.map((tool) => (
+					<a
+						href={tool.href}
+						class={`tool-switcher__btn ${tool.href === currentHref ? 'is-active' : ''}`}
+						aria-current={tool.href === currentHref ? 'page' : undefined}
+					>
+						{tool.name}
+					</a>
+				))
+			}
+		</nav>
 		<iframe
 			class="tool-page__frame"
-			src="https://invoice-merge-hi9x7xuzmxwreckiq4vnr6.streamlit.app/"
+			src="https://invoice-merge-codivo.streamlit.app/"
 			title="대량발송 엑셀변환기"
 			height="900"
 		></iframe>
@@ -18,7 +38,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 
 <style>
 	.tool-page {
-		padding: 1rem 0 2rem;
+		padding: 0 0 2rem;
+		margin-top: -0.5rem;
 	}
 
 	.tool-page__title {
@@ -30,11 +51,45 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 	}
 
 	.tool-page__desc {
-		margin: 0 0 1.5rem;
-		max-width: 52ch;
+		margin: 0 0 0.5rem;
 		font-size: 1rem;
 		line-height: 1.7;
 		color: var(--color-muted);
+	}
+
+	.tool-page__related {
+		margin: 0 0 1.5rem;
+		font-size: 0.85rem;
+		line-height: 1.6;
+		color: var(--color-muted);
+	}
+
+	.tool-switcher {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+		margin: 0 0 1.5rem;
+	}
+
+	.tool-switcher__btn {
+		padding: 0.5rem 1rem;
+		border: 1px solid var(--color-border);
+		border-radius: 999px;
+		font-size: 0.88rem;
+		font-weight: 600;
+		color: var(--color-text);
+		text-decoration: none;
+		background: #fff;
+		transition: border-color 0.15s, color 0.15s, background 0.15s;
+	}
+	.tool-switcher__btn:hover {
+		border-color: var(--color-accent);
+		color: var(--color-accent);
+	}
+	.tool-switcher__btn.is-active {
+		background: var(--color-accent);
+		border-color: var(--color-accent);
+		color: #fff;
 	}
 
 	.tool-page__frame {

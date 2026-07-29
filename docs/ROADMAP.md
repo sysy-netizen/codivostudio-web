@@ -122,14 +122,22 @@
 14. [x] 도구 서브페이지 iframe 풀블리드(화면 전체 폭) 적용 (2026-07-29)
     - 랭킹추적/키워드분석/송장변환기 3개 페이지의 `.tool-page__frame`에 홈페이지와 동일한 풀블리드 기법(`100vw` + 음수 마진) 적용, 제목/설명 텍스트는 기존 정렬 폭 유지
     - `npm run build` 성공, Playwright로 로컬 스크린샷 촬영해 iframe 박스가 화면 좌우 끝까지 확장되는지 확인 (iframe 내부 콘텐츠는 로컬 CSP 제약으로 배포 도메인에서만 최종 확인 가능)
+15. [x] 도구 서브페이지 텍스트/여백 다듬기 + 도구 전환 버튼 추가 + 송장변환기 재배포 (2026-07-29)
+    - 설명 문구(`.tool-page__desc`) 한 줄 표시되도록 `max-width: 52ch` 제한 제거, "관련 글" 줄은 `.tool-page__related`로 분리해 더 작은 글씨(0.85rem)로 조정
+    - 헤더~제목 사이 상단 여백을 `.tool-page` 패딩/음수 마진으로 절반가량 축소
+    - 3개 도구 페이지 모두에 "다른 도구로 이동" 버튼형 내비게이션(`.tool-switcher`) 추가 — 관련 글 아래, iframe 위에 배치, 현재 페이지는 강조 표시
+    - `codivo-tools`(랭킹추적/키워드분석 Next.js 앱, 별도 저장소) `NavBar.tsx`에서 "송장 변환기" 외부 링크 탭 제거 (송장변환기는 별도 프로그램이라 자체 페이지에서만 접근하도록 정리)
+    - **송장변환기 Streamlit 앱 재배포**: 기존 앱(`invoice-merge-hi9x7xuzmxwreckiq4vnr6.streamlit.app`)이 Streamlit Cloud 인증 리다이렉트 무한 루프(`ERR_TOO_MANY_REDIRECTS`) 버그에 빠져 서비스 불가 상태가 됨 — Hugging Face Spaces 이전을 시도했으나 신규 계정이 이메일 인증 전이라 Streamlit/Gradio/Docker SDK가 잠겨있어(Static만 무료) 보류, 대신 같은 GitHub 저장소(`sysy-netizen/invoice-merge`)로 Streamlit Cloud에 새 이름(`invoice-merge-codivo.streamlit.app`)으로 재배포해 정상화 확인 후 iframe `src` 갱신
+    - `npm run build` 성공, 로컬 프리뷰 및 Playwright 스크린샷으로 3개 페이지 레이아웃/전환 버튼 확인, 신규 Streamlit URL은 curl(차단 헤더 없음)과 Playwright(정상 로드, 무한루프 없음)로 검증
 
 ---
 
 ## 🔜 다음 작업 (우선순위 순)
 
-15. [ ] Google Analytics(GA4) 연결
-16. [ ] Google AdSense 신청 및 스크립트 삽입
+16. [ ] Google Analytics(GA4) 연결
+17. [ ] Google AdSense 신청 및 스크립트 삽입
     - **콘텐츠(블로그 글 작성)와 SEO 기본 설정이 끝난 뒤에 진행한다.** 콘텐츠 없이 먼저 신청하지 않음.
+18. [ ] (선택) Hugging Face Spaces 계정 이메일 인증 완료 후, 송장변환기를 HF Spaces로 재이전 검토 — Streamlit Cloud보다 안정적인 공개 임베드 대안
 
 ---
 
@@ -182,7 +190,7 @@
 ### iframe 소스 주소 (기존 배포 그대로 재사용)
 - 랭킹추적: `https://tools.codivostudio.com/`
 - 키워드분석: `https://tools.codivostudio.com/keyword`
-- 송장변환기: `https://invoice-merge-hi9x7xuzmxwreckiq4vnr6.streamlit.app/`
+- 송장변환기: `https://invoice-merge-codivo.streamlit.app/` (2026-07-29 재배포, 아래 15번 참고)
 
 ### 폐기된 이전 계획
 `G:\내 드라이브\Projects\seller_dealer\docs\` 전체 (WEBSITE_MASTER.md, ROADMAP.md, CURRENT_TASK.md,

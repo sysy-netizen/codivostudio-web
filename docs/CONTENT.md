@@ -12,7 +12,7 @@
 |---|---|
 | `/tools/rank-tracker` (실시간 랭킹추적) | `https://tools.codivostudio.com/` |
 | `/tools/keyword-analysis` (연관 키워드 분석) | `https://tools.codivostudio.com/keyword` |
-| `/tools/invoice-converter` (대량발송 엑셀변환기) | `https://invoice-merge-hi9x7xuzmxwreckiq4vnr6.streamlit.app/` |
+| `/tools/invoice-converter` (대량발송 엑셀변환기) | `https://invoice-merge-codivo.streamlit.app/` |
 
 Astro에서는 각 페이지에 `<iframe>`을 컴포넌트 내에 직접 작성하면 됨 (워드프레스처럼 블록에
 붙여넣을 필요 없이 그냥 `.astro` 파일에 마크업으로 존재).
