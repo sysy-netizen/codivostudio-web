@@ -1,16 +1,166 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const tools = [
+	{
+		href: '/tools/rank-tracker',
+		name: '실시간 랭킹추적',
+		desc: '키워드 검색 시 내 상품이 몇 위에 노출되는지 실시간으로 확인합니다.',
+		icon: 'M3 17h4v4H3z M10 11h4v10h-4z M17 4h4v17h-4z',
+	},
+	{
+		href: '/tools/keyword-analysis',
+		name: '연관 키워드 분석',
+		desc: '연관 키워드의 검색량과 경쟁강도를 한 번에 분석합니다.',
+		icon: 'circle',
+	},
+	{
+		href: '/tools/invoice-converter',
+		name: '대량발송 엑셀변환기',
+		desc: '네이버·쿠팡 주문 파일과 택배 송장 파일을 자동으로 매칭해 하나로 합쳐줍니다.',
+		icon: 'table',
+	},
+];
 ---
 
-<BaseLayout title="홈" description="Codivo Studio - AI 도구와 콘텐츠를 만나보세요">
+<BaseLayout title="홈" description="Codivo Studio - 온라인 셀러와 자동차 실무자를 위한 실용적인 웹 도구">
 	<section class="hero">
-		<h1>Codivo Studio에 오신 것을 환영합니다</h1>
-		<p>여기에 서비스/프로그램 소개 문구가 들어갑니다. 내용은 차차 채워나갈 예정입니다.</p>
-		<div class="cta-group">
-			<a class="cta-primary" href="https://tools.codivostudio.com" target="_blank" rel="noopener noreferrer">
-				도구 사용해보기
-			</a>
-			<a class="cta-secondary" href="/blog/">블로그 보기</a>
+		<div class="hero__inner">
+			<div class="hero__content">
+				<span class="eyebrow">CODIVO STUDIO</span>
+				<h1 class="hero__title">반복되는 업무를<br />더 단순하게 만듭니다.</h1>
+				<p class="hero__desc">Codivo Studio는 온라인 판매자와 자동차 관련 실무자를 위한 간단하고 실용적인 웹 도구를 만듭니다.</p>
+				<div class="hero__actions">
+					<a class="btn btn--primary" href="/tools">도구 둘러보기</a>
+					<a class="btn btn--secondary" href="/about">Codivo Studio 소개</a>
+				</div>
+			</div>
+
+			<div class="hero__visual">
+				<div class="panel">
+					<div class="panel__bar">
+						<span class="panel__dot"></span>
+						<span class="panel__dot"></span>
+						<span class="panel__dot"></span>
+						<span class="panel__label">CODIVO TOOLS</span>
+					</div>
+					<div class="panel__body">
+						<div class="tool-row">
+							<span class="tool-row__icon">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M3 17h4v4H3z"></path>
+									<path d="M10 11h4v10h-4z"></path>
+									<path d="M17 4h4v17h-4z"></path>
+								</svg>
+							</span>
+							<span class="tool-row__text">
+								<span class="tool-row__name">Rank Tracker</span>
+								<span class="tool-row__desc">실시간 순위 추적</span>
+							</span>
+							<span class="bars">
+								<span class="bars__bar bars__bar--1"></span>
+								<span class="bars__bar bars__bar--2"></span>
+								<span class="bars__bar bars__bar--3"></span>
+								<span class="bars__bar bars__bar--4"></span>
+							</span>
+						</div>
+						<div class="tool-row">
+							<span class="tool-row__icon">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<circle cx="11" cy="11" r="7"></circle>
+									<path d="m21 21-4.35-4.35"></path>
+								</svg>
+							</span>
+							<span class="tool-row__text">
+								<span class="tool-row__name">Keyword Analysis</span>
+								<span class="tool-row__desc">연관 키워드 분석</span>
+							</span>
+							<span class="tags">
+								<span class="tags__tag tags__tag--1"></span>
+								<span class="tags__tag tags__tag--2"></span>
+								<span class="tags__tag tags__tag--3"></span>
+							</span>
+						</div>
+						<div class="tool-row">
+							<span class="tool-row__icon">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<rect x="3" y="4" width="18" height="16" rx="2"></rect>
+									<path d="M3 10h18"></path>
+									<path d="M9 10v10"></path>
+								</svg>
+							</span>
+							<span class="tool-row__text">
+								<span class="tool-row__name">Excel Converter</span>
+								<span class="tool-row__desc">대량발송 파일 변환</span>
+							</span>
+							<span class="grid-viz">
+								<span class="grid-viz__cell"></span>
+								<span class="grid-viz__cell"></span>
+								<span class="grid-viz__cell"></span>
+								<span class="grid-viz__cell"></span>
+								<span class="grid-viz__cell grid-viz__cell--hi"></span>
+								<span class="grid-viz__cell"></span>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="tools-section">
+		<div class="tools-section__inner">
+			<div class="section-head">
+				<span class="eyebrow">TOOLS</span>
+				<h2 class="section-title">필요한 도구를 지금 바로 사용해보세요</h2>
+				<p class="section-desc">온라인 셀러를 위해 만든 실전 도구입니다. 아래에서 필요한 도구를 선택해 바로 사용해 보세요.</p>
+			</div>
+
+			<div class="tools-grid">
+				<a class="tool-card" href="/tools/rank-tracker">
+					<span class="tool-card__icon">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M3 17h4v4H3z"></path>
+							<path d="M10 11h4v10h-4z"></path>
+							<path d="M17 4h4v17h-4z"></path>
+						</svg>
+					</span>
+					<span class="tool-card__body">
+						<span class="tool-card__name">실시간 랭킹추적</span>
+						<p class="tool-card__desc">키워드 검색 시 내 상품이 몇 위에 노출되는지 실시간으로 확인합니다.</p>
+					</span>
+					<span class="tool-card__link">사용하기 →</span>
+				</a>
+
+				<a class="tool-card" href="/tools/keyword-analysis">
+					<span class="tool-card__icon">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<circle cx="11" cy="11" r="7"></circle>
+							<path d="m21 21-4.35-4.35"></path>
+						</svg>
+					</span>
+					<span class="tool-card__body">
+						<span class="tool-card__name">연관 키워드 분석</span>
+						<p class="tool-card__desc">연관 키워드의 검색량과 경쟁강도를 한 번에 분석합니다.</p>
+					</span>
+					<span class="tool-card__link">사용하기 →</span>
+				</a>
+
+				<a class="tool-card" href="/tools/invoice-converter">
+					<span class="tool-card__icon">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<rect x="3" y="4" width="18" height="16" rx="2"></rect>
+							<path d="M3 10h18"></path>
+							<path d="M9 10v10"></path>
+						</svg>
+					</span>
+					<span class="tool-card__body">
+						<span class="tool-card__name">대량발송 엑셀변환기</span>
+						<p class="tool-card__desc">네이버·쿠팡 주문 파일과 택배 송장 파일을 자동으로 매칭해 하나로 합쳐줍니다.</p>
+					</span>
+					<span class="tool-card__link">사용하기 →</span>
+				</a>
+			</div>
 		</div>
 	</section>
 
@@ -19,65 +169,584 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		<span>광고 영역 (placeholder)</span>
 	</section>
 
-	<section class="placeholder-section">
-		<h2>소개 섹션 (준비 중)</h2>
-		<p>추후 서비스 소개, 기능 설명, 이용 방법 등이 이 영역에 채워집니다.</p>
+	<section class="about-section">
+		<div class="about-section__inner">
+			<div class="section-head section-head--wide">
+				<span class="eyebrow">ABOUT CODIVO STUDIO</span>
+				<h2 class="section-title">복잡한 기능보다,<br />반복을 줄이는 실용적인 도구를 만듭니다</h2>
+				<p class="section-desc">Codivo Studio는 온라인 셀러와 자동차 실무자가 매일 마주하는 반복 업무를 가장 단순한 도구로 대신합니다. 화려한 기능보다, 현장에서 실제로 작동하는 완성도를 먼저 봅니다.</p>
+			</div>
+
+			<div class="about-grid">
+				<div class="about-item">
+					<span class="about-item__icon">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+							<path d="M3 6h18"></path>
+							<path d="M16 10a4 4 0 0 1-8 0"></path>
+						</svg>
+					</span>
+					<span class="about-item__body">
+						<span class="about-item__title">온라인 셀러</span>
+						<p class="about-item__desc">주문 처리, 순위 확인, 키워드 분석까지 — 반복되는 판매 업무를 대신합니다.</p>
+					</span>
+				</div>
+
+				<div class="about-item">
+					<span class="about-item__icon">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M5 17h14M5 17a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm14 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path>
+							<path d="M3 17V9l2-5h10l4 5v8"></path>
+						</svg>
+					</span>
+					<span class="about-item__body">
+						<span class="about-item__title">자동차 실무자</span>
+						<p class="about-item__desc">차량 정보 조회 등 반복되는 확인 작업을 더 빠르고 정확하게 처리합니다.</p>
+					</span>
+				</div>
+			</div>
+
+			<a class="link-arrow" href="/about">Codivo Studio 더 알아보기 →</a>
+		</div>
+	</section>
+
+	<section class="cta-section">
+		<div class="cta-section__inner">
+			<span class="eyebrow eyebrow--light">CONTACT</span>
+			<h2 class="cta-title">반복되는 업무가 있다면 알려주세요</h2>
+			<p class="cta-desc">현재 업무에서 반복하고 있는 작업이나 필요한 도구가 있다면 문의해 주세요. 실제로 사용할 수 있는 단순하고 실용적인 방법을 고민합니다.</p>
+			<div class="cta-actions">
+				<a class="btn btn--primary" href="/tools">도구 둘러보기</a>
+				<a class="btn btn--secondary btn--dark" href="/about#contact">문의하기</a>
+			</div>
+		</div>
 	</section>
 </BaseLayout>
 
 <style>
-	.hero {
-		text-align: center;
-		padding: 3rem 0;
+	/* 공통: 풀블리드 섹션 (BaseLayout의 max-width 컨테이너를 벗어나 배경을 화면 끝까지 채움) */
+	.hero,
+	.tools-section,
+	.about-section,
+	.cta-section {
+		width: 100vw;
+		position: relative;
+		left: 50%;
+		right: 50%;
+		margin-left: -50vw;
+		margin-right: -50vw;
 	}
 
-	.hero h1 {
-		font-size: 2rem;
-		margin-bottom: 0.75rem;
+	.hero__inner,
+	.tools-section__inner,
+	.about-section__inner,
+	.cta-section__inner {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1.5rem;
 	}
 
-	.hero p {
-		color: var(--color-muted);
-		max-width: 40rem;
-		margin: 0 auto 1.5rem;
+	.eyebrow {
+		font-size: 0.78rem;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		color: var(--color-accent);
 	}
 
-	.cta-group {
-		display: flex;
-		gap: 1rem;
-		justify-content: center;
+	.eyebrow--light {
+		color: #4f8cff;
 	}
 
-	.cta-primary,
-	.cta-secondary {
-		display: inline-block;
-		padding: 0.7rem 1.4rem;
-		border-radius: 6px;
-		text-decoration: none;
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.85rem 1.7rem;
+		border-radius: 8px;
+		font-size: 0.95rem;
 		font-weight: 600;
+		text-decoration: none;
+		border: 1px solid transparent;
+		transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 	}
 
-	.cta-primary {
+	.btn--primary {
 		background: var(--color-accent);
 		color: #fff;
 	}
+	.btn--primary:hover {
+		background: var(--color-highlight);
+		transform: translateY(-1px);
+	}
 
-	.cta-secondary {
-		border: 1px solid var(--color-border);
+	.btn--secondary {
+		background: #fff;
+		color: var(--color-text);
+		border-color: var(--color-border);
+	}
+	.btn--secondary:hover {
+		border-color: var(--color-highlight);
+		color: var(--color-highlight);
+		transform: translateY(-1px);
+	}
+
+	.btn--dark {
+		background: transparent;
+		color: #fff;
+		border-color: rgba(255, 255, 255, 0.2);
+	}
+	.btn--dark:hover {
+		border-color: var(--color-highlight);
+		color: var(--color-highlight);
+	}
+
+	.section-head {
+		display: flex;
+		flex-direction: column;
+		gap: 0.65rem;
+		margin-bottom: 2.5rem;
+	}
+
+	.section-head--wide {
+		max-width: 62ch;
+		gap: 0.9rem;
+	}
+
+	.section-title {
+		margin: 0;
+		font-size: clamp(1.6rem, 3vw, 2.1rem);
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		line-height: 1.35;
 		color: var(--color-text);
 	}
 
+	.section-desc {
+		margin: 0;
+		max-width: 52ch;
+		font-size: 1rem;
+		line-height: 1.7;
+		color: var(--color-muted);
+	}
+
+	/* ── Hero ─────────────────────────────────────── */
+	.hero {
+		background: var(--color-bg-alt);
+		padding: 4rem 0;
+	}
+
+	.hero__inner {
+		display: grid;
+		grid-template-columns: 1.05fr 1fr;
+		gap: 3rem;
+		align-items: center;
+	}
+
+	.hero__content {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 1.25rem;
+	}
+
+	.hero__title {
+		margin: 0;
+		font-size: clamp(2rem, 4vw, 2.9rem);
+		font-weight: 800;
+		line-height: 1.25;
+		letter-spacing: -0.02em;
+		color: var(--color-text);
+	}
+
+	.hero__desc {
+		margin: 0;
+		max-width: 42ch;
+		font-size: clamp(1rem, 1.4vw, 1.1rem);
+		line-height: 1.7;
+		color: var(--color-muted);
+	}
+
+	.hero__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.85rem;
+		margin-top: 0.5rem;
+	}
+
+	.panel {
+		background: #fff;
+		border: 1px solid var(--color-border);
+		border-radius: 16px;
+		box-shadow: 0 1px 3px rgba(17, 24, 39, 0.06);
+		overflow: hidden;
+	}
+
+	.panel__bar {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		padding: 0.85rem 1.1rem;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.panel__dot {
+		width: 7px;
+		height: 7px;
+		border-radius: 50%;
+		background: var(--color-border);
+	}
+
+	.panel__label {
+		margin-left: auto;
+		font-size: 0.72rem;
+		font-weight: 600;
+		letter-spacing: 0.04em;
+		color: rgba(17, 24, 39, 0.4);
+	}
+
+	.panel__body {
+		padding: 0.4rem 1.1rem;
+	}
+
+	.tool-row {
+		display: flex;
+		align-items: center;
+		gap: 0.85rem;
+		padding: 1.1rem 0;
+	}
+	.tool-row + .tool-row {
+		border-top: 1px solid var(--color-border);
+	}
+
+	.tool-row__icon {
+		flex: none;
+		width: 2.35rem;
+		height: 2.35rem;
+		border-radius: 8px;
+		background: var(--color-bg-alt);
+		border: 1px solid var(--color-border);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--color-accent);
+	}
+	.tool-row__icon svg {
+		width: 1.15rem;
+		height: 1.15rem;
+	}
+
+	.tool-row__text {
+		flex: 1 1 auto;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+	}
+
+	.tool-row__name {
+		font-size: 0.9rem;
+		font-weight: 700;
+		color: var(--color-text);
+	}
+
+	.tool-row__desc {
+		font-size: 0.78rem;
+		color: rgba(17, 24, 39, 0.55);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.bars {
+		flex: none;
+		display: flex;
+		align-items: flex-end;
+		gap: 0.2rem;
+		height: 1.6rem;
+	}
+	.bars__bar {
+		width: 5px;
+		border-radius: 2px;
+		background: var(--color-border);
+	}
+	.bars__bar--1 { height: 40%; }
+	.bars__bar--2 { height: 65%; }
+	.bars__bar--3 { height: 50%; }
+	.bars__bar--4 { height: 100%; background: var(--color-accent); }
+
+	.tags {
+		flex: none;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		gap: 0.28rem;
+	}
+	.tags__tag {
+		height: 6px;
+		border-radius: 3px;
+		background: var(--color-border);
+	}
+	.tags__tag--1 { width: 2.2rem; }
+	.tags__tag--2 { width: 1.4rem; background: var(--color-accent); }
+	.tags__tag--3 { width: 1.8rem; }
+
+	.grid-viz {
+		flex: none;
+		display: grid;
+		grid-template-columns: repeat(3, 7px);
+		grid-template-rows: repeat(2, 7px);
+		gap: 3px;
+	}
+	.grid-viz__cell {
+		border-radius: 2px;
+		background: var(--color-border);
+	}
+	.grid-viz__cell--hi { background: var(--color-accent); }
+
+	/* ── Tools ────────────────────────────────────── */
+	.tools-section {
+		background: var(--color-bg);
+		padding: 4rem 0;
+	}
+
+	.tools-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.25rem;
+	}
+
+	.tool-card {
+		display: flex;
+		flex-direction: column;
+		gap: 1.1rem;
+		padding: 1.75rem;
+		background: var(--color-bg-alt);
+		border: 1px solid var(--color-border);
+		border-radius: 16px;
+		text-decoration: none;
+		color: inherit;
+		transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+	}
+	.tool-card:hover {
+		border-color: var(--color-highlight);
+		transform: translateY(-2px);
+		box-shadow: 0 8px 24px -8px rgba(17, 24, 39, 0.12);
+	}
+
+	.tool-card__icon {
+		flex: none;
+		width: 2.6rem;
+		height: 2.6rem;
+		border-radius: 10px;
+		background: #fff;
+		border: 1px solid var(--color-border);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--color-accent);
+	}
+	.tool-card__icon svg {
+		width: 1.3rem;
+		height: 1.3rem;
+	}
+
+	.tool-card__body {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+	}
+
+	.tool-card__name {
+		font-size: 1.08rem;
+		font-weight: 700;
+		letter-spacing: -0.01em;
+		color: var(--color-text);
+	}
+
+	.tool-card__desc {
+		margin: 0;
+		font-size: 0.9rem;
+		line-height: 1.6;
+		color: var(--color-muted);
+	}
+
+	.tool-card__link {
+		margin-top: auto;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.3rem;
+		font-size: 0.88rem;
+		font-weight: 600;
+		color: var(--color-text);
+	}
+	.tool-card:hover .tool-card__link {
+		color: var(--color-highlight);
+	}
+
+	/* ── Ad slot ──────────────────────────────────── */
 	.ad-slot {
-		margin: 2rem 0;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 2rem 1.5rem;
+		text-align: center;
+	}
+	.ad-slot span {
+		display: block;
 		padding: 2rem;
 		border: 1px dashed var(--color-border);
 		border-radius: 6px;
-		text-align: center;
 		color: var(--color-muted);
 		font-size: 0.85rem;
 	}
 
-	.placeholder-section {
-		padding: 2rem 0;
+	/* ── About ────────────────────────────────────── */
+	.about-section {
+		background: var(--color-bg-alt);
+		padding: 4.5rem 0;
+	}
+
+	.about-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.25rem;
+		margin-bottom: 2.25rem;
+	}
+
+	.about-item {
+		display: flex;
+		align-items: flex-start;
+		gap: 1rem;
+		padding: 1.5rem;
+		background: #fff;
+		border: 1px solid var(--color-border);
+		border-radius: 16px;
+	}
+
+	.about-item__icon {
+		flex: none;
+		width: 2.6rem;
+		height: 2.6rem;
+		border-radius: 10px;
+		background: var(--color-bg-alt);
+		border: 1px solid var(--color-border);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--color-accent);
+	}
+	.about-item__icon svg {
+		width: 1.3rem;
+		height: 1.3rem;
+	}
+
+	.about-item__body {
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+	}
+
+	.about-item__title {
+		font-size: 1rem;
+		font-weight: 700;
+		color: var(--color-text);
+	}
+
+	.about-item__desc {
+		margin: 0;
+		font-size: 0.9rem;
+		line-height: 1.6;
+		color: var(--color-muted);
+	}
+
+	.link-arrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.3rem;
+		font-size: 0.92rem;
+		font-weight: 600;
+		color: var(--color-text);
+		text-decoration: none;
+		transition: color 0.2s ease;
+	}
+	.link-arrow:hover {
+		color: var(--color-highlight);
+	}
+
+	/* ── CTA ──────────────────────────────────────── */
+	.cta-section {
+		background: var(--color-text);
+		color: #fff;
+		padding: 4rem 0;
+	}
+
+	.cta-section__inner {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1.1rem;
+		text-align: center;
+	}
+
+	.cta-title {
+		margin: 0;
+		font-size: clamp(1.5rem, 3vw, 2rem);
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		color: #fff;
+	}
+
+	.cta-desc {
+		margin: 0;
+		max-width: 48ch;
+		font-size: 1rem;
+		line-height: 1.7;
+		color: rgba(255, 255, 255, 0.66);
+	}
+
+	.cta-actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.85rem;
+		margin-top: 0.6rem;
+	}
+
+	@media (max-width: 860px) {
+		.hero, .tools-section { padding: 2.75rem 0; }
+		.about-section { padding: 3rem 0; }
+		.cta-section { padding: 3rem 0; }
+		.hero__inner {
+			grid-template-columns: 1fr;
+			gap: 2.25rem;
+		}
+		.hero__desc { max-width: 60ch; }
+		.tools-grid { grid-template-columns: 1fr; }
+		.about-grid { grid-template-columns: 1fr; }
+	}
+
+	@media (max-width: 480px) {
+		.hero__inner,
+		.tools-section__inner,
+		.about-section__inner,
+		.cta-section__inner {
+			padding: 0 1.25rem;
+		}
+		.hero__actions,
+		.cta-actions {
+			width: 100%;
+		}
+		.hero__actions .btn,
+		.cta-actions .btn {
+			flex: 1 1 auto;
+			justify-content: center;
+		}
+		.tool-row__desc {
+			display: none;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.btn, .tool-card {
+			transition: none;
+		}
 	}
 </style>
