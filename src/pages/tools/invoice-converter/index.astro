@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="대량발송 엑셀변환기" description="네이버·쿠팡 주문 파일과 택배 송장 파일을 자동으로 매칭해 하나로 합쳐줍니다.">
+	<section class="tool-page">
+		<h1 class="tool-page__title">대량발송 엑셀변환기</h1>
+		<p class="tool-page__desc">네이버·쿠팡 주문 파일과 택배 송장 파일을 자동으로 매칭해 하나로 합쳐줍니다.</p>
+		<iframe
+			class="tool-page__frame"
+			src="https://invoice-merge-hi9x7xuzmxwreckiq4vnr6.streamlit.app/"
+			title="대량발송 엑셀변환기"
+			height="900"
+		></iframe>
+	</section>
+</BaseLayout>
+
+<style>
+	.tool-page {
+		padding: 1rem 0 2rem;
+	}
+
+	.tool-page__title {
+		margin: 0 0 0.5rem;
+		font-size: clamp(1.6rem, 3vw, 2.1rem);
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		color: var(--color-text);
+	}
+
+	.tool-page__desc {
+		margin: 0 0 1.5rem;
+		max-width: 52ch;
+		font-size: 1rem;
+		line-height: 1.7;
+		color: var(--color-muted);
+	}
+
+	.tool-page__frame {
+		width: 100%;
+		height: 900px;
+		border: 1px solid var(--color-border);
+		border-radius: 12px;
+	}
+</style>

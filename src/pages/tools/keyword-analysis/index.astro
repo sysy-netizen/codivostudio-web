@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="연관 키워드 분석" description="연관 키워드의 검색량과 경쟁강도를 한 번에 분석합니다.">
+	<section class="tool-page">
+		<h1 class="tool-page__title">연관 키워드 분석</h1>
+		<p class="tool-page__desc">연관 키워드의 검색량과 경쟁강도를 한 번에 분석합니다.</p>
+		<iframe
+			class="tool-page__frame"
+			src="https://tools.codivostudio.com/keyword"
+			title="연관 키워드 분석"
+			height="800"
+		></iframe>
+	</section>
+</BaseLayout>
+
+<style>
+	.tool-page {
+		padding: 1rem 0 2rem;
+	}
+
+	.tool-page__title {
+		margin: 0 0 0.5rem;
+		font-size: clamp(1.6rem, 3vw, 2.1rem);
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		color: var(--color-text);
+	}
+
+	.tool-page__desc {
+		margin: 0 0 1.5rem;
+		max-width: 52ch;
+		font-size: 1rem;
+		line-height: 1.7;
+		color: var(--color-muted);
+	}
+
+	.tool-page__frame {
+		width: 100%;
+		height: 800px;
+		border: 1px solid var(--color-border);
+		border-radius: 12px;
+	}
+</style>
