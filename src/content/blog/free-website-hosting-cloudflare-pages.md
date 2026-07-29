@@ -2,6 +2,7 @@
 title: "웹사이트 운영비 0원 만들기 — Cloudflare Pages 무료 호스팅 후기"
 description: "도메인 등록비 외에는 호스팅비 없이 웹사이트를 운영하는 방법. Cloudflare Pages로 무료 배포하면서 실제로 겪은 네임서버 이전 과정과 놓치기 쉬운 부분을 정리했습니다."
 pubDate: 2026-07-29
+category: "Codivo Studio 개발기"
 tags: ["개발기"]
 ---
 
@@ -24,6 +25,8 @@ tags: ["개발기"]
 네임서버를 옮기면 기존에 쓰던 메일 관련 레코드(MX, SPF/TXT)도 같이 옮겨줘야 메일이 끊기지 않습니다. 저희는 기존 메일 서비스의 MX/TXT 레코드를 그대로 Cloudflare DNS에 옮겨서 이 부분은 문제없이 넘어갔습니다.
 
 반대로 놓쳤던 부분도 있었습니다. 이미 다른 서비스(Vercel)에 배포해둔 서브도메인(`tools.codivostudio.com`)의 CNAME 레코드가 Cloudflare의 자동 스캔 목록에서 빠져 있었습니다. 도메인을 옮길 때 기존 DNS 레코드를 자동으로 가져와주는 기능이 있긴 하지만, 100% 완벽하게 다 긁어오는 건 아니라는 걸 이때 알았습니다. 서브도메인을 따로 쓰고 있다면 이전 후에 꼭 하나하나 확인하는 걸 권합니다.
+
+관련 글: [Codivo Studio를 만들게 된 이유](/blog/why-we-built-codivo-studio/)
 
 ## 정리
 

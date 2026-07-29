@@ -2,6 +2,7 @@
 title: "Codivo Studio를 만들게 된 이유"
 description: "'Code'와 'Vivo'를 합친 이름부터, 워드프레스 대신 Astro를 선택하게 된 이유까지 — Codivo Studio를 시작하게 된 과정을 정리했습니다."
 pubDate: 2026-07-29
+category: "Codivo Studio 개발기"
 tags: ["개발기"]
 ---
 
@@ -30,3 +31,5 @@ Codivo Studio라는 이름은 'Code'와 'Vivo(살아있다)'를 합친 말입니
 이 사이트를 운영하는 데 있어 저희가 지키려는 기준은 네 가지입니다. 단순함, 실용성, 유지보수, 자동화. 화려한 기능보다 실제로 쓰이는 도구, 복잡한 설명보다 바로 따라 할 수 있는 방법을 우선하려고 합니다. 블로그도 같은 방향으로, 실제로 겪었거나 확인한 자동화 사례를 계속 기록해나갈 계획입니다.
 
 AI 시대에 모두가 AI를 쉽게 활용할 수 있도록 돕는 다리가 되는 것, 그게 Codivo Studio가 하려는 일입니다.
+
+관련 글: [웹사이트 운영비 0원 만들기 — Cloudflare Pages 무료 호스팅 후기](/blog/free-website-hosting-cloudflare-pages/)

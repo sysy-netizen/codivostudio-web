@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="페이지를 찾을 수 없습니다" description="요청하신 페이지를 찾을 수 없습니다." noindex>
+	<section class="not-found">
+		<h1 class="not-found__title">404</h1>
+		<p class="not-found__desc">요청하신 페이지를 찾을 수 없습니다.</p>
+		<a class="not-found__link" href="/">홈으로 돌아가기</a>
+	</section>
+</BaseLayout>
+
+<style>
+	.not-found {
+		padding: 4rem 0;
+		text-align: center;
+	}
+
+	.not-found__title {
+		margin: 0 0 0.5rem;
+		font-size: clamp(2.5rem, 6vw, 4rem);
+		font-weight: 800;
+		color: var(--color-text);
+	}
+
+	.not-found__desc {
+		margin: 0 0 1.5rem;
+		color: var(--color-muted);
+	}
+
+	.not-found__link {
+		font-weight: 600;
+		color: var(--color-accent);
+	}
+</style>
