@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactForm from '../../components/ContactForm.astro';
 
 const philosophy = [
 	{
@@ -138,7 +139,8 @@ const philosophy = [
 			<span class="eyebrow eyebrow--light">CONTACT</span>
 			<h2 class="contact__title">자유롭게 문의해주세요</h2>
 			<p class="contact__desc">궁금한 점이나 제안하고 싶은 아이디어가 있다면 언제든 편하게 남겨주세요. 확인 후 빠르게 답변드리겠습니다.</p>
-			<a class="contact__btn" href="mailto:contact@codivostudio.com">contact@codivostudio.com 로 문의하기</a>
+
+			<ContactForm variant="solid" />
 		</div>
 	</section>
 </BaseLayout>
@@ -370,25 +372,6 @@ const philosophy = [
 		color: rgba(255, 255, 255, 0.66);
 	}
 
-	.contact__btn {
-		display: inline-flex;
-		align-items: center;
-		margin-top: 0.6rem;
-		padding: 0.85rem 1.7rem;
-		border-radius: 8px;
-		font-size: 0.95rem;
-		font-weight: 600;
-		text-decoration: none;
-		background: var(--color-accent);
-		color: #fff;
-		border: 1px solid transparent;
-		transition: background-color 0.2s ease, transform 0.2s ease;
-	}
-	.contact__btn:hover {
-		background: var(--color-highlight);
-		transform: translateY(-1px);
-	}
-
 	@media (max-width: 860px) {
 		.about-hero, .mission, .audience, .philosophy, .contact {
 			padding: 3rem 0;
@@ -411,16 +394,6 @@ const philosophy = [
 		}
 		.philosophy-grid {
 			grid-template-columns: 1fr;
-		}
-		.contact__btn {
-			width: 100%;
-			justify-content: center;
-		}
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.contact__btn {
-			transition: none;
 		}
 	}
 </style>

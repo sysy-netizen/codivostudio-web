@@ -11,7 +11,10 @@ const currentPath = Astro.url.pathname;
 
 <header class="site-header">
 	<div class="header-inner">
-		<a class="logo" href="/">Codivo Studio</a>
+		<a class="logo" href="/">
+			<img class="logo__mark" src="/codivo-logo.png" alt="" width="28" height="28" />
+			Codivo Studio
+		</a>
 		<nav>
 			<ul>
 				{
@@ -48,10 +51,19 @@ const currentPath = Astro.url.pathname;
 	}
 
 	.logo {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
 		font-weight: 700;
 		font-size: 1.15rem;
 		color: var(--color-text);
 		text-decoration: none;
+	}
+
+	.logo__mark {
+		display: block;
+		width: 1.75rem;
+		height: 1.75rem;
 	}
 
 	nav ul {
