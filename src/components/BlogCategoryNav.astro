@@ -1,0 +1,68 @@
+---
+import { CATEGORY_SLUGS } from '../lib/blogCategories';
+
+interface Props {
+	current?: string;
+}
+
+const { current } = Astro.props;
+---
+
+<nav class="category-nav" aria-label="블로그 카테고리">
+	<ul>
+		<li>
+			<a class={`category-link ${!current ? 'is-active' : ''}`} href="/blog/">전체</a>
+		</li>
+		{
+			Object.entries(CATEGORY_SLUGS).map(([category, slug]) => (
+				<li>
+					<a
+						class={`category-link ${current === category ? 'is-active' : ''}`}
+						href={`/blog/category/${slug}/`}
+					>
+						{category}
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</nav>
+
+<style>
+	.category-nav {
+		margin: 1.25rem 0 0;
+	}
+
+	.category-nav ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.category-link {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.4rem 0.9rem;
+		border: 1px solid var(--color-border);
+		border-radius: 999px;
+		font-size: 0.85rem;
+		font-weight: 600;
+		color: var(--color-muted);
+		text-decoration: none;
+		white-space: nowrap;
+	}
+
+	.category-link:hover {
+		border-color: var(--color-accent);
+		color: var(--color-accent);
+	}
+
+	.category-link.is-active {
+		background: var(--color-accent);
+		border-color: var(--color-accent);
+		color: #fff;
+	}
+</style>

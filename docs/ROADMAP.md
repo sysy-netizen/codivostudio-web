@@ -145,13 +145,21 @@
     - 아직 Coming Soon placeholder 상태였던 도구를 프로젝트에서 완전히 제거하기로 결정
     - `programs.ts`에서 nav 항목 삭제, `src/pages/tools/price-calculator/` 라우트 삭제, 그 페이지에서만 쓰이던 `ComingSoon.astro` 컴포넌트(+빈 `components/ui/` 디렉터리)도 함께 삭제
     - `npm run build` 성공(17페이지)
+19. [x] 블로그 카테고리 분류 기능 추가 (2026-07-30)
+    - 기존 `content.config.ts`에 이미 있던 `category` 필드(5개 고정값)를 화면에 처음으로 노출 — 그동안 데이터만 있고 UI에서는 전혀 안 쓰이고 있었음
+    - `src/lib/blogCategories.ts`: 카테고리명 ↔ URL slug 매핑(`AI→ai`, `업무 자동화→automation`, `자동차 데이터→car-data`, `온라인 셀러→online-seller`, `Codivo Studio 개발기→dev-log`)
+    - `src/pages/blog/category/[slug]/index.astro` 신규: 카테고리별 전용 페이지(`getStaticPaths`로 5개 정적 생성), 해당 카테고리 글만 필터링
+    - `BlogCategoryNav.astro`(전체+5개 카테고리 필터 탭), `BlogPostList.astro`(글 목록, 카테고리 배지 포함) 공용 컴포넌트로 추출해 `/blog/`와 카테고리 페이지에서 재사용
+    - 글 상세 페이지(`blog/[id]/index.astro`)에도 카테고리 배지 추가, 클릭하면 해당 카테고리 페이지로 이동
+    - `sitemap.xml.ts`에 카테고리 페이지 5개 URL 추가
+    - `npm run build` 성공(22페이지), 로컬 프리뷰로 목록/카테고리 필터/상세 페이지 모두 확인
 
 ---
 
 ## 🔜 다음 작업 (우선순위 순)
 
-19. [ ] Google Analytics(GA4) 연결
-20. [ ] Google AdSense 신청 및 스크립트 삽입
+20. [ ] Google Analytics(GA4) 연결
+21. [ ] Google AdSense 신청 및 스크립트 삽입
     - **콘텐츠(블로그 글 작성)와 SEO 기본 설정이 끝난 뒤에 진행한다.** 콘텐츠 없이 먼저 신청하지 않음.
 
 ---

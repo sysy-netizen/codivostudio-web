@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import BlogCategoryNav from '../../../../components/BlogCategoryNav.astro';
+import BlogPostList from '../../../../components/BlogPostList.astro';
+import { CATEGORY_SLUGS } from '../../../../lib/blogCategories';
+
+export async function getStaticPaths() {
+	return Object.entries(CATEGORY_SLUGS).map(([category, slug]) => ({
+		params: { slug },
+		props: { category },
+	}));
+}
+
+interface Props {
+	category: string;
+}
+
+const { category } = Astro.props;
+
+const posts = (await getCollection('blog', ({ data }) => data.category === category)).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout title={`블로그 - ${category}`} description={`Codivo Studio 블로그 - ${category} 카테고리 글 모음`}>
+	<h1>블로그</h1>
+
+	<BlogCategoryNav current={category} />
+
+	<BlogPostList posts={posts} />
+</BaseLayout>

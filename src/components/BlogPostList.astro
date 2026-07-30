@@ -1,0 +1,85 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { categoryHref } from '../lib/blogCategories';
+
+interface Props {
+	posts: CollectionEntry<'blog'>[];
+}
+
+const { posts } = Astro.props;
+---
+
+<ul class="post-list">
+	{
+		posts.map((post) => (
+			<li class="post-item">
+				<a class="post-category" href={categoryHref(post.data.category)}>
+					{post.data.category}
+				</a>
+				<a href={`/blog/${post.id}/`}>
+					<h2>{post.data.title}</h2>
+				</a>
+				<p class="post-desc">{post.data.description}</p>
+				<div class="post-meta">
+					<time datetime={post.data.pubDate.toISOString()}>
+						{post.data.pubDate.toLocaleDateString('ko-KR')}
+					</time>
+					{post.data.tags.map((tag: string) => <span class="tag">#{tag}</span>)}
+				</div>
+			</li>
+		))
+	}
+</ul>
+
+{posts.length === 0 && <p>아직 등록된 글이 없습니다.</p>}
+
+<style>
+	.post-list {
+		list-style: none;
+		padding: 0;
+		margin: 2rem 0 0;
+	}
+
+	.post-item {
+		padding: 1.25rem 0;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.post-category {
+		display: inline-block;
+		margin-bottom: 0.4rem;
+		font-size: 0.75rem;
+		font-weight: 600;
+		color: var(--color-accent);
+		text-decoration: none;
+	}
+	.post-category:hover {
+		color: var(--color-highlight);
+	}
+
+	.post-item h2 {
+		margin: 0 0 0.4rem;
+		font-size: 1.2rem;
+	}
+
+	.post-item a {
+		text-decoration: none;
+		color: var(--color-text);
+	}
+
+	.post-desc {
+		color: var(--color-muted);
+		margin: 0 0 0.5rem;
+	}
+
+	.post-meta {
+		font-size: 0.8rem;
+		color: var(--color-muted);
+		display: flex;
+		gap: 0.75rem;
+	}
+
+	.tag {
+		color: var(--color-accent);
+	}
+</style>
