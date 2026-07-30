@@ -141,13 +141,17 @@
     - `ProgramNav.astro`에 `external` 프로그램은 `target="_blank" rel="noopener noreferrer"`로 열리고 활성 탭 표시 로직에서 제외되도록 처리
     - `npm run build` 성공(18페이지), 로컬 프리뷰로 도구 목록/홈페이지 카드/탭 내비 확인
     - **참고**: 기존에 Google Search Console에 색인된 `/tools/invoice-converter/` URL은 리다이렉트 없이 그대로 404 처리됨 (같은 사이트 내 대체 페이지가 없어 리다이렉트 대상이 마땅치 않음 — 검색 콘솔에서 자연 소멸 예정)
+18. [x] 가격계산기(price-calculator) 도구 삭제 (2026-07-30)
+    - 아직 Coming Soon placeholder 상태였던 도구를 프로젝트에서 완전히 제거하기로 결정
+    - `programs.ts`에서 nav 항목 삭제, `src/pages/tools/price-calculator/` 라우트 삭제, 그 페이지에서만 쓰이던 `ComingSoon.astro` 컴포넌트(+빈 `components/ui/` 디렉터리)도 함께 삭제
+    - `npm run build` 성공(17페이지)
 
 ---
 
 ## 🔜 다음 작업 (우선순위 순)
 
-18. [ ] Google Analytics(GA4) 연결
-19. [ ] Google AdSense 신청 및 스크립트 삽입
+19. [ ] Google Analytics(GA4) 연결
+20. [ ] Google AdSense 신청 및 스크립트 삽입
     - **콘텐츠(블로그 글 작성)와 SEO 기본 설정이 끝난 뒤에 진행한다.** 콘텐츠 없이 먼저 신청하지 않음.
 
 ---

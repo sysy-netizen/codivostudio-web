@@ -22,5 +22,4 @@ export const programs: Program[] = [
 		status: 'live',
 		external: true,
 	},
-	{ key: 'price-calculator', label: '가격계산기', href: '/tools/price-calculator/', status: 'live', mode: 'native' },
 ];
