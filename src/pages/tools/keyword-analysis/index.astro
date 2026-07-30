@@ -1,12 +1,5 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-
-const tools = [
-	{ href: '/tools/rank-tracker', name: '실시간 랭킹추적' },
-	{ href: '/tools/keyword-analysis', name: '연관 키워드 분석' },
-	{ href: '/tools/invoice-converter', name: '대량발송 엑셀변환기' },
-];
-const currentHref = '/tools/keyword-analysis';
 ---
 
 <BaseLayout title="연관 키워드 분석" description="연관 키워드의 검색량과 경쟁강도를 한 번에 분석합니다.">
@@ -14,19 +7,6 @@ const currentHref = '/tools/keyword-analysis';
 		<h1 class="tool-page__title">연관 키워드 분석</h1>
 		<p class="tool-page__desc">연관 키워드의 검색량과 경쟁강도를 한 번에 분석합니다.</p>
 		<p class="tool-page__related">관련 글: <a href="/blog/related-keyword-analysis-product-exposure/">연관 키워드 분석으로 상품 노출 늘리는 법</a></p>
-		<nav class="tool-switcher" aria-label="다른 도구로 이동">
-			{
-				tools.map((tool) => (
-					<a
-						href={tool.href}
-						class={`tool-switcher__btn ${tool.href === currentHref ? 'is-active' : ''}`}
-						aria-current={tool.href === currentHref ? 'page' : undefined}
-					>
-						{tool.name}
-					</a>
-				))
-			}
-		</nav>
 		<iframe
 			class="tool-page__frame"
 			src="https://tools.codivostudio.com/keyword"
@@ -62,34 +42,6 @@ const currentHref = '/tools/keyword-analysis';
 		font-size: 0.85rem;
 		line-height: 1.6;
 		color: var(--color-muted);
-	}
-
-	.tool-switcher {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.6rem;
-		margin: 0 0 1.5rem;
-	}
-
-	.tool-switcher__btn {
-		padding: 0.5rem 1rem;
-		border: 1px solid var(--color-border);
-		border-radius: 999px;
-		font-size: 0.88rem;
-		font-weight: 600;
-		color: var(--color-text);
-		text-decoration: none;
-		background: #fff;
-		transition: border-color 0.15s, color 0.15s, background 0.15s;
-	}
-	.tool-switcher__btn:hover {
-		border-color: var(--color-accent);
-		color: var(--color-accent);
-	}
-	.tool-switcher__btn.is-active {
-		background: var(--color-accent);
-		border-color: var(--color-accent);
-		color: #fff;
 	}
 
 	.tool-page__frame {

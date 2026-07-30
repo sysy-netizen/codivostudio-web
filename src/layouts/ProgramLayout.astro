@@ -1,0 +1,56 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+	title: string;
+	description: string;
+	relatedHref?: string;
+	relatedLabel?: string;
+}
+
+const { title, description, relatedHref, relatedLabel } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+	<section class="tool-page">
+		<h1 class="tool-page__title">{title}</h1>
+		<p class="tool-page__desc">{description}</p>
+		{
+			relatedHref && relatedLabel && (
+				<p class="tool-page__related">
+					관련 글: <a href={relatedHref}>{relatedLabel}</a>
+				</p>
+			)
+		}
+		<slot />
+	</section>
+</BaseLayout>
+
+<style>
+	.tool-page {
+		padding: 0 0 2rem;
+		margin-top: -0.5rem;
+	}
+
+	.tool-page__title {
+		margin: 0 0 0.5rem;
+		font-size: clamp(1.6rem, 3vw, 2.1rem);
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		color: var(--color-text);
+	}
+
+	.tool-page__desc {
+		margin: 0 0 0.5rem;
+		font-size: 1rem;
+		line-height: 1.7;
+		color: var(--color-muted);
+	}
+
+	.tool-page__related {
+		margin: 0 0 1.5rem;
+		font-size: 0.85rem;
+		line-height: 1.6;
+		color: var(--color-muted);
+	}
+</style>
