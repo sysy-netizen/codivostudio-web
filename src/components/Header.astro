@@ -1,116 +1,75 @@
 ---
-import { programs } from '../data/programs';
+const navItems: { href: string; label: string; external?: boolean }[] = [
+	{ href: '/', label: '홈' },
+	{ href: '/tools/', label: '도구' },
+	{ href: '/blog/', label: '블로그' },
+	{ href: '/about/', label: '소개' },
+];
 
 const currentPath = Astro.url.pathname;
-
-function isActive(href: string) {
-	if (href === '/tools/') {
-		return currentPath === '/tools/' || currentPath === '/tools';
-	}
-	return currentPath === href || currentPath.startsWith(href);
-}
 ---
 
 <header class="site-header">
-	<div class="header-top">
-		<a class="brand" href="/">Codivo Studio</a>
-		<a class="platform-badge" href="/tools/">Seller Tools</a>
+	<div class="header-inner">
+		<a class="logo" href="/">Codivo Studio</a>
+		<nav>
+			<ul>
+				{
+					navItems.map((item) => (
+						<li>
+							<a
+								href={item.href}
+								class={currentPath === item.href ? 'active' : ''}
+								target={item.external ? '_blank' : undefined}
+								rel={item.external ? 'noopener noreferrer' : undefined}
+							>
+								{item.label}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
 	</div>
-
-	<nav class="program-nav" aria-label="Seller Tools 프로그램">
-		<ul>
-			{
-				programs.map((program) => (
-					<li>
-						<a
-							class={`program-link ${isActive(program.href) ? 'is-active' : ''}`}
-							href={program.href}
-							aria-current={isActive(program.href) ? 'page' : undefined}
-						>
-							{program.label}
-						</a>
-					</li>
-				))
-			}
-		</ul>
-	</nav>
 </header>
 
 <style>
 	.site-header {
-		position: sticky;
-		top: 0;
-		z-index: 50;
 		border-bottom: 1px solid var(--color-border);
-		background: var(--color-bg);
 	}
 
-	.header-top {
+	.header-inner {
 		max-width: var(--max-width);
 		margin: 0 auto;
-		padding: 0.35rem 1.5rem;
+		padding: 1rem 1.5rem;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 	}
 
-	.brand {
+	.logo {
 		font-weight: 700;
-		font-size: 0.95rem;
+		font-size: 1.15rem;
 		color: var(--color-text);
 		text-decoration: none;
 	}
 
-	.brand:hover {
-		color: var(--color-accent);
-	}
-
-	.platform-badge {
-		font-size: 0.7rem;
-		font-weight: 600;
-		letter-spacing: 0.02em;
-		color: var(--color-muted);
-		text-decoration: none;
-	}
-
-	.platform-badge:hover {
-		color: var(--color-accent);
-	}
-
-	.program-nav {
-		border-top: 1px solid var(--color-border);
-	}
-
-	.program-nav ul {
-		max-width: var(--max-width);
-		margin: 0 auto;
-		padding: 0 1.5rem;
+	nav ul {
 		display: flex;
-		align-items: center;
-		gap: 0.25rem;
+		gap: 1.5rem;
 		list-style: none;
-		overflow-x: auto;
+		margin: 0;
+		padding: 0;
 	}
 
-	.program-link {
-		display: inline-flex;
-		align-items: center;
-		padding: 0.4rem 0.7rem;
-		font-size: 0.85rem;
-		font-weight: 500;
-		color: var(--color-muted);
+	nav a {
 		text-decoration: none;
-		white-space: nowrap;
-		border-bottom: 2px solid transparent;
-	}
-
-	.program-link:hover {
 		color: var(--color-text);
+		font-size: 0.95rem;
 	}
 
-	.program-link.is-active {
+	nav a:hover,
+	nav a.active {
 		color: var(--color-accent);
-		font-weight: 700;
-		border-bottom-color: var(--color-accent);
 	}
 </style>
