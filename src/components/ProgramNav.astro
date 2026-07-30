@@ -1,0 +1,68 @@
+---
+import { programs } from '../data/programs';
+
+const currentPath = Astro.url.pathname;
+function isActive(href: string) {
+	if (href === '/tools/') {
+		return currentPath === '/tools/' || currentPath === '/tools';
+	}
+	return currentPath === href || currentPath.startsWith(href);
+}
+---
+
+<nav class="program-nav" aria-label="Seller Tools 프로그램">
+	<ul>
+		{
+			programs.map((program) => (
+				<li>
+					<a
+						class={`program-link ${isActive(program.href) ? 'is-active' : ''}`}
+						href={program.href}
+						aria-current={isActive(program.href) ? 'page' : undefined}
+					>
+						{program.label}
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</nav>
+
+<style>
+	.program-nav {
+		margin: 0 0 1.5rem;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.program-nav ul {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		overflow-x: auto;
+	}
+
+	.program-link {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.6rem 0.7rem;
+		font-size: 0.85rem;
+		font-weight: 500;
+		color: var(--color-muted);
+		text-decoration: none;
+		white-space: nowrap;
+		border-bottom: 2px solid transparent;
+	}
+
+	.program-link:hover {
+		color: var(--color-text);
+	}
+
+	.program-link.is-active {
+		color: var(--color-accent);
+		font-weight: 700;
+		border-bottom-color: var(--color-accent);
+	}
+</style>

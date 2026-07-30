@@ -1,49 +1,22 @@
 ---
-import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ProgramLayout from '../../../layouts/ProgramLayout.astro';
 ---
 
-<BaseLayout title="연관 키워드 분석" description="연관 키워드의 검색량과 경쟁강도를 한 번에 분석합니다.">
-	<section class="tool-page">
-		<h1 class="tool-page__title">연관 키워드 분석</h1>
-		<p class="tool-page__desc">연관 키워드의 검색량과 경쟁강도를 한 번에 분석합니다.</p>
-		<p class="tool-page__related">관련 글: <a href="/blog/related-keyword-analysis-product-exposure/">연관 키워드 분석으로 상품 노출 늘리는 법</a></p>
-		<iframe
-			class="tool-page__frame"
-			src="https://tools.codivostudio.com/keyword"
-			title="연관 키워드 분석"
-			height="800"
-		></iframe>
-	</section>
-</BaseLayout>
+<ProgramLayout
+	title="연관 키워드 분석"
+	description="연관 키워드의 검색량과 경쟁강도를 한 번에 분석합니다."
+	relatedHref="/blog/related-keyword-analysis-product-exposure/"
+	relatedLabel="연관 키워드 분석으로 상품 노출 늘리는 법"
+>
+	<iframe
+		class="tool-page__frame"
+		src="https://tools.codivostudio.com/keyword"
+		title="연관 키워드 분석"
+		height="800"
+	></iframe>
+</ProgramLayout>
 
 <style>
-	.tool-page {
-		padding: 0 0 2rem;
-		margin-top: -0.5rem;
-	}
-
-	.tool-page__title {
-		margin: 0 0 0.5rem;
-		font-size: clamp(1.6rem, 3vw, 2.1rem);
-		font-weight: 800;
-		letter-spacing: -0.02em;
-		color: var(--color-text);
-	}
-
-	.tool-page__desc {
-		margin: 0 0 0.5rem;
-		font-size: 1rem;
-		line-height: 1.7;
-		color: var(--color-muted);
-	}
-
-	.tool-page__related {
-		margin: 0 0 1.5rem;
-		font-size: 0.85rem;
-		line-height: 1.6;
-		color: var(--color-muted);
-	}
-
 	.tool-page__frame {
 		display: block;
 		width: 100vw;
