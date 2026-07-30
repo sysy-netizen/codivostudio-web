@@ -6,7 +6,6 @@ const staticPaths = [
 	'/tools/',
 	'/tools/rank-tracker/',
 	'/tools/keyword-analysis/',
-	'/tools/invoice-converter/',
 	'/blog/',
 	'/about/',
 ];

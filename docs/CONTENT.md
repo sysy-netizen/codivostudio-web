@@ -12,16 +12,17 @@
 |---|---|
 | `/tools/rank-tracker` (실시간 랭킹추적) | `https://tools.codivostudio.com/` |
 | `/tools/keyword-analysis` (연관 키워드 분석) | `https://tools.codivostudio.com/keyword` |
-| `/tools/invoice-converter` (대량발송 엑셀변환기) | `https://invoice-merge-codivo.streamlit.app/` |
+| ~~`/tools/invoice-converter`~~ (대량발송 엑셀변환기) | 페이지 삭제됨 — `https://invoice-merge-codivo.streamlit.app/` 외부 링크로 대체 (2026-07-30) |
 
 Astro에서는 각 페이지에 `<iframe>`을 컴포넌트 내에 직접 작성하면 됨 (워드프레스처럼 블록에
 붙여넣을 필요 없이 그냥 `.astro` 파일에 마크업으로 존재).
 
 height는 실제로 열어보고 스크롤 생기면 조정. 참고 값(워드프레스 계획 당시 기준):
-rank-tracker/keyword-analysis 800px, invoice-converter 900px.
+rank-tracker/keyword-analysis 800px.
 
-Streamlit(invoice-converter) 쪽은 CORS/XSRF로 iframe이 비어 보일 수 있어 실제 임베드 후
-브라우저 콘솔 에러 확인 필요 (아직 미검증).
+**Streamlit(invoice-converter) 쪽은 처음 우려대로 실제 문제가 됨**: CORS/XSRF가 아니라 Streamlit
+Cloud의 인증 리다이렉트가 크로스도메인 iframe 안에서 무한 루프에 빠지는 구조적 문제로 확인됨
+(자세한 내용은 `ROADMAP.md` 16번 항목 참고). iframe 임베드를 포기하고 외부 링크(새 탭)로 전환함.
 
 ---
 
@@ -44,7 +45,7 @@ Streamlit(invoice-converter) 쪽은 CORS/XSRF로 iframe이 비어 보일 수 있
 **카드 3**
 - 제목: 대량발송 엑셀변환기
 - 설명: 네이버·쿠팡 주문 파일과 택배 송장 파일을 자동으로 매칭해 하나로 합쳐줍니다.
-- 링크: `/tools/invoice-converter`
+- 링크: `https://invoice-merge-codivo.streamlit.app/` (외부, 새 탭)
 
 (워드프레스 계획 기준: 카드 전체가 아니라 "자세히 보기" 링크만 클릭 가능하게 구성했음 — Astro에서도
 동일하게 카드 전체를 `<a>`로 감싸지 않고 링크 텍스트만 클릭 영역으로 두는 것 유지)

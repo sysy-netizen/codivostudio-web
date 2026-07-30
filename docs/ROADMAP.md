@@ -129,22 +129,25 @@
     - `codivo-tools`(랭킹추적/키워드분석 Next.js 앱, 별도 저장소) `NavBar.tsx`에서 "송장 변환기" 외부 링크 탭 제거 (송장변환기는 별도 프로그램이라 자체 페이지에서만 접근하도록 정리)
     - **송장변환기 Streamlit 앱 재배포**: 기존 앱(`invoice-merge-hi9x7xuzmxwreckiq4vnr6.streamlit.app`)이 Streamlit Cloud 인증 리다이렉트 무한 루프(`ERR_TOO_MANY_REDIRECTS`) 버그에 빠져 서비스 불가 상태가 됨 — Hugging Face Spaces 이전을 시도했으나 신규 계정이 이메일 인증 전이라 Streamlit/Gradio/Docker SDK가 잠겨있어(Static만 무료) 보류, 대신 같은 GitHub 저장소(`sysy-netizen/invoice-merge`)로 Streamlit Cloud에 새 이름(`invoice-merge-codivo.streamlit.app`)으로 재배포해 정상화 확인 후 iframe `src` 갱신
     - `npm run build` 성공, 로컬 프리뷰 및 Playwright 스크린샷으로 3개 페이지 레이아웃/전환 버튼 확인, 신규 Streamlit URL은 curl(차단 헤더 없음)과 Playwright(정상 로드, 무한루프 없음)로 검증
-    - **⚠️ 배포 후 재확인 결과 미해결**: 새 앱을 직접 새 탭으로 열면 정상 작동하지만, `codivostudio.com` 안에 iframe으로 넣으면 동일한 인증 리다이렉트 무한 루프(`ERR_TOO_MANY_REDIRECTS`)가 다시 발생함. Playwright로 직접 접속 vs iframe 임베드를 나란히 비교해 확인 — **앱 상태 문제가 아니라 Streamlit Community Cloud가 최근 추가한 인증/분석 절차가 크로스도메인 iframe 안에서 세션 쿠키 핸드셰이크를 못 끝내는 플랫폼 차원의 구조적 문제**로 결론. 재배포로는 해결 안 됨 — 아래 16번이 다음 세션 최우선 작업
+    - **⚠️ 배포 후 재확인 결과 미해결**: 새 앱을 직접 새 탭으로 열면 정상 작동하지만, `codivostudio.com` 안에 iframe으로 넣으면 동일한 인증 리다이렉트 무한 루프(`ERR_TOO_MANY_REDIRECTS`)가 다시 발생함. Playwright로 직접 접속 vs iframe 임베드를 나란히 비교해 확인 — **앱 상태 문제가 아니라 Streamlit Community Cloud가 최근 추가한 인증/분석 절차가 크로스도메인 iframe 안에서 세션 쿠키 핸드셰이크를 못 끝내는 플랫폼 차원의 구조적 문제**로 결론. 재배포로는 해결 안 됨
+16. [x] 다른 환경 작업분 반영(Seller Tools 프로그램 내비게이션 리팩터링) + 내비 버그 수정 (2026-07-30)
+    - 다른 환경에서 이미 `.git` 없이 진행돼 있던 작업(헤더를 "Seller Tools" 도구 탭 내비로 교체, 공용 도구 페이지/설명/관련글 마크업을 `ProgramLayout.astro`로 추출, `src/data/programs.ts` 데이터 기반 메뉴, 가격계산기 Coming Soon 페이지 추가)을 GitHub(`origin/main`) 위 새 커밋으로 반영 — `git init` 후 로컬 `main`을 `origin/main`에 연결하고 새 작업을 그 위 커밋으로 만들어 히스토리 보존
+    - **버그 1**: 도구 탭 내비가 전역 `Header.astro`에 있어서 홈/블로그/소개 등 모든 페이지에서 사이트 메인 메뉴(홈/도구/블로그/소개) 대신 도구 탭이 뜨는 문제 발견 → `Header.astro`는 원래 메인 메뉴로 복원, 도구 탭 내비는 `ProgramLayout`에서만 렌더링하도록 이동
+    - **버그 2**: `keyword-analysis`/`invoice-converter`/`price-calculator` 페이지가 아직 예전 `BaseLayout`을 직접 쓰고 있어 도구 탭 자체가 없어서 페이지마다 메뉴가 달라 보이는 문제 → 전부 `ProgramLayout` 기반으로 통일, 내비 마크업은 `src/components/ProgramNav.astro`로 공용 컴포넌트화
+    - **버그 3**: "전체도구" 탭이 `/tools/`가 모든 하위 경로의 접두사라서 모든 도구 페이지에서 항상 활성 표시되던 것 수정
+17. [x] 송장변환기 iframe 임베드 포기 → 외부 링크(새 탭)로 전환, `/tools/invoice-converter/` 페이지 삭제 (2026-07-30)
+    - 16번(2026-07-29)에서 결론 내린 구조적 문제(Streamlit Cloud 인증이 크로스도메인 iframe 안에서 무한 루프)에 대한 최종 결정: iframe 유지 시도를 접고, 도구 자체를 외부(`https://invoice-merge-codivo.streamlit.app/`) 링크로 전환
+    - `src/pages/tools/invoice-converter/` 라우트 삭제, 참조하던 6곳 모두 외부 링크로 교체: `programs.ts`(도구 탭, `external: true` 플래그 추가), `tools/index.astro`·`index.astro`의 도구 카드, `sitemap.xml.ts`의 정적 경로 목록, 블로그 글 2편(`naver-coupang-order-invoice-merge-automation.md`, `excel-macro-automation-without-coding.md`) 본문 내부링크
+    - `ProgramNav.astro`에 `external` 프로그램은 `target="_blank" rel="noopener noreferrer"`로 열리고 활성 탭 표시 로직에서 제외되도록 처리
+    - `npm run build` 성공(18페이지), 로컬 프리뷰로 도구 목록/홈페이지 카드/탭 내비 확인
+    - **참고**: 기존에 Google Search Console에 색인된 `/tools/invoice-converter/` URL은 리다이렉트 없이 그대로 404 처리됨 (같은 사이트 내 대체 페이지가 없어 리다이렉트 대상이 마땅치 않음 — 검색 콘솔에서 자연 소멸 예정)
 
 ---
 
 ## 🔜 다음 작업 (우선순위 순)
 
-16. [ ] **[진행 중, 최우선] 송장변환기 iframe 임베드 구조적 문제 해결**
-    - 문제: Streamlit Community Cloud 호스팅 앱은 (재배포와 무관하게) iframe 안에서 인증 무한 루프 발생 — `/tools/invoice-converter/` 페이지에서 프로그램이 안 보임
-    - 검토한 대안:
-      - **Hugging Face Spaces 이전** — 이메일 인증까지 완료했는데도 Streamlit/Gradio/Docker SDK가 여전히 잠겨있고 Static만 무료로 열려있음(2026-07-29 기준). `https://huggingface.co/settings/billing` 등에서 결제수단 등록 같은 추가 계정 인증이 필요한지 다음 세션에서 확인 필요
-      - **Render.com 이전** — 기존 Python/pandas 코드 그대로 옮길 수 있고 플랫폼 차원의 iframe 차단 이슈가 없을 것으로 예상, 아직 실행 안 함(사용자가 HF 먼저 재시도 요청)
-      - Next.js/Vercel 재작성(랭킹추적/키워드분석과 동일 스택) — 가장 근본적이지만 엑셀 매칭 로직(암호화 파일 처리 포함) 전면 재작성 필요해 공수 큼, 후순위
-    - 다음 세션 시작 시: HF Spaces 계정 상태부터 확인 → 안 풀리면 Render.com으로 바로 진행 추천
-    - 임시 우회책(보류 중, 필요시 재검토): iframe 대신 "새 탭에서 열기" 버튼으로 교체 — 새 탭 직접 접속은 정상 작동 확인됨. 사용자가 "구조적 문제부터 해결" 요청해 보류함
-17. [ ] Google Analytics(GA4) 연결
-18. [ ] Google AdSense 신청 및 스크립트 삽입
+18. [ ] Google Analytics(GA4) 연결
+19. [ ] Google AdSense 신청 및 스크립트 삽입
     - **콘텐츠(블로그 글 작성)와 SEO 기본 설정이 끝난 뒤에 진행한다.** 콘텐츠 없이 먼저 신청하지 않음.
 
 ---

@@ -16,9 +16,11 @@ function isActive(href: string) {
 			programs.map((program) => (
 				<li>
 					<a
-						class={`program-link ${isActive(program.href) ? 'is-active' : ''}`}
+						class={`program-link ${!program.external && isActive(program.href) ? 'is-active' : ''}`}
 						href={program.href}
-						aria-current={isActive(program.href) ? 'page' : undefined}
+						aria-current={!program.external && isActive(program.href) ? 'page' : undefined}
+						target={program.external ? '_blank' : undefined}
+						rel={program.external ? 'noopener noreferrer' : undefined}
 					>
 						{program.label}
 					</a>
