@@ -122,7 +122,7 @@ const tools = [
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		color: var(--color-accent);
+		color: var(--color-success);
 	}
 	.tool-card__icon svg {
 		width: 1.3rem;
@@ -159,9 +159,16 @@ const tools = [
 		color: var(--color-text);
 		text-decoration: none;
 		width: fit-content;
+		padding: 0.55rem 1rem;
+		border: 1px solid var(--color-border);
+		border-radius: 8px;
+		background: #fff;
+		transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 	}
 	.tool-card__link:hover {
-		color: var(--color-highlight);
+		background: var(--color-accent);
+		border-color: var(--color-accent);
+		color: #fff;
 	}
 
 	@media (max-width: 860px) {
