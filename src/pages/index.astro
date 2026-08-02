@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
+import { getCollection } from 'astro:content';
 
 const tools = [
 	{
@@ -22,89 +23,104 @@ const tools = [
 		icon: 'table',
 	},
 ];
+
+const platforms = ['네이버 스마트스토어', '쿠팡', '택배 송장', '차량 정보 조회'];
+
+const stats = [
+	{ value: '3', label: '사용 가능한 도구' },
+	{ value: '2', label: '타깃 사용자 그룹' },
+	{ value: '무료', label: '도구 이용 요금' },
+	{ value: '상시', label: '자동 실행' },
+];
+
+const whyItems = [
+	{ title: '온라인 셀러 대응', desc: '주문 처리, 순위 확인, 키워드 분석까지 반복되는 판매 업무를 대신합니다.', icon: 'monitor' },
+	{ title: '자동차 실무자 대응', desc: '차량 정보 조회 등 반복되는 확인 작업을 더 빠르고 정확하게 처리합니다.', icon: 'zap' },
+	{ title: '실용성 우선', desc: '복잡한 기능보다 반복을 줄이는 실용적인 도구를 만듭니다.', icon: 'star' },
+	{ title: '현장에서 검증', desc: '화려한 기능보다 실제로 작동하는 완성도를 먼저 봅니다.', icon: 'shield' },
+];
+
+const whyIcons: Record<string, string[]> = {
+	monitor: ['M4 4h16v10H4z', 'M9 20h6', 'M12 14v6'],
+	zap: ['M13 2 3 14h7l-1 8 10-12h-7z'],
+	star: ['M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z'],
+	shield: ['M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z', 'M9 12l2 2 4-4'],
+};
+
+const posts = (await getCollection('blog'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 3);
 ---
 
 <BaseLayout title="홈" description="Codivo Studio - 온라인 셀러와 자동차 실무자를 위한 실용적인 웹 도구">
 	<section class="hero">
 		<div class="hero__inner">
 			<div class="hero__content">
-				<span class="eyebrow">CODIVO STUDIO</span>
-				<h1 class="hero__title">반복되는 업무를<br />더 단순하게 만듭니다.</h1>
+				<h1 class="hero__title">단순하게.<br />정확하게.<br /><span class="hero__title-accent">빠르게.</span></h1>
 				<p class="hero__desc">Codivo Studio는 온라인 판매자와 자동차 관련 실무자를 위한 간단하고 실용적인 웹 도구를 만듭니다.</p>
 				<div class="hero__actions">
 					<a class="btn btn--primary" href="/tools">도구 둘러보기</a>
 					<a class="btn btn--secondary" href="/about">Codivo Studio 소개</a>
 				</div>
+				<p class="hero__counter">누적 방문자 <strong data-visitor-count>–</strong>명</p>
 			</div>
 
 			<div class="hero__visual">
-				<div class="panel">
-					<div class="panel__bar">
-						<span class="panel__dot"></span>
-						<span class="panel__dot"></span>
-						<span class="panel__dot"></span>
-						<span class="panel__label">CODIVO TOOLS</span>
+				<div class="dash">
+					<div class="dash__bar">
+						<span class="dash__dot dash__dot--red"></span>
+						<span class="dash__dot dash__dot--yellow"></span>
+						<span class="dash__dot dash__dot--green"></span>
 					</div>
-					<div class="panel__body">
-						<div class="tool-row">
-							<span class="tool-row__icon">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-									<path d="M3 17h4v4H3z"></path>
-									<path d="M10 11h4v10h-4z"></path>
-									<path d="M17 4h4v17h-4z"></path>
-								</svg>
-							</span>
-							<span class="tool-row__text">
-								<span class="tool-row__name">Rank Tracker</span>
-								<span class="tool-row__desc">실시간 순위 추적</span>
-							</span>
-							<span class="bars">
-								<span class="bars__bar bars__bar--1"></span>
-								<span class="bars__bar bars__bar--2"></span>
-								<span class="bars__bar bars__bar--3"></span>
-								<span class="bars__bar bars__bar--4"></span>
-							</span>
+					<div class="dash__body">
+						<div class="dash__side">
+							<span class="dash__side-active">Overview</span>
+							<span>랭킹추적</span>
+							<span>키워드분석</span>
+							<span>엑셀변환기</span>
 						</div>
-						<div class="tool-row">
-							<span class="tool-row__icon">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-									<circle cx="11" cy="11" r="7"></circle>
-									<path d="m21 21-4.35-4.35"></path>
-								</svg>
-							</span>
-							<span class="tool-row__text">
-								<span class="tool-row__name">Keyword Analysis</span>
-								<span class="tool-row__desc">연관 키워드 분석</span>
-							</span>
-							<span class="tags">
-								<span class="tags__tag tags__tag--1"></span>
-								<span class="tags__tag tags__tag--2"></span>
-								<span class="tags__tag tags__tag--3"></span>
-							</span>
-						</div>
-						<div class="tool-row">
-							<span class="tool-row__icon">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-									<rect x="3" y="4" width="18" height="16" rx="2"></rect>
-									<path d="M3 10h18"></path>
-									<path d="M9 10v10"></path>
-								</svg>
-							</span>
-							<span class="tool-row__text">
-								<span class="tool-row__name">Excel Converter</span>
-								<span class="tool-row__desc">대량발송 파일 변환</span>
-							</span>
-							<span class="grid-viz">
-								<span class="grid-viz__cell"></span>
-								<span class="grid-viz__cell"></span>
-								<span class="grid-viz__cell"></span>
-								<span class="grid-viz__cell"></span>
-								<span class="grid-viz__cell grid-viz__cell--hi"></span>
-								<span class="grid-viz__cell"></span>
-							</span>
+						<div class="dash__main">
+							<p class="dash__heading">오늘의 요약</p>
+							<div class="dash__stats">
+								<div class="dash__stat">
+									<span class="dash__stat-num">24</span>
+									<span class="dash__stat-label">모니터링 상품</span>
+								</div>
+								<div class="dash__stat">
+									<span class="dash__stat-num">156</span>
+									<span class="dash__stat-label">등록 키워드</span>
+								</div>
+								<div class="dash__stat">
+									<span class="dash__stat-num">3</span>
+									<span class="dash__stat-label">사용 중인 도구</span>
+								</div>
+							</div>
+							<svg class="dash__chart" viewBox="0 0 260 60" preserveAspectRatio="none" aria-hidden="true">
+								<polyline
+									points="0,45 30,30 60,38 90,15 120,25 150,10 180,20 210,8 240,18 260,5"
+									fill="none"
+									stroke="var(--color-success)"
+									stroke-width="2"
+								></polyline>
+							</svg>
 						</div>
 					</div>
 				</div>
+				<div class="dash__float">
+					<span class="dash__float-status">
+						<i class="dash__float-dot" aria-hidden="true"></i>실시간 감시 중
+					</span>
+					<p class="dash__float-desc">5분마다 자동 확인</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="platforms">
+		<div class="platforms__inner">
+			<span class="platforms__label">지원 플랫폼</span>
+			<div class="platforms__row">
+				{platforms.map((name) => <span>{name}</span>)}
 			</div>
 		</div>
 	</section>
@@ -117,51 +133,150 @@ const tools = [
 				<p class="section-desc">온라인 셀러를 위해 만든 실전 도구입니다. 아래에서 필요한 도구를 선택해 바로 사용해 보세요.</p>
 			</div>
 
+			<div class="tools-layout">
 			<div class="tools-grid">
-				<a class="tool-card" href="/tools/rank-tracker">
-					<span class="tool-card__icon">
-						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-							<path d="M3 17h4v4H3z"></path>
-							<path d="M10 11h4v10h-4z"></path>
-							<path d="M17 4h4v17h-4z"></path>
-						</svg>
-					</span>
-					<span class="tool-card__body">
-						<span class="tool-card__name">실시간 랭킹추적</span>
-						<p class="tool-card__desc">키워드 검색 시 내 상품이 몇 위에 노출되는지 실시간으로 확인합니다.</p>
-					</span>
+				<a class="tool-card" href={tools[0].href}>
+					<div class="tool-card__head">
+						<span class="tool-card__icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M3 17h4v4H3z"></path>
+								<path d="M10 11h4v10h-4z"></path>
+								<path d="M17 4h4v17h-4z"></path>
+							</svg>
+						</span>
+						<span class="tool-card__name">{tools[0].name}</span>
+					</div>
+					<p class="tool-card__desc">{tools[0].desc}</p>
+					<div class="tool-card__demo">
+						<div class="demo-row">
+							<span>키워드</span><span>순위</span>
+						</div>
+						<div class="demo-row demo-row--data">
+							<span>여름 원피스</span><span class="demo-row__hi">3위</span>
+						</div>
+						<div class="demo-row demo-row--data">
+							<span>캠핑 의자</span><span>7위</span>
+						</div>
+					</div>
 					<span class="tool-card__link">사용하기 →</span>
 				</a>
 
-				<a class="tool-card" href="/tools/keyword-analysis">
-					<span class="tool-card__icon">
-						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-							<circle cx="11" cy="11" r="7"></circle>
-							<path d="m21 21-4.35-4.35"></path>
-						</svg>
-					</span>
-					<span class="tool-card__body">
-						<span class="tool-card__name">연관 키워드 분석</span>
-						<p class="tool-card__desc">연관 키워드의 검색량과 경쟁강도를 한 번에 분석합니다.</p>
-					</span>
+				<a class="tool-card tool-card--highlight" href={tools[1].href}>
+					<div class="tool-card__head">
+						<span class="tool-card__icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<circle cx="11" cy="11" r="7"></circle>
+								<path d="M21 21l-4.3-4.3"></path>
+							</svg>
+						</span>
+						<span class="tool-card__name">{tools[1].name}</span>
+					</div>
+					<p class="tool-card__desc">{tools[1].desc}</p>
+					<div class="tool-card__steps">
+						<span class="step">키워드 입력</span>
+						<span class="step">검색량 확인</span>
+						<span class="step step--done">
+							<span class="step__check">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<path d="M5 13l4 4L19 7"></path>
+								</svg>
+							</span>
+							경쟁강도 분석
+						</span>
+						<span class="step">추천 키워드 도출</span>
+					</div>
 					<span class="tool-card__link">사용하기 →</span>
 				</a>
 
-				<a class="tool-card" href="https://invoice-merge-codivo.streamlit.app/" target="_blank" rel="noopener noreferrer">
-					<span class="tool-card__icon">
-						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<a class="tool-card" href={tools[2].href} target="_blank" rel="noopener noreferrer">
+					<div class="tool-card__head">
+						<span class="tool-card__icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<rect x="3" y="3" width="18" height="18" rx="2"></rect>
+								<path d="M3 9h18"></path>
+								<path d="M9 21V9"></path>
+							</svg>
+						</span>
+						<span class="tool-card__name">{tools[2].name}</span>
+					</div>
+					<p class="tool-card__desc">{tools[2].desc}</p>
+					<div class="tool-card__demo tool-card__demo--file">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 							<rect x="3" y="4" width="18" height="16" rx="2"></rect>
 							<path d="M3 10h18"></path>
 							<path d="M9 10v10"></path>
 						</svg>
-					</span>
-					<span class="tool-card__body">
-						<span class="tool-card__name">대량발송 엑셀변환기</span>
-						<p class="tool-card__desc">네이버·쿠팡 주문 파일과 택배 송장 파일을 자동으로 매칭해 하나로 합쳐줍니다.</p>
-					</span>
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<path d="M5 12h14"></path>
+							<path d="M13 6l6 6-6 6"></path>
+						</svg>
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tool-card__check" aria-hidden="true">
+							<path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+							<path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"></path>
+							<path d="M9.5 14.5l1.5 1.5 3-3"></path>
+						</svg>
+					</div>
 					<span class="tool-card__link">사용하기 →</span>
 				</a>
 			</div>
+
+			<div class="tools-stats">
+				<div class="tools-stat">
+					<span class="tools-stat__icon">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<rect x="3" y="3" width="7" height="7" rx="1"></rect>
+							<rect x="14" y="3" width="7" height="7" rx="1"></rect>
+							<rect x="3" y="14" width="7" height="7" rx="1"></rect>
+							<rect x="14" y="14" width="7" height="7" rx="1"></rect>
+						</svg>
+					</span>
+					<div>
+						<p class="tools-stat__value">{stats[0].value}</p>
+						<p class="tools-stat__label">{stats[0].label}</p>
+					</div>
+				</div>
+				<div class="tools-stat">
+					<span class="tools-stat__icon">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+							<circle cx="9" cy="7" r="4"></circle>
+							<path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+							<path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+						</svg>
+					</span>
+					<div>
+						<p class="tools-stat__value">{stats[1].value}</p>
+						<p class="tools-stat__label">{stats[1].label}</p>
+					</div>
+				</div>
+				<div class="tools-stat">
+					<span class="tools-stat__icon">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<path d="M20.59 13.41L11 3.83V3H3v8h.83l9.58 9.59a2 2 0 0 0 2.83 0l4.35-4.35a2 2 0 0 0 0-2.83z"></path>
+							<circle cx="6.5" cy="6.5" r="1.5"></circle>
+						</svg>
+					</span>
+					<div>
+						<p class="tools-stat__value">{stats[2].value}</p>
+						<p class="tools-stat__label">{stats[2].label}</p>
+					</div>
+				</div>
+				<div class="tools-stat">
+					<span class="tools-stat__icon">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<path d="M21 2v6h-6"></path>
+							<path d="M3 12a9 9 0 0 1 15-6.7L21 8"></path>
+							<path d="M3 22v-6h6"></path>
+							<path d="M21 12a9 9 0 0 1-15 6.7L3 16"></path>
+						</svg>
+					</span>
+					<div>
+						<p class="tools-stat__value">{stats[3].value}</p>
+						<p class="tools-stat__label">{stats[3].label}</p>
+					</div>
+				</div>
+			</div>
+		</div>
 		</div>
 	</section>
 
@@ -170,48 +285,56 @@ const tools = [
 		<span>광고 영역 (placeholder)</span>
 	</section>
 
-	<section class="about-section">
-		<div class="about-section__inner">
-			<div class="section-head section-head--wide">
-				<span class="eyebrow">ABOUT CODIVO STUDIO</span>
-				<h2 class="section-title">복잡한 기능보다,<br />반복을 줄이는 실용적인 도구를 만듭니다</h2>
-				<p class="section-desc">Codivo Studio는 온라인 셀러와 자동차 실무자가 매일 마주하는 반복 업무를 가장 단순한 도구로 대신합니다. 화려한 기능보다, 현장에서 실제로 작동하는 완성도를 먼저 봅니다.</p>
-			</div>
-
-			<div class="about-grid">
-				<div class="about-item">
-					<span class="about-item__icon">
-						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-							<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
-							<path d="M3 6h18"></path>
-							<path d="M16 10a4 4 0 0 1-8 0"></path>
-						</svg>
-					</span>
-					<span class="about-item__body">
-						<span class="about-item__title">온라인 셀러</span>
-						<p class="about-item__desc">주문 처리, 순위 확인, 키워드 분석까지 — 반복되는 판매 업무를 대신합니다.</p>
-					</span>
+	<section class="why-section">
+		<div class="why-section__inner">
+			<div class="why-layout">
+				<div class="why-copy">
+					<span class="eyebrow">ABOUT CODIVO STUDIO</span>
+					<h2 class="section-title">복잡한 기능보다,<br />반복을 줄이는 실용적인 도구를 만듭니다</h2>
+					<a class="link-arrow" href="/about">Codivo Studio 더 알아보기 →</a>
 				</div>
 
-				<div class="about-item">
-					<span class="about-item__icon">
-						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-							<path d="M5 17h14M5 17a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm14 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path>
-							<path d="M3 17V9l2-5h10l4 5v8"></path>
-						</svg>
-					</span>
-					<span class="about-item__body">
-						<span class="about-item__title">자동차 실무자</span>
-						<p class="about-item__desc">차량 정보 조회 등 반복되는 확인 작업을 더 빠르고 정확하게 처리합니다.</p>
-					</span>
+				<div class="why-grid">
+					{
+						whyItems.map((item) => (
+							<div class="why-item">
+								<span class="why-item__icon">
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+										{whyIcons[item.icon].map((d) => <path d={d} />)}
+									</svg>
+								</span>
+								<p class="why-item__title">{item.title}</p>
+								<p class="why-item__desc">{item.desc}</p>
+							</div>
+						))
+					}
 				</div>
 			</div>
-
-			<a class="link-arrow" href="/about">Codivo Studio 더 알아보기 →</a>
 		</div>
 	</section>
 
-	<section class="cta-section">
+	{
+		posts.length > 0 && (
+			<section class="posts-section">
+				<div class="posts-section__inner">
+					<div class="section-head">
+						<span class="eyebrow">JOURNAL</span>
+						<h2 class="section-title">최근 콘텐츠</h2>
+					</div>
+					<div class="posts-grid">
+						{posts.map((post) => (
+							<a class="post-card" href={`/blog/${post.id}/`}>
+								<span class="post-card__category">{post.data.category}</span>
+								<p class="post-card__title">{post.data.title}</p>
+							</a>
+						))}
+					</div>
+				</div>
+			</section>
+		)
+	}
+
+	<section class="cta-section" id="contact">
 		<div class="cta-section__inner">
 			<span class="eyebrow eyebrow--light">CONTACT</span>
 			<h2 class="cta-title">반복되는 업무가 있다면 알려주세요</h2>
@@ -224,11 +347,33 @@ const tools = [
 	</section>
 </BaseLayout>
 
+<script>
+	(async () => {
+		const el = document.querySelector('[data-visitor-count]');
+		if (!el) return;
+
+		const alreadyCounted = sessionStorage.getItem('codivo_visit_counted');
+		const increment = alreadyCounted ? '0' : '1';
+
+		try {
+			const res = await fetch(`/api/hit-count?increment=${increment}`);
+			const data = await res.json();
+			el.textContent = data.count.toLocaleString('ko-KR');
+			if (!alreadyCounted) sessionStorage.setItem('codivo_visit_counted', '1');
+		} catch {
+			el.textContent = '–';
+		}
+	})();
+</script>
+
 <style>
 	/* 공통: 풀블리드 섹션 (BaseLayout의 max-width 컨테이너를 벗어나 배경을 화면 끝까지 채움) */
 	.hero,
+	.platforms,
 	.tools-section,
-	.about-section,
+	.stats,
+	.why-section,
+	.posts-section,
 	.cta-section {
 		width: 100vw;
 		position: relative;
@@ -239,10 +384,13 @@ const tools = [
 	}
 
 	.hero__inner,
+	.platforms__inner,
 	.tools-section__inner,
-	.about-section__inner,
+	.stats__inner,
+	.why-section__inner,
+	.posts-section__inner,
 	.cta-section__inner {
-		max-width: 1200px;
+		max-width: 1360px;
 		margin: 0 auto;
 		padding: 0 1.5rem;
 	}
@@ -255,19 +403,21 @@ const tools = [
 	}
 
 	.eyebrow--light {
-		color: var(--color-highlight);
+		color: var(--color-accent);
 	}
 
 	.btn {
 		display: inline-flex;
 		align-items: center;
-		padding: 0.85rem 1.7rem;
+		justify-content: center;
+		height: 48px;
+		padding: 0 1.7rem;
 		border-radius: 8px;
 		font-size: 0.95rem;
 		font-weight: 600;
 		text-decoration: none;
 		border: 1px solid transparent;
-		transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+		transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
 	}
 
 	.btn--primary {
@@ -275,7 +425,7 @@ const tools = [
 		color: #fff;
 	}
 	.btn--primary:hover {
-		background: var(--color-highlight);
+		opacity: 0.9;
 		transform: translateY(-1px);
 	}
 
@@ -285,8 +435,8 @@ const tools = [
 		border-color: var(--color-border);
 	}
 	.btn--secondary:hover {
-		border-color: var(--color-highlight);
-		color: var(--color-highlight);
+		border-color: var(--color-accent);
+		color: var(--color-accent);
 		transform: translateY(-1px);
 	}
 
@@ -296,8 +446,8 @@ const tools = [
 		border-color: rgba(255, 255, 255, 0.2);
 	}
 	.btn--dark:hover {
-		border-color: var(--color-highlight);
-		color: var(--color-highlight);
+		border-color: var(--color-accent);
+		color: var(--color-accent);
 	}
 
 	.section-head {
@@ -331,15 +481,20 @@ const tools = [
 
 	/* ── Hero ─────────────────────────────────────── */
 	.hero {
-		background: var(--color-bg-alt);
-		padding: 4rem 0;
+		background: var(--color-text) url('/images/bg-dark-orbit.jpg') center center / cover no-repeat;
+		min-height: 700px;
+		margin-top: -1rem;
+		display: flex;
+		align-items: center;
 	}
 
 	.hero__inner {
+		width: 100%;
 		display: grid;
-		grid-template-columns: 1.05fr 1fr;
-		gap: 3rem;
+		grid-template-columns: 45fr 55fr;
+		gap: 3.5rem;
 		align-items: center;
+		padding: 0 3rem;
 	}
 
 	.hero__content {
@@ -351,11 +506,15 @@ const tools = [
 
 	.hero__title {
 		margin: 0;
-		font-size: clamp(2rem, 4vw, 2.9rem);
+		font-size: clamp(2.2rem, 4.4vw, 3.2rem);
 		font-weight: 800;
-		line-height: 1.25;
+		line-height: 1.18;
 		letter-spacing: -0.02em;
-		color: var(--color-text);
+		color: #fff;
+	}
+
+	.hero__title-accent {
+		color: var(--color-accent);
 	}
 
 	.hero__desc {
@@ -363,7 +522,7 @@ const tools = [
 		max-width: 42ch;
 		font-size: clamp(1rem, 1.4vw, 1.1rem);
 		line-height: 1.7;
-		color: var(--color-muted);
+		color: rgba(255, 255, 255, 0.62);
 	}
 
 	.hero__actions {
@@ -373,135 +532,174 @@ const tools = [
 		margin-top: 0.5rem;
 	}
 
-	.panel {
-		background: #fff;
-		border: 1px solid var(--color-border);
+	.hero__counter {
+		margin: 0.25rem 0 0;
+		font-size: 0.88rem;
+		color: rgba(255, 255, 255, 0.5);
+	}
+	.hero__counter strong {
+		color: var(--color-accent);
+		font-weight: 800;
+	}
+
+	.hero__visual {
+		position: relative;
+	}
+
+	.dash {
+		background: #151515;
+		border: 1px solid rgba(255, 255, 255, 0.08);
 		border-radius: 16px;
-		box-shadow: 0 1px 3px rgba(17, 24, 39, 0.06);
 		overflow: hidden;
 	}
 
-	.panel__bar {
+	.dash__bar {
 		display: flex;
-		align-items: center;
-		gap: 0.4rem;
-		padding: 0.85rem 1.1rem;
-		border-bottom: 1px solid var(--color-border);
+		gap: 7px;
+		padding: 0.85rem 1.2rem;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 	}
 
-	.panel__dot {
-		width: 7px;
-		height: 7px;
+	.dash__dot {
+		width: 8px;
+		height: 8px;
 		border-radius: 50%;
-		background: var(--color-border);
+		background: rgba(255, 255, 255, 0.15);
+	}
+	.dash__dot--red {
+		background: #ff5f57;
+	}
+	.dash__dot--yellow {
+		background: #febc2e;
+	}
+	.dash__dot--green {
+		background: #28c840;
 	}
 
-	.panel__label {
-		margin-left: auto;
-		font-size: 0.72rem;
-		font-weight: 600;
-		letter-spacing: 0.04em;
-		color: rgba(17, 24, 39, 0.4);
+	.dash__body {
+		display: grid;
+		grid-template-columns: 0.8fr 2fr;
 	}
 
-	.panel__body {
-		padding: 0.4rem 1.1rem;
-	}
-
-	.tool-row {
+	.dash__side {
+		border-right: 1px solid rgba(255, 255, 255, 0.08);
+		padding: 1.2rem 1rem;
 		display: flex;
-		align-items: center;
-		gap: 0.85rem;
-		padding: 1.1rem 0;
+		flex-direction: column;
+		gap: 0.8rem;
+		font-size: 0.9rem;
+		color: rgba(255, 255, 255, 0.45);
 	}
-	.tool-row + .tool-row {
+	.dash__side-active {
+		color: #fff;
+		font-weight: 700;
+	}
+
+	.dash__main {
+		padding: 1.25rem 1.4rem;
+	}
+
+	.dash__heading {
+		margin: 0 0 0.85rem;
+		font-size: 1rem;
+		font-weight: 700;
+		color: #fff;
+	}
+
+	.dash__stats {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 0.65rem;
+		margin-bottom: 1rem;
+	}
+
+	.dash__stat {
+		background: rgba(255, 255, 255, 0.04);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 9px;
+		padding: 0.6rem 0.7rem;
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+	}
+
+	.dash__stat-num {
+		font-size: 1.3rem;
+		font-weight: 800;
+		color: #fff;
+	}
+
+	.dash__stat-label {
+		font-size: 0.78rem;
+		color: rgba(255, 255, 255, 0.4);
+	}
+
+	.dash__chart {
+		width: 100%;
+		height: 66px;
+		display: block;
+	}
+	.dash__float {
+		position: absolute;
+		left: -1.2rem;
+		bottom: -1.2rem;
+		background: #151515;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 12px;
+		padding: 0.8rem 1rem;
+	}
+
+	.dash__float-status {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		font-size: 0.82rem;
+		color: var(--color-success);
+		font-weight: 700;
+	}
+
+	.dash__float-dot {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: var(--color-success);
+	}
+
+	.dash__float-desc {
+		margin: 0.25rem 0 0;
+		font-size: 0.95rem;
+		font-weight: 700;
+		color: #fff;
+	}
+
+	/* ── Platforms ────────────────────────────────── */
+	.platforms {
+		background: var(--color-bg);
+		padding: 2.5rem 0;
 		border-top: 1px solid var(--color-border);
 	}
 
-	.tool-row__icon {
-		flex: none;
-		width: 2.35rem;
-		height: 2.35rem;
-		border-radius: 8px;
-		background: var(--color-bg-alt);
-		border: 1px solid var(--color-border);
+	.platforms__inner {
+		text-align: center;
+	}
+
+	.platforms__label {
+		display: block;
+		font-size: 0.72rem;
+		letter-spacing: 0.1em;
+		color: var(--color-subtle);
+		margin-bottom: 0.6rem;
+	}
+
+	.platforms__row {
 		display: flex;
-		align-items: center;
+		flex-wrap: wrap;
 		justify-content: center;
-		color: var(--color-accent);
+		gap: 2rem;
+		font-size: 0.92rem;
+		font-weight: 600;
+		color: var(--color-muted);
 	}
-	.tool-row__icon svg {
-		width: 1.15rem;
-		height: 1.15rem;
-	}
-
-	.tool-row__text {
-		flex: 1 1 auto;
-		min-width: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 0.15rem;
-	}
-
-	.tool-row__name {
-		font-size: 0.9rem;
-		font-weight: 700;
-		color: var(--color-text);
-	}
-
-	.tool-row__desc {
-		font-size: 0.78rem;
-		color: rgba(17, 24, 39, 0.55);
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-
-	.bars {
-		flex: none;
-		display: flex;
-		align-items: flex-end;
-		gap: 0.2rem;
-		height: 1.6rem;
-	}
-	.bars__bar {
-		width: 5px;
-		border-radius: 2px;
-		background: var(--color-border);
-	}
-	.bars__bar--1 { height: 40%; }
-	.bars__bar--2 { height: 65%; }
-	.bars__bar--3 { height: 50%; }
-	.bars__bar--4 { height: 100%; background: var(--color-accent); }
-
-	.tags {
-		flex: none;
-		display: flex;
-		flex-direction: column;
-		align-items: flex-end;
-		gap: 0.28rem;
-	}
-	.tags__tag {
-		height: 6px;
-		border-radius: 3px;
-		background: var(--color-border);
-	}
-	.tags__tag--1 { width: 2.2rem; }
-	.tags__tag--2 { width: 1.4rem; background: var(--color-accent); }
-	.tags__tag--3 { width: 1.8rem; }
-
-	.grid-viz {
-		flex: none;
-		display: grid;
-		grid-template-columns: repeat(3, 7px);
-		grid-template-rows: repeat(2, 7px);
-		gap: 3px;
-	}
-	.grid-viz__cell {
-		border-radius: 2px;
-		background: var(--color-border);
-	}
-	.grid-viz__cell--hi { background: var(--color-accent); }
 
 	/* ── Tools ────────────────────────────────────── */
 	.tools-section {
@@ -509,55 +707,61 @@ const tools = [
 		padding: 4rem 0;
 	}
 
+	.tools-layout {
+		display: grid;
+		grid-template-columns: 1fr 280px;
+		gap: 2rem;
+		align-items: stretch;
+	}
+
 	.tools-grid {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
-		gap: 1.25rem;
+		gap: 2rem;
 	}
 
 	.tool-card {
 		display: flex;
 		flex-direction: column;
-		gap: 1.1rem;
-		padding: 1.75rem;
+		gap: 1.15rem;
+		padding: 2rem;
 		background: var(--color-bg-alt);
-		border: 1px solid var(--color-border);
-		border-radius: 16px;
+		border: 1px solid #eaeaea;
+		border-radius: 18px;
 		text-decoration: none;
 		color: inherit;
 		transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 	}
 	.tool-card:hover {
-		border-color: var(--color-highlight);
+		border-color: var(--color-accent);
 		transform: translateY(-2px);
-		box-shadow: 0 8px 24px -8px rgba(17, 24, 39, 0.12);
+		box-shadow: 0 8px 24px -8px rgba(10, 10, 10, 0.12);
+	}
+
+	.tool-card__head {
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
 	}
 
 	.tool-card__icon {
 		flex: none;
-		width: 2.6rem;
-		height: 2.6rem;
-		border-radius: 10px;
-		background: #fff;
-		border: 1px solid var(--color-border);
-		display: flex;
+		width: 2.25rem;
+		height: 2.25rem;
+		border-radius: 8px;
+		background: var(--color-text);
+		color: #fff;
+		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		color: var(--color-accent);
 	}
 	.tool-card__icon svg {
-		width: 1.3rem;
-		height: 1.3rem;
-	}
-
-	.tool-card__body {
-		display: flex;
-		flex-direction: column;
-		gap: 0.4rem;
+		width: 1.05rem;
+		height: 1.05rem;
 	}
 
 	.tool-card__name {
-		font-size: 1.08rem;
+		font-size: 1.375rem;
 		font-weight: 700;
 		letter-spacing: -0.01em;
 		color: var(--color-text);
@@ -565,8 +769,8 @@ const tools = [
 
 	.tool-card__desc {
 		margin: 0;
-		font-size: 0.9rem;
-		line-height: 1.6;
+		font-size: 1rem;
+		line-height: 1.75;
 		color: var(--color-muted);
 	}
 
@@ -580,7 +784,134 @@ const tools = [
 		color: var(--color-text);
 	}
 	.tool-card:hover .tool-card__link {
-		color: var(--color-highlight);
+		color: var(--color-accent);
+	}
+
+	.tool-card__demo {
+		background: #fff;
+		border: 1px solid var(--color-border);
+		border-radius: 8px;
+		padding: 0.6rem 0.75rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+		font-size: 0.78rem;
+	}
+	.demo-row {
+		display: flex;
+		justify-content: space-between;
+		color: var(--color-subtle);
+	}
+	.demo-row--data {
+		color: var(--color-text);
+		font-weight: 600;
+	}
+	.demo-row__hi {
+		color: var(--color-accent);
+	}
+
+	.tool-card__demo--file {
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		gap: 0.6rem;
+		border-style: dashed;
+		color: var(--color-subtle);
+	}
+	.tool-card__demo--file svg {
+		width: 1.3rem;
+		height: 1.3rem;
+	}
+	.tool-card__check {
+		color: var(--color-success);
+	}
+
+	.tool-card--highlight .tool-card__name {
+		color: var(--color-text);
+	}
+
+	.tool-card__steps {
+		display: flex;
+		flex-direction: column;
+		gap: 0.45rem;
+	}
+	.step {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		background: #fff;
+		border: 1px solid var(--color-border);
+		color: var(--color-text);
+		border-radius: 8px;
+		min-height: 48px;
+		padding: 0 1rem;
+		font-size: 0.88rem;
+		font-weight: 600;
+	}
+	.step--done {
+		background: rgba(34, 197, 94, 0.08);
+		border-color: rgba(34, 197, 94, 0.35);
+	}
+	.step__check {
+		flex: none;
+		width: 16px;
+		height: 16px;
+		border-radius: 50%;
+		background: var(--color-success);
+		color: #fff;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.step__check svg {
+		width: 10px;
+		height: 10px;
+	}
+
+	/* ── Tools stats sidebar ──────────────────────── */
+	.tools-stats {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 1.15rem;
+		background: var(--color-bg-alt);
+		border: 1px solid var(--color-border);
+		border-radius: 16px;
+		padding: 1.5rem;
+	}
+
+	.tools-stat {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.tools-stat__icon {
+		flex: none;
+		width: 2.25rem;
+		height: 2.25rem;
+		border-radius: 8px;
+		background: var(--color-text);
+		color: #fff;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.tools-stat__icon svg {
+		width: 1.05rem;
+		height: 1.05rem;
+	}
+
+	.tools-stat__value {
+		margin: 0;
+		font-size: 1rem;
+		font-weight: 800;
+		color: var(--color-text);
+	}
+	.tools-stat__label {
+		margin: 0.1rem 0 0;
+		font-size: 0.8rem;
+		color: var(--color-muted);
 	}
 
 	/* ── Ad slot ──────────────────────────────────── */
@@ -599,59 +930,66 @@ const tools = [
 		font-size: 0.85rem;
 	}
 
-	/* ── About ────────────────────────────────────── */
-	.about-section {
+	/* ── Why ──────────────────────────────────────── */
+	.why-section {
 		background: var(--color-bg-alt);
-		padding: 4.5rem 0;
+		padding: 5.5rem 0;
 	}
 
-	.about-grid {
+	.why-layout {
+		display: grid;
+		grid-template-columns: 0.9fr 1.1fr;
+		gap: 3.5rem;
+		align-items: center;
+	}
+
+	.why-copy {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 1.25rem;
+	}
+	.why-copy .section-title {
+		font-size: clamp(1.7rem, 3vw, 2.2rem);
+	}
+
+	.why-grid {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		gap: 1.25rem;
-		margin-bottom: 2.25rem;
 	}
 
-	.about-item {
-		display: flex;
-		align-items: flex-start;
-		gap: 1rem;
-		padding: 1.5rem;
+	.why-item {
+		padding: 1.75rem;
 		background: #fff;
 		border: 1px solid var(--color-border);
 		border-radius: 16px;
 	}
 
-	.about-item__icon {
-		flex: none;
-		width: 2.6rem;
-		height: 2.6rem;
-		border-radius: 10px;
-		background: var(--color-bg-alt);
-		border: 1px solid var(--color-border);
-		display: flex;
+	.why-item__icon {
+		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		color: var(--color-accent);
+		width: 2.5rem;
+		height: 2.5rem;
+		border-radius: 10px;
+		background: var(--color-text);
+		color: #fff;
+		margin-bottom: 0.75rem;
 	}
-	.about-item__icon svg {
-		width: 1.3rem;
-		height: 1.3rem;
+	.why-item__icon svg {
+		width: 1.2rem;
+		height: 1.2rem;
 	}
 
-	.about-item__body {
-		display: flex;
-		flex-direction: column;
-		gap: 0.35rem;
-	}
-
-	.about-item__title {
+	.why-item__title {
+		margin: 0 0 0.35rem;
 		font-size: 1rem;
 		font-weight: 700;
 		color: var(--color-text);
 	}
 
-	.about-item__desc {
+	.why-item__desc {
 		margin: 0;
 		font-size: 0.9rem;
 		line-height: 1.6;
@@ -669,14 +1007,66 @@ const tools = [
 		transition: color 0.2s ease;
 	}
 	.link-arrow:hover {
-		color: var(--color-highlight);
+		color: var(--color-accent);
+	}
+
+	/* ── Posts ────────────────────────────────────── */
+	.posts-section {
+		background: var(--color-bg);
+		padding: 4rem 0;
+	}
+
+	.posts-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 2rem;
+	}
+
+	.post-card {
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+		padding: 1.5rem 1.75rem;
+		background: var(--color-bg-alt);
+		border: 1px solid var(--color-border);
+		border-radius: 16px;
+		text-decoration: none;
+		color: inherit;
+		transition: border-color 0.2s ease, transform 0.2s ease;
+	}
+	.post-card:hover {
+		border-color: var(--color-accent);
+		transform: translateY(-2px);
+	}
+
+	.post-card__category {
+		align-self: flex-start;
+		font-size: 0.72rem;
+		font-weight: 700;
+		color: var(--color-muted);
+		background: #fff;
+		border: 1px solid var(--color-border);
+		border-radius: 5px;
+		padding: 0.2rem 0.5rem;
+	}
+
+	.post-card__title {
+		margin: 0;
+		font-size: 0.95rem;
+		font-weight: 700;
+		line-height: 1.5;
+		color: var(--color-text);
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
 	}
 
 	/* ── CTA ──────────────────────────────────────── */
 	.cta-section {
-		background: var(--color-text);
+		background: var(--color-text) url('/images/bg-dark-orbit.jpg') center center / cover no-repeat;
 		color: #fff;
-		padding: 4rem 0;
+		padding: 7.5rem 0;
 	}
 
 	.cta-section__inner {
@@ -712,22 +1102,32 @@ const tools = [
 	}
 
 	@media (max-width: 860px) {
-		.hero, .tools-section { padding: 2.75rem 0; }
-		.about-section { padding: 3rem 0; }
-		.cta-section { padding: 3rem 0; }
+		.hero { min-height: auto; padding: 3rem 0; }
+		.tools-section, .posts-section { padding: 2.75rem 0; }
+		.why-section { padding: 3rem 0; }
+		.cta-section { padding: 4rem 0; }
 		.hero__inner {
 			grid-template-columns: 1fr;
 			gap: 2.25rem;
+			padding: 0 1.5rem;
 		}
 		.hero__desc { max-width: 60ch; }
-		.tools-grid { grid-template-columns: 1fr; }
-		.about-grid { grid-template-columns: 1fr; }
+		.dash__float { position: static; margin-top: 0.85rem; display: inline-block; }
+		.tools-layout { grid-template-columns: 1fr; }
+		.tools-grid,
+		.posts-grid { grid-template-columns: 1fr; }
+		.why-layout { grid-template-columns: 1fr; gap: 2.25rem; }
+		.why-grid { grid-template-columns: repeat(2, 1fr); }
+		.platforms__row { gap: 1.25rem 1.75rem; }
 	}
 
 	@media (max-width: 480px) {
 		.hero__inner,
+		.platforms__inner,
 		.tools-section__inner,
-		.about-section__inner,
+		.stats__inner,
+		.why-section__inner,
+		.posts-section__inner,
 		.cta-section__inner {
 			padding: 0 1.25rem;
 		}
@@ -740,13 +1140,11 @@ const tools = [
 			flex: 1 1 auto;
 			justify-content: center;
 		}
-		.tool-row__desc {
-			display: none;
-		}
+		.why-grid { grid-template-columns: 1fr; }
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.btn, .tool-card {
+		.btn, .tool-card, .post-card {
 			transition: none;
 		}
 	}

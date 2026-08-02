@@ -12,8 +12,7 @@ const currentPath = Astro.url.pathname;
 <header class="site-header">
 	<div class="header-inner">
 		<a class="logo" href="/">
-			<img class="logo__mark" src="/codivo-logo.png" alt="" width="28" height="28" />
-			Codivo Studio
+			<img class="logo__mark" src="/images/logo-header.png" alt="Codivo Studio" width="1222" height="200" />
 		</a>
 		<nav>
 			<ul>
@@ -33,37 +32,40 @@ const currentPath = Astro.url.pathname;
 				}
 			</ul>
 		</nav>
+		<div class="header-actions">
+			<a class="btn-outline" href="/#contact">문의하기</a>
+			<a class="btn-solid" href="/tools/">도구 둘러보기</a>
+		</div>
 	</div>
 </header>
 
 <style>
 	.site-header {
-		border-bottom: 1px solid var(--color-border);
+		background: var(--color-text);
+		border-bottom: 1px solid #222;
 	}
 
 	.header-inner {
 		max-width: var(--max-width);
 		margin: 0 auto;
-		padding: 1rem 1.5rem;
-		display: flex;
+		padding: 0 1.5rem;
+		height: 72px;
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
 		align-items: center;
-		justify-content: space-between;
 	}
 
 	.logo {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.5rem;
-		font-weight: 700;
-		font-size: 1.15rem;
-		color: var(--color-text);
 		text-decoration: none;
+		justify-self: start;
 	}
 
 	.logo__mark {
 		display: block;
-		width: 1.75rem;
-		height: 1.75rem;
+		height: 34px;
+		width: auto;
 	}
 
 	nav ul {
@@ -75,13 +77,64 @@ const currentPath = Astro.url.pathname;
 	}
 
 	nav a {
+		display: inline-block;
 		text-decoration: none;
-		color: var(--color-text);
+		color: rgba(255, 255, 255, 0.7);
 		font-size: 0.95rem;
+		padding-bottom: 0.35rem;
+		border-bottom: 2px solid transparent;
 	}
 
 	nav a:hover,
 	nav a.active {
 		color: var(--color-accent);
+	}
+	nav a.active {
+		border-color: var(--color-accent);
+	}
+
+	.header-actions {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		justify-self: end;
+	}
+
+	.btn-outline,
+	.btn-solid {
+		display: inline-flex;
+		align-items: center;
+		font-size: 0.85rem;
+		font-weight: 600;
+		padding: 0.55rem 1rem;
+		border-radius: 6px;
+		text-decoration: none;
+		white-space: nowrap;
+	}
+
+	.btn-outline {
+		color: #fff;
+		border: 1px solid rgba(255, 255, 255, 0.25);
+	}
+	.btn-outline:hover {
+		border-color: var(--color-accent);
+		color: var(--color-accent);
+	}
+
+	.btn-solid {
+		color: #fff;
+		background: var(--color-accent);
+	}
+	.btn-solid:hover {
+		opacity: 0.9;
+	}
+
+	@media (max-width: 720px) {
+		nav {
+			display: none;
+		}
+		.btn-outline {
+			display: none;
+		}
 	}
 </style>
