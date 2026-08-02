@@ -13,7 +13,6 @@ export interface Program {
 // 새 프로그램을 추가하려면 이 배열에 항목을 추가하면 Header 메뉴에 자동 반영됩니다.
 export const programs: Program[] = [
 	{ key: 'all-tools', label: '전체도구', href: '/tools/', status: 'live' },
-	{ key: 'rank-tracker', label: '랭킹추적기', href: '/tools/rank-tracker/', status: 'live', mode: 'iframe' },
 	{ key: 'keyword-analysis', label: '키워드분석', href: '/tools/keyword-analysis/', status: 'live', mode: 'iframe' },
 	{
 		key: 'excel-converter',
