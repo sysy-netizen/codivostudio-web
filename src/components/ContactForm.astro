@@ -135,8 +135,9 @@ const { variant = 'solid', label = '문의하기' } = Astro.props;
 
 	.contact-form__field input:focus,
 	.contact-form__field textarea:focus {
-		outline: 2px solid var(--color-accent);
-		outline-offset: 1px;
+		outline: none;
+		border-color: var(--color-accent);
+		box-shadow: inset 0 0 0 1px var(--color-accent);
 	}
 
 	.contact-form__submit {
