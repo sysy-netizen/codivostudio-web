@@ -2,7 +2,19 @@
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "codivostudio-web",
 	"compatibility_date": "2026-07-29",
+	"compatibility_flags": ["nodejs_compat"],
 	"assets": {
-		"directory": "./dist"
-	}
+		"directory": "./dist/client",
+		"binding": "ASSETS"
+	},
+	"kv_namespaces": [
+		{
+			"binding": "VISITOR_COUNT",
+			"id": "8027674638784712a1d04288956706e4"
+		},
+		{
+			"binding": "SESSION",
+			"id": "1c4069909ab34ac4ad22c52af26f04c5"
+		}
+	]
 }

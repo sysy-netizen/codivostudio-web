@@ -115,6 +115,7 @@ const { variant = 'solid', label = '문의하기' } = Astro.props;
 
 	.contact-form__field {
 		flex: 1;
+		min-width: 0;
 		display: flex;
 		flex-direction: column;
 		gap: 0.4rem;
@@ -174,6 +175,10 @@ const { variant = 'solid', label = '문의하기' } = Astro.props;
 			width: 100%;
 			justify-content: center;
 		}
+
+		.contact-form__row {
+			flex-direction: column;
+		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
@@ -191,6 +196,11 @@ const { variant = 'solid', label = '문의하기' } = Astro.props;
 		const form = root.querySelector<HTMLFormElement>('[data-contact-form]');
 		const status = form?.querySelector<HTMLParagraphElement>('.contact-form__status');
 		const submitBtn = form?.querySelector<HTMLButtonElement>('.contact-form__submit');
+
+		if (window.location.hash === '#contact') {
+			panel?.classList.add('is-open');
+			toggleBtn?.setAttribute('aria-expanded', 'true');
+		}
 
 		toggleBtn?.addEventListener('click', () => {
 			const isOpen = panel?.classList.toggle('is-open');

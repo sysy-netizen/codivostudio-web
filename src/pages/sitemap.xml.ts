@@ -5,7 +5,7 @@ import { CATEGORY_SLUGS } from '../lib/blogCategories';
 const staticPaths = [
 	'/',
 	'/tools/',
-	'/tools/keyword-analysis/',
+	'/tools/excel-converter/',
 	'/blog/',
 	'/about/',
 ];

@@ -80,10 +80,45 @@
       "Bash(git update-ref *)",
       "Bash(npx --yes playwright screenshot --viewport-size=1400,900 --wait-for-timeout=800 http://localhost:4321/tools/rank-tracker/ new-rank-tracker.png)",
       "Bash(npx --yes playwright screenshot --viewport-size=1400,900 --wait-for-timeout=800 http://localhost:4321/tools/price-calculator/ new-price-calc.png)",
-      "Bash(npx --yes playwright screenshot --viewport-size=1400,900 --wait-for-timeout=800 http://localhost:4321/ new-home.png)"
+      "Bash(npx --yes playwright screenshot --viewport-size=1400,900 --wait-for-timeout=800 http://localhost:4321/ new-home.png)",
+      "Bash(git push *)",
+      "Bash(timeout 30 bash -c 'until curl -sf http://localhost:4321/ >/dev/null; do sleep 1; done')",
+      "Bash(npx --yes playwright screenshot --viewport-size=1400,700 --wait-for-timeout=600 http://localhost:4321/ fixed-home.png)",
+      "Bash(npx --yes playwright screenshot --viewport-size=1400,700 --wait-for-timeout=600 http://localhost:4321/tools/rank-tracker/ fixed-rank-tracker.png)",
+      "Bash(timeout 30 bash -c 'until curl -sf http://localhost:4321/tools/keyword-analysis/ >/dev/null; do sleep 1; done')",
+      "Bash(npx --yes playwright screenshot --viewport-size=1400,400 --wait-for-timeout=500 http://localhost:4321/tools/keyword-analysis/ v-keyword.png)",
+      "Bash(npx --yes playwright screenshot --viewport-size=1400,400 --wait-for-timeout=500 http://localhost:4321/tools/invoice-converter/ v-invoice.png)",
+      "Bash(npx --yes playwright screenshot --viewport-size=1400,400 --wait-for-timeout=500 http://localhost:4321/tools/price-calculator/ v-price.png)",
+      "Bash(timeout 30 bash -c 'until curl -sf http://localhost:4321/tools/ >/dev/null; do sleep 1; done')",
+      "Bash(npx --yes playwright screenshot --viewport-size=1400,900 --wait-for-timeout=500 http://localhost:4321/tools/ v-tools-list.png)",
+      "Bash(ls \"/c/Users/toris/AppData/Local/Temp/claude/c--codivostudio-web/a23844d8-9ea1-45c2-a93a-0fabb896a8d8/scratchpad/invoice-merge\" 2>&1)",
+      "Bash(grep -n \"st.markdown\\\\|Codivo Studio\\\\|Seller Tools\\\\|program-\\\\|font-size\\\\|def render_header\\\\|랭킹추적기\\\\|키워드분석\\\\|엑셀변환기\\\\|가격계산기\\\\|전체도구\" \"/c/Users/toris/AppData/Local/Temp/claude/c--codivostudio-web/a23844d8-9ea1-45c2-a93a-0fabb896a8d8/scratchpad/invoice-merge/app.py\" | head -60)",
+      "Bash(grep -n \"대량발송 파일 변환기\\\\|st.title\\\\|st.header\\\\|st.subheader\\\\|st\\\\.markdown\\(\\\\\"네이버\\\\|font-size:2rem\\\\|<h1\\\\|📦\" \"/c/Users/toris/AppData/Local/Temp/claude/c--codivostudio-web/a23844d8-9ea1-45c2-a93a-0fabb896a8d8/scratchpad/invoice-merge/app.py\" | head -30)",
+      "Bash(python -m py_compile app.py)",
+      "Bash(python -m pip install -q -r requirements.txt)",
+      "Bash(npx --yes playwright screenshot --viewport-size=1400,600 --wait-for-timeout=2500 http://localhost:8502 streamlit-check.png)",
+      "Bash(npx --yes playwright screenshot --viewport-size=1400,700 --wait-for-timeout=6000 http://localhost:8502 streamlit-check2.png)",
+      "Bash(pkill -f \"streamlit run app.py\")",
+      "Bash(ls \"/c/Users/toris/AppData/Local/Temp/claude/c--codivostudio-web/a23844d8-9ea1-45c2-a93a-0fabb896a8d8/scratchpad/codivo-tools\" 2>&1)",
+      "Bash(cd \"/c/Users/toris/AppData/Local/Temp/claude/c--codivostudio-web/a23844d8-9ea1-45c2-a93a-0fabb896a8d8/scratchpad/codivo-tools\" && find src -type f | sort)",
+      "Bash(cd \"/c/Users/toris/AppData/Local/Temp/claude/c--codivostudio-web/a23844d8-9ea1-45c2-a93a-0fabb896a8d8/scratchpad/codivo-tools\" && wc -l src/app/page.tsx src/app/keyword/page.tsx src/app/api/rank/route.ts src/app/api/related-keywords/route.ts src/app/api/related-keywords/refresh/route.ts src/lib/*.ts src/components/*.tsx)",
+      "Bash(cd \"/c/Users/toris/AppData/Local/Temp/claude/c--codivostudio-web/a23844d8-9ea1-45c2-a93a-0fabb896a8d8/scratchpad/codivo-tools\" && grep -n \"^import\" src/app/page.tsx src/app/keyword/page.tsx src/app/api/rank/route.ts src/app/api/related-keywords/route.ts src/app/api/related-keywords/refresh/route.ts)",
+      "Bash(cd \"/c/Users/toris/AppData/Local/Temp/claude/c--codivostudio-web/a23844d8-9ea1-45c2-a93a-0fabb896a8d8/scratchpad/codivo-tools\" && echo \"--- naverAd.ts imports ---\" && grep -n \"^import\\\\|process.env\" src/lib/naverAd.ts src/lib/naver.ts src/lib/relatedKeywords.ts src/lib/keywordCache.ts | head -30 && echo \"--- .env references ---\" && cat .gitignore 2>/dev/null && echo \"--- package.json deps ---\" && cat package.json)",
+      "Bash(timeout 30 bash -c 'until curl -sf http://localhost:3502 >/dev/null; do sleep 1; done')",
+      "Bash(npx --yes playwright screenshot --viewport-size=1200,400 --wait-for-timeout=800 http://localhost:3502 navcheck.png)",
+      "Bash(curl -s http://localhost:3502)",
+      "Bash(npx --yes playwright screenshot --viewport-size=1200,300 --wait-for-timeout=800 http://localhost:3502 navcheck2.png)",
+      "Bash(npx --yes playwright screenshot --viewport-size=1400,400 --wait-for-timeout=500 http://localhost:4321/tools/rank-tracker/ headline-check.png)",
+      "Bash(rm \"/c/Users/toris/AppData/Local/Temp/claude/c--codivostudio-web/a23844d8-9ea1-45c2-a93a-0fabb896a8d8/scratchpad/codivo-tools/src/components/NavBar.tsx\")",
+      "Bash(npx --yes playwright screenshot --viewport-size=1200,300 --wait-for-timeout=600 http://localhost:3502 nonav1.png)",
+      "Bash(npx --yes playwright screenshot --viewport-size=1200,300 --wait-for-timeout=600 http://localhost:3502/keyword nonav2.png)",
+      "Bash(npx --yes playwright screenshot --viewport-size=1200,400 --wait-for-timeout=600 http://localhost:3502/keyword kw-check.png)",
+      "Bash(openssl s_client -connect tools.codivostudio.com:443 -servername tools.codivostudio.com)",
+      "Bash(npx --yes playwright screenshot --viewport-size=1400,900 --wait-for-timeout=3000 --full-page https://codivostudio.com/tools/rank-tracker/ live-rank-check.png)"
     ],
     "additionalDirectories": [
-      "G:\\�� ����̺�\\Projects\\codivostudio-web\\.claude"
+      "G:\\�� ����̺�\\Projects\\codivostudio-web\\.claude",
+      "C:\\Users\\toris\\AppData\\Local\\Temp\\claude\\c--codivostudio-web\\a23844d8-9ea1-45c2-a93a-0fabb896a8d8\\scratchpad\\codivo-tools\\src\\components"
     ]
   }
 }

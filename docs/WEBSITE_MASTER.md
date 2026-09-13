@@ -1,6 +1,6 @@
 # Codivo Studio Website Project (Astro / Cloudflare)
 
-> Last Updated: 2026-07-29
+> Last Updated: 2026-07-31
 > 이 프로젝트는 `G:\내 드라이브\Projects\seller_dealer\docs\` 의 워드프레스 기반 계획을
 > **전면 대체**합니다. 2026-07-29부로 워드프레스는 사용하지 않기로 확정했습니다.
 > (이전 워드프레스 계획은 seller_dealer/docs에 기록으로만 남아있고, 진행은 이 프로젝트에서만 합니다.)
@@ -37,14 +37,18 @@ Codivo Studio는 AI 및 업무 자동화를 위한 웹 도구를 제공하는 �
 
 ## 현재 프로젝트 상태
 
-- Astro 기본 구조 완료
-- Cloudflare Pages 배포 완료
+- Astro 기본 구조 완료, Cloudflare(Workers + 정적 자산)에 배포 완료
 - 주요 페이지(홈/도구/소개) 구현 완료
-- 도구 페이지 연결 완료 (iframe 3개)
-- 블로그 기본 구조 완료, 샘플 블로그 글 2개 존재
+- 도구 연결 완료 — 랭킹추적/키워드분석은 iframe 2개, 엑셀변환기는 외부 링크(새 탭)로 연결 (iframe 임베드는
+  Streamlit Cloud 인증 리다이렉트 문제로 포기, ROADMAP.md 16~17번 참고)
+- 블로그 실제 글 10편 작성 완료, 카테고리 분류 기능 적용
 - Pagefind 검색 기능 적용 완료
 - 기본 디자인 및 컬러 시스템 적용 완료
-- 현재 작업은 실제 블로그 글 작성 단계 (ROADMAP.md 10번)
+- SEO 기본 설정 완료 (sitemap/robots/canonical/OG/Twitter/JSON-LD/RSS)
+- **Google Analytics 4 연결 완료** — codivostudio-web, codivo-tools(랭킹추적/키워드분석) 양쪽 모두 (ROADMAP.md 20번)
+- **홈페이지 방문자 수 카운터 추가** — Cloudflare KV 기반, 이로 인해 사이트가 순수 정적에서 부분 SSR로 전환됨
+  (`@astrojs/cloudflare` 어댑터 적용, ROADMAP.md 21번)
+- 현재 대기 중: Excel Converter를 Next.js 앱으로 재구축할지 여부 (ROADMAP.md 23~24번, 사용자가 "추후진행"으로 보류)
 
 세부 완료 로그와 다음 작업 우선순위는 [ROADMAP.md](./ROADMAP.md)를 참고.
 
@@ -54,35 +58,47 @@ Codivo Studio는 AI 및 업무 자동화를 위한 웹 도구를 제공하는 �
 
 | 항목 | 선택 | 비고 |
 |---|---|---|
-| 프레임워크 | **Astro** (v7) | 정적 사이트 생성, 조코딩(jocoding.net) 사이트도 동일 스택 |
-| 호스팅 | **Cloudflare Pages** | 무료, 무료 SSL 자동, GitHub 연동 자동배포 |
+| 프레임워크 | **Astro** (v7) | 기본은 정적 사이트 생성, 2026-07-31부터 일부 라우트(방문자 카운터 API)만 SSR |
+| 어댑터 | **@astrojs/cloudflare** | 방문자 수 카운터 API(`/api/hit-count`) 때문에 2026-07-31 추가, `imageService: 'passthrough'` |
+| 호스팅 | **Cloudflare** (Workers + 정적 자산, KV) | 무료, 무료 SSL 자동. KV 네임스페이스 `VISITOR_COUNT`(방문자 수), `SESSION`(Astro 세션 기능) |
 | 도메인 | **codivostudio.com** (가비아 등록 유지, 네임서버만 Cloudflare로 이전) | 등록은 가비아, DNS/호스팅은 Cloudflare |
 | 블로그 | Astro Content Collections (Markdown) | 워드프레스 미사용, 클로드가 글 파일 생성 |
 | 검색 | **Pagefind** | 빌드 시 인덱스 생성, 클라이언트 사이드 검색, 서버 불필요 |
-| 배포 방식 | GitHub 저장소 → Cloudflare Pages 자동 배포 | `npm run build` 결과물 배포 |
+| 분석 | **Google Analytics 4** (측정 ID `G-QB214MSPH9`) | codivostudio-web과 codivo-tools(랭킹추적/키워드분석) 양쪽에 동일 속성 재사용, 호스트 이름으로 구분 |
+| 배포 방식 | **수동 CLI**: `npm run deploy` | `astro build && wrangler deploy --config dist/server/wrangler.json`. GitHub 연동 자동배포 아님 — 로컬에 git 저장소 자체가 없는 상태(아래 참고) |
 
 ### 사용하지 않음
 - WordPress / Gutenberg / Elementor
 - 유료 호스팅 (가비아 웹호스팅 등)
 - 유료 SSL 인증서 (Cloudflare 무료 SSL로 대체)
 
+### ⚠️ 버전 관리 상태 (2026-07-31 기준)
+
+이 프로젝트 폴더(`C:\MECRO\codivostudio-web`)에는 **현재 로컬 `.git`이 없다.** GitHub 저장소
+(`sysy-netizen/codivostudio-web`)에 과거 커밋된 이력은 있으나, 로컬 git 추적이 끊긴 뒤로는 폴더를
+그대로 복사(구글 드라이브 업로드 등)하는 방식으로 다른 환경과 동기화하고 있다. 자세한 내용과 대응 방법은
+[ROADMAP.md "다른 환경에서 이어서 진행하는 법"](./ROADMAP.md#다른-환경에서-이어서-진행하는-법) 참고.
+
 ---
 
 ## 사이트 구성
 
 ```text
-codivostudio.com (Astro, Cloudflare Pages)
-├── / (Home)
-├── /tools (도구 소개, 카드만, iframe 없음)
+codivostudio.com (Astro, Cloudflare Workers + 정적 자산)
+├── / (Home — 방문자 수 카운터 포함)
+├── /tools (도구 소개, 카드 3개 — 누적 사용 횟수 배지 포함)
 │   ├── /tools/rank-tracker       ← iframe: 실시간 랭킹추적
 │   ├── /tools/keyword-analysis   ← iframe: 연관 키워드 분석
-│   └── /tools/invoice-converter  ← iframe: 대량발송 엑셀 변환기
-├── /blog (Astro Content Collections + Pagefind 검색)
-└── /about (소개 + 문의 통합)
+│   └── (대량발송 엑셀변환기는 외부 링크로 연결, 이 사이트 안에 전용 페이지 없음)
+├── /blog (Astro Content Collections + Pagefind 검색 + 카테고리 필터)
+├── /about (소개 + 문의 통합)
+└── /api/hit-count (방문자 수 카운터 API, Cloudflare KV)
 
-연동 서비스 (기존 자산, 그대로 재활용)
+연동 서비스 (별도 저장소·배포처, 이 프로젝트 폴더 밖)
 tools.codivostudio.com          ← Next.js, Vercel 배포 (랭킹추적 `/`, 키워드분석 `/keyword`)
-invoice-merge-....streamlit.app ← Streamlit, 대량발송 엑셀변환기
+                                   저장소: https://github.com/sysy-netizen/codivo-tools
+invoice-merge-....streamlit.app ← Streamlit, 대량발송 엑셀변환기 (codivostudio.com에서는 외부 링크로만 연결)
+                                   저장소: https://github.com/sysy-netizen/invoice-merge
 ```
 
 **메뉴**: 홈 / 도구 / 블로그 / 소개 (4개, seller_dealer 계획과 동일하게 유지)
@@ -136,8 +152,8 @@ SEO와 AdSense는 프로젝트의 장기 운영 단계로 다룬다.
 
 - 콘텐츠 작성이 우선이다.
 - SEO 기본 설정은 실제 콘텐츠와 함께 진행한다.
-- Google Search Console은 SEO 설정 이후 연결한다.
-- Google Analytics 4는 방문자와 콘텐츠 성과 분석 목적으로 사용한다.
+- Google Search Console은 연결 완료 (ROADMAP.md 12번).
+- Google Analytics 4는 방문자와 콘텐츠 성과 분석 목적으로 사용한다 — 연결 완료 (ROADMAP.md 20번, 측정 ID `G-QB214MSPH9`).
 - Google AdSense는 충분한 실제 콘텐츠와 SEO 기본 설정이 완료된 이후 신청한다.
 - AdSense 승인을 위해 저품질 또는 반복 콘텐츠를 대량 생산하지 않는다.
 

@@ -14,7 +14,7 @@ const currentPath = Astro.url.pathname;
 		<a class="logo" href="/">
 			<img class="logo__mark" src="/images/logo-header.png" alt="Codivo Studio" width="1222" height="200" />
 		</a>
-		<nav>
+		<nav id="mobile-nav">
 			<ul>
 				{
 					navItems.map((item) => (
@@ -30,19 +30,37 @@ const currentPath = Astro.url.pathname;
 						</li>
 					))
 				}
+				<li class="nav-mobile-only"><a href="/#contact">문의하기</a></li>
 			</ul>
 		</nav>
 		<div class="header-actions">
 			<a class="btn-outline" href="/#contact">문의하기</a>
 			<a class="btn-solid" href="/tools/">도구 둘러보기</a>
+			<button class="menu-toggle" id="menu-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-nav">
+				<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+					<path d="M4 6h16M4 12h16M4 18h16"></path>
+				</svg>
+			</button>
 		</div>
 	</div>
 </header>
+
+<script>
+	const toggle = document.getElementById('menu-toggle');
+	const nav = document.getElementById('mobile-nav');
+
+	toggle?.addEventListener('click', () => {
+		const isOpen = nav?.classList.toggle('is-open');
+		toggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+	});
+</script>
 
 <style>
 	.site-header {
 		background: var(--color-text);
 		border-bottom: 1px solid #222;
+		position: relative;
+		z-index: 50;
 	}
 
 	.header-inner {
@@ -129,12 +147,72 @@ const currentPath = Astro.url.pathname;
 		opacity: 0.9;
 	}
 
+	.menu-toggle {
+		display: none;
+		background: none;
+		border: none;
+		color: #fff;
+		padding: 0.4rem;
+		cursor: pointer;
+	}
+
+	.nav-mobile-only {
+		display: none;
+	}
+
 	@media (max-width: 720px) {
+		.header-inner {
+			position: relative;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
 		nav {
 			display: none;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			right: 0;
+			background: var(--color-text);
+			border-bottom: 1px solid #222;
+			padding: 0.25rem 1.5rem 0.75rem;
 		}
-		.btn-outline {
+
+		nav.is-open {
+			display: block;
+		}
+
+		nav ul {
+			flex-direction: column;
+			gap: 0;
+		}
+
+		nav li {
+			border-top: 1px solid rgba(255, 255, 255, 0.08);
+		}
+
+		nav a {
+			display: block;
+			padding: 0.85rem 0;
+			border-bottom: none;
+		}
+
+		.nav-mobile-only {
+			display: list-item;
+		}
+
+		.logo__mark {
+			height: 26px;
+		}
+
+		.btn-outline,
+		.btn-solid {
 			display: none;
+		}
+
+		.menu-toggle {
+			display: inline-flex;
 		}
 	}
 </style>

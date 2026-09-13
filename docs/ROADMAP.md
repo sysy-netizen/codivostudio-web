@@ -154,12 +154,44 @@
     - `sitemap.xml.ts`에 카테고리 페이지 5개 URL 추가
     - `npm run build` 성공(22페이지), 로컬 프리뷰로 목록/카테고리 필터/상세 페이지 모두 확인
 
+20. [x] Google Analytics(GA4) 연결 (2026-07-31)
+    - GA4 속성 생성(측정 ID `G-QB214MSPH9`)은 사용자가 직접 만들어 알려줌
+    - `codivostudio-web`: `BaseLayout.astro`의 `<head>`에 gtag.js 스니펫 추가 (Astro가 그대로 출력하도록 `is:inline` 지시자 사용)
+    - `codivo-tools`(Next.js, 별도 저장소 `sysy-netizen/codivo-tools`): `src/app/layout.tsx`(루트 레이아웃)에 동일 측정 ID로 `next/script` 추가 — 랭킹추적(`/`)과 키워드분석(`/keyword`) 둘 다 이 레이아웃을 공유해서 한 번에 적용됨
+    - **버그 발견 및 수정**: `/keyword` 라우트에 자체 `metadata`가 없어서 루트 레이아웃의 title("실시간 랭킹추적")을 그대로 물려받고 있었음 → GA4에서 두 페이지 방문이 타이틀 기준으로 하나로 뭉뚱그려 집계되는 문제. `page.tsx`가 클라이언트 컴포넌트라 `metadata`를 직접 export 할 수 없어, `src/app/keyword/layout.tsx`를 새로 만들어 `title: "연관 키워드 분석"` 지정. 빌드 후 두 라우트의 `<title>`이 각각 다르게 나오는 것 확인.
+    - 참고: `codivo-tools` 커밋(`fe237c4`) 메시지 첫 줄이 `/keyword`로 시작해서 Git Bash(MSYS) 경로 자동변환 버그로 `C:/Program Files/Git/keyword...`로 깨져서 기록됨 — 코드 내용은 정상, 커밋 메시지 텍스트만 지저분함(이미 push된 뒤라 강제 push까지 해서 고치는 건 得失이 안 맞아 그대로 둠)
+    - Excel Converter(Streamlit)는 GA4 연결 시도 안 함 — 아래 23번 참고 (플랫폼 제약으로 보류 결정)
+    - 검증: 두 프로젝트 모두 `npm run build` 성공, 빌드 산출물에서 `G-QB214MSPH9` 스크립트 및 라우트별 고유 `<title>` 확인. `codivostudio.com` 배포 후 curl로 스크립트 태그 라이브 확인.
+21. [x] 방문자 수 카운터 추가 + Cloudflare adapter(SSR) 전환 + 배포 명령 변경 (2026-07-31)
+    - 홈페이지 히어로에 "누적 방문자 수" 실시간 카운터 추가 — Cloudflare Workers KV(`VISITOR_COUNT` 네임스페이스) 기반
+    - `/api/hit-count` API 라우트(`src/pages/api/hit-count.ts`) 신규 — GET 요청 시 KV에서 현재 카운트 조회, `?increment=1`일 때만 +1 저장
+    - 클라이언트 측: `sessionStorage`로 브라우저 세션당 1회만 increment 요청을 보내 새로고침 남용으로 인한 중복 집계 방지
+    - 이 API 라우트 때문에 사이트가 순수 정적(static)에서 부분 SSR로 전환됨 — `astro.config.mjs`에 `@astrojs/cloudflare` 어댑터 추가(`imageService: 'passthrough'`)
+    - `wrangler.jsonc` 구조 변경: `assets.directory`가 `./dist` → `./dist/client`로 변경, `kv_namespaces`에 `VISITOR_COUNT`(기존 ID 유지) + `SESSION`(Astro 세션 기능용, id 없이 선언 → 첫 배포 시 Wrangler가 자동 프로비저닝해 `codivostudio-web-session` 신규 생성함)
+    - **배포 명령이 바뀜**: 기존에는 `npx wrangler deploy` 단독 실행이었으나, 이제 `package.json`에 `"deploy": "astro build && wrangler deploy --config dist/server/wrangler.json"` 스크립트를 추가함 — **앞으로는 `npm run deploy` 로 배포해야 카운터 API까지 함께 배포됨** (구 명령으로는 정적 파일만 배포되고 API 라우트가 누락될 수 있음)
+    - 검증: `npm run deploy` 성공, `https://codivostudio.com/api/hit-count`가 curl로 `{"count":0}` 정상 응답, 홈페이지 방문자 카운터 마크업/스크립트 정상 렌더링 확인
+22. [x] `/tools` 페이지 "누적 사용 횟수" 배지 추가 (2026-07-31)
+    - 각 도구 카드에 "누적 사용 N회" 배지 추가 (`tools/index.astro`)
+    - **자동 집계 아님** — 실사용 트래킹 인프라가 아직 없어서 각 도구 항목에 `uses: 0`으로 값만 넣어둔 상태. 나중에 실제 숫자를 파악하면 코드에서 그 값만 수동으로 바꿔서 재배포하는 방식
+    - (도구별 실사용 자동 집계가 어려운 이유는 23번 항목 및 Excel Converter/Rank Tracker가 서로 다른 배포처에 있다는 구조적 제약 때문 — 방문자 수 집계와는 별개 문제)
+23. [x] Rank Tracker Enter키 검색 추가 + 예시 문구 변경 + Excel Converter 재배포 가능성 조사 (2026-07-31)
+    - `codivo-tools`: 랭킹추적기 키워드/스토어명 입력창에 Enter키로 조회 실행되도록 추가 (키워드분석 페이지에는 이미 있던 동작, 랭킹추적기에는 없어서 통일)
+    - `codivo-tools`: 검색창 예시 placeholder를 실제적인 예시로 변경 (키워드: "종합비타민"→"3인치 다운라이트", 스토어명: "비타플랜"→"불빛조명"+실제 네이버 스마트스토어 상품 URL)
+    - **Excel Converter(Streamlit) 관련 조사 및 결정**:
+      - GA4 연결 시도: Streamlit이 `st.markdown`으로 삽입한 `<script>` 태그를 브라우저가 실행하지 않음(innerHTML 삽입 방식의 브라우저 표준 동작) + 커뮤니티 조사 결과 "유일하게 확실한 방법은 Docker 빌드 시점에 Streamlit 정적 HTML을 `sed`로 패치"뿐인데, 현재 배포처인 Streamlit Community Cloud는 커스텀 Dockerfile을 지원하지 않음 → **GA4 연결 보류**
+      - Vercel 배포 가능 여부 조사: Streamlit은 세션마다 상시 구동되는 Python 프로세스 + WebSocket이 필요한데, Vercel은 서버리스 함수 기반 플랫폼(2026-06 WebSocket 베타 추가됐지만 인스턴스 고정/브로드캐스트 불가 등 제약 큼) → **구조적으로 배포 불가**. Vercel 공식 자료도 "Streamlit/Flask 미지원, 백엔드를 서버리스 함수로 재작성 필요"라고 명시
+      - **결론/결정**: 위 문제(GA4, Vercel, 헤더 링크 이슈 등)를 근본적으로 해결하려면 Excel Converter를 Rank Tracker/Keyword Analysis처럼 **Next.js 앱으로 재구축**(기존 Python 변환 로직 `file_reader`/`key_builder`/`matcher`/`writer`/`coupang_logen`은 API 라우트로 그대로 이식)하는 것이 정공법 — 사용자가 **"추후진행"으로 결정, 지금은 보류**
+    - 헤더 링크 새 창/같은 창 이슈: `invoice-merge` 저장소 `app.py`에 codivostudio-web과 겉모양만 동일하게 복제한 헤더(코드 공유 아님, HTML/CSS 복제)를 넣었으나, Streamlit이 markdown 안 `<a>` 클릭을 자체적으로 가로채는 문제(z-index, stopPropagation, href 제거+JS 강제이동 등 여러 방법 시도)로도 해결 안 돼 최종적으로 `target="_blank"`(새 창) 방식으로 결정 — 관련 커밋 다수(`invoice-merge` 저장소 `6cc1bba` ~ `cfdffaa`)
+
 ---
 
 ## 🔜 다음 작업 (우선순위 순)
 
-20. [ ] Google Analytics(GA4) 연결
-21. [ ] Google AdSense 신청 및 스크립트 삽입
+24. [ ] Excel Converter를 Next.js 앱으로 재구축
+    - 23번에서 결정한 대로 Python 변환 로직을 API 라우트로 이식, 화면(업로드/진행상태/다운로드)을 Next.js로 새로 제작
+    - 완료되면: Vercel 배포 가능, GA4 연결 가능, codivostudio-web 헤더와 완전히 동일한 헤더 적용 가능(현재는 겉모양만 복제한 상태)
+    - **사용자가 "추후진행"으로 보류 결정 — 다음 세션에서 먼저 진행 여부를 확인할 것**
+25. [ ] Google AdSense 신청 및 스크립트 삽입
     - **콘텐츠(블로그 글 작성)와 SEO 기본 설정이 끝난 뒤에 진행한다.** 콘텐츠 없이 먼저 신청하지 않음.
 
 ---
@@ -198,13 +230,35 @@
 
 ## 다른 환경에서 이어서 진행하는 법
 
-1. 이 프로젝트는 **Google Drive 동기화 폴더가 아닌 로컬 경로**(`C:\MECRO\codivostudio-web`)에 있음.
-   다른 컴퓨터에서 이어서 하려면 **Git/GitHub으로 동기화**해야 함 (Google Drive 동기화 방식 아님).
-2. 새 환경에서 `git clone`으로 이 저장소를 받은 뒤, Claude Code를 그 폴더 경로로 열고
+> ⚠️ **2026-07-31 기준 중요 정정**: 이 프로젝트(`C:\MECRO\codivostudio-web`)에는 **현재 로컬에 `.git` 폴더가 없음**
+> (`git status` → `not a git repository`). 과거 항목(1, 2, 16번)에서 GitHub(`sysy-netizen/codivostudio-web`)에
+> 커밋/push했다는 기록이 있지만, 그 이후 어느 시점에 로컬 git 추적이 사라진 것으로 보이고, 오늘(20~23번) 작업한
+> GA4/방문자 카운터/SSR 전환 등은 전부 **git에 커밋되지 않은 상태**다. 즉 지금은 GitHub 저장소와 동기화되어
+> 있다고 가정하면 안 된다. 실제로 오늘 사용한 이어가기 방법은 아래 2번(폴더 복사)이다.
+
+1. **현재 실제로 쓰고 있는 방법 — 폴더 통째로 복사**
+   - `node_modules/`, `.astro/`, `dist/` (재생성 가능한 것들)만 제외하고 프로젝트 폴더 전체를 복사
+   - 예: `C:\MECRO\codivostudio-web_업로드용` 폴더를 만들어 구글 드라이브에 업로드 → 다른 PC에서 다운받아 이어서 작업
+   - 새 환경에서 받은 뒤 `npm install` 한 번 실행하면 `node_modules` 복원됨
+2. **(권장, 아직 안 함) git 추적을 다시 살리는 것을 고려할 것**
+   - 폴더 복사 방식은 변경 이력이 안 남고 되돌리기도 어려움 — 다음에 시간 날 때 `git init` 또는 기존 GitHub 저장소와 다시 연결하는 걸 검토 권장
+3. 새 환경(또는 같은 환경 새 세션)에서 Claude Code를 이 폴더 경로로 열고
    "docs/ROADMAP.md 확인하고 이어서 진행해줘"라고 하면 이어서 진행 가능.
-3. `docs/` 폴더의 `WEBSITE_MASTER.md` → `ROADMAP.md` → `CURRENT_TASK.md` 순서로 읽을 것.
-4. 로컬 프리뷰 실행: `npm install` → `npm run dev` (또는 `.claude/launch.json`의 `codivostudio-web` 설정 사용)
-5. **워드프레스 관련 작업 지시가 나오면 이 문서를 우선한다** — `seller_dealer/docs`는 폐기된 이전 계획임.
+4. `docs/` 폴더의 `WEBSITE_MASTER.md` → `ROADMAP.md` → `CURRENT_TASK.md` 순서로 읽을 것.
+5. 로컬 프리뷰 실행: `npm install` → `npm run dev` (또는 `.claude/launch.json`의 `codivostudio-web` 설정 사용)
+6. **배포는 `npm run deploy`** (21번 항목 참고 — 예전 `npx wrangler deploy` 단독 실행이 아님). `npx wrangler whoami`로
+   Cloudflare 로그인 상태 확인 필요, 로그인 안 돼 있으면 `npx wrangler login`으로 브라우저 인증 먼저 진행.
+7. **워드프레스 관련 작업 지시가 나오면 이 문서를 우선한다** — `seller_dealer/docs`는 폐기된 이전 계획임.
+
+### 연동된 별도 저장소 (이 프로젝트와 별개로 clone 필요)
+
+이 사이트가 iframe/외부 링크로 연결하는 두 프로그램은 **완전히 다른 저장소·배포처**에 있다. 그쪽 작업까지
+이어서 하려면 아래를 각각 별도로 clone해야 한다 (이번 세션에서는 임시 스크래치패드 폴더에 clone해서 작업함).
+
+| 프로그램 | 저장소 | 배포처 | 기술 스택 |
+|---|---|---|---|
+| 랭킹추적기 / 키워드분석 | `https://github.com/sysy-netizen/codivo-tools` | Vercel (`tools.codivostudio.com`) | Next.js (App Router) |
+| 엑셀변환기 | `https://github.com/sysy-netizen/invoice-merge` | Streamlit Community Cloud (`invoice-merge-codivo.streamlit.app`) | Python / Streamlit |
 
 ---
 

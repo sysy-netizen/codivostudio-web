@@ -12,7 +12,7 @@ interface Props {
 const { title, description, relatedHref, relatedLabel } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} hideHeader>
 	<ProgramNav />
 	<section class="tool-page">
 		<div class="tool-page__head">
