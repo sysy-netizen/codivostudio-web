@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.1.7",
-    "@astrojs/rss": "^4.0.19",
     "astro": "^7.1.5",
     "astro-pagefind": "^2.0.1"
   },

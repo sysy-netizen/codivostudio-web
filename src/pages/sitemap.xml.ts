@@ -1,22 +1,13 @@
 import type { APIRoute } from 'astro';
-import { getCollection } from 'astro:content';
-import { CATEGORY_SLUGS } from '../lib/blogCategories';
 
-const staticPaths = [
+const paths = [
 	'/',
 	'/tools/',
 	'/tools/excel-converter/',
-	'/blog/',
 	'/about/',
 ];
 
-const categoryPaths = Object.values(CATEGORY_SLUGS).map((slug) => `/blog/category/${slug}/`);
-
 export const GET: APIRoute = async ({ site }) => {
-	const posts = await getCollection('blog');
-	const postPaths = posts.map((post) => `/blog/${post.id}/`);
-	const paths = [...staticPaths, ...categoryPaths, ...postPaths];
-
 	const urls = paths
 		.map((path) => `\t<url>\n\t\t<loc>${new URL(path, site)}</loc>\n\t</url>`)
 		.join('\n');
