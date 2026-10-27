@@ -29,7 +29,7 @@ export function Footer() {
       </div>
       <div className="border-t border-border">
         <p className="container-content py-5 text-center text-xs text-muted">
-          © {new Date().getFullYear()} {site.name}. All rights reserved.
+          Built by Kasey · {site.name}
         </p>
       </div>
     </footer>

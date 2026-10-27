@@ -11,7 +11,7 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata = buildMetadata({
   title: "소개 | CODIVO STUDIO",
   description:
-    "자동차 데이터 분석과 Python 개발을 결합해 실무 문제를 해결하는 CODIVO STUDIO와 김선유의 전문 영역을 소개합니다.",
+    "자동차 데이터 분석과 Python 개발을 결합해 실무 문제를 해결하는 CODIVO STUDIO와 Kasey의 전문 영역을 소개합니다.",
   path: "/about",
 });
 
@@ -22,25 +22,35 @@ export default function AboutPage() {
     <>
       <PageHeader eyebrow="ABOUT" title="복잡한 실무를 더 단순하게 만드는 기술 스튜디오" description={profile.intro} />
 
-      <section className="section" aria-labelledby="profile">
+      <section className="section" aria-label="프로필과 작업 철학">
         <div className="container-content text-center">
-          <h2 id="profile" className="h2">전문가 프로필</h2>
-          <div className="card mt-8 flex flex-col items-center gap-6">
+          <div className="card mx-auto max-w-4xl p-8 sm:p-12">
             {profile.photo && (
-              <Image src={profile.photo} alt={`${profile.name} 프로필 사진`} width={120} height={120} className="h-28 w-28 rounded-xl object-cover" />
+              <Image src={profile.photo} alt={`${profile.name} 프로필 사진`} width={120} height={120} className="mx-auto mb-6 h-28 w-28 rounded-xl object-cover" />
             )}
-            <div>
-              <p className="text-2xl font-bold">{profile.name}</p>
-              <p className="mt-1 text-muted">{profile.role}</p>
-              <ul className="mt-4 flex flex-wrap justify-center gap-2">
-                {profile.areas.map((a) => (
-                  <li key={a}><Badge variant="accent">{a}</Badge></li>
+            <p className="text-3xl font-bold tracking-tight sm:text-4xl">Hi, I&apos;m {profile.name}.</p>
+            <p className="mt-2 text-muted sm:text-lg">{profile.role}</p>
+            <ul className="mt-5 flex flex-wrap justify-center gap-2">
+              {profile.areas.map((a) => (
+                <li key={a}><Badge variant="accent">{a}</Badge></li>
+              ))}
+            </ul>
+
+            <div className="mt-10 border-t border-border pt-8">
+              <p className="eyebrow">Philosophy</p>
+              <h2 className="h2 mt-2">작업 철학</h2>
+              <ul className="mt-8 grid gap-5 md:grid-cols-3">
+                {philosophy.map((p) => (
+                  <li key={p.title} className="border-t-2 border-foreground pt-4">
+                    <h3 className="text-lg font-bold">{p.title}</h3>
+                    <p className="mt-2 text-[15px] text-muted">{p.description}</p>
+                  </li>
                 ))}
               </ul>
             </div>
           </div>
           {profile.history.length > 0 && (
-            <ol className="mt-6 space-y-4">
+            <ol className="mx-auto mt-6 max-w-4xl space-y-4">
               {profile.history.map((h) => (
                 <li key={h.period + h.title} className="card">
                   <p className="text-sm text-muted">{h.period}</p>
@@ -98,22 +108,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section border-t border-border bg-surface" aria-labelledby="philosophy">
-        <div className="container-content text-center">
-          <p className="eyebrow">Philosophy</p>
-          <h2 id="philosophy" className="h2 mt-2">작업 철학</h2>
-          <ul className="mt-10 grid gap-5 md:grid-cols-3">
-            {philosophy.map((p) => (
-              <li key={p.title} className="border-t-2 border-foreground pt-4">
-                <h3 className="text-lg font-bold">{p.title}</h3>
-                <p className="mt-2 text-[15px] text-muted">{p.description}</p>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-12 flex flex-wrap justify-center gap-3">
-            <Link href="/tools" className={buttonVariants()}>프로젝트 보기</Link>
-            <Link href="/contact" className={buttonVariants({ variant: "outline" })}>프로젝트 문의</Link>
-          </div>
+      <section className="section border-t border-border bg-surface">
+        <div className="container-content flex flex-wrap justify-center gap-3">
+          <Link href="/tools" className={buttonVariants()}>프로젝트 보기</Link>
+          <Link href="/contact" className={buttonVariants({ variant: "outline" })}>프로젝트 문의</Link>
         </div>
       </section>
     </>

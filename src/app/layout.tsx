@@ -23,8 +23,8 @@ const jsonLd = {
     { "@type": "WebSite", name: site.name, url: site.url, inLanguage: "ko-KR" },
     {
       "@type": "Person",
-      name: "김선유",
-      jobTitle: "Automotive Data Analyst / Freelance Developer",
+      name: "Kasey",
+      jobTitle: "Automotive Data Analyst & Developer",
       url: `${site.url}/about`,
       worksFor: { "@type": "Organization", name: site.name, url: site.url },
     },

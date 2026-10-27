@@ -1,6 +1,6 @@
 export const profile = {
-  name: "김선유",
-  role: "Automotive Data Analyst / Freelance Developer",
+  name: "Kasey",
+  role: "Automotive Data Analyst & Developer",
   areas: ["자동차 데이터 분석", "Python 개발", "데이터 처리", "업무 자동화"],
   // TODO: 확인된 경력·이력만 추가 (임의의 연차·성과 금지)
   history: [] as { period: string; title: string; description?: string }[],
