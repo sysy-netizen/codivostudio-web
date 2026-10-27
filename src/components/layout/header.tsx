@@ -29,7 +29,7 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
       <div className="container-content flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5" aria-label="CODIVO STUDIO 홈">
-          <Image src="/images/brand/logo.png" alt="" width={28} height={28} className="h-7 w-auto" priority />
+          <Image src="/images/brand/logo.png" alt="" width={42} height={28} className="h-7 w-auto" priority />
           <span className="text-[15px] font-bold tracking-[0.06em]">CODIVO STUDIO</span>
         </Link>
 

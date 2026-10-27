@@ -46,3 +46,4 @@
   page: '/sitemap.xml'
 }
  GET /sitemap.xml 500 in 55ms
+ GET / 200 in 74ms
