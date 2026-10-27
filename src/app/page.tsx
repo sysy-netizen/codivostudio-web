@@ -21,18 +21,18 @@ export default function HomePage() {
   return (
     <>
       <section className="border-b border-border">
-        <div className="container-content py-20 sm:py-28">
+        <div className="container-content py-20 text-center sm:py-28">
           <p className="eyebrow">AUTOMOTIVE DATA · PYTHON · AI DEVELOPMENT</p>
-          <h1 className="mt-5 max-w-3xl text-[36px] font-bold leading-[1.2] tracking-tight sm:text-5xl lg:text-[64px]">
+          <h1 className="mx-auto mt-5 max-w-3xl text-[36px] font-bold leading-[1.2] tracking-tight sm:text-5xl lg:text-[64px]">
             데이터를 분석하고,
             <br />
             기술로 해결합니다.
           </h1>
-          <p className="mt-6 max-w-2xl text-base text-muted sm:text-lg">
+          <p className="mx-auto mt-6 max-w-2xl text-base text-muted sm:text-lg">
             자동차 데이터 분석부터 Python 기반 업무 자동화와 소프트웨어 개발까지. 실무의 문제를 이해하고, 실제로
             작동하는 솔루션을 만듭니다.
           </p>
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div className="mt-9 flex flex-wrap justify-center gap-3">
             <Link href="/tools" className={buttonVariants()}>
               프로젝트 보기 <ArrowRight size={16} aria-hidden="true" />
             </Link>
@@ -44,7 +44,7 @@ export default function HomePage() {
       </section>
 
       <section className="section" aria-labelledby="expertise">
-        <div className="container-content">
+        <div className="container-content text-center">
           <p className="eyebrow">Expertise</p>
           <h2 id="expertise" className="h2 mt-2">
             두 가지 핵심 역량
@@ -64,7 +64,7 @@ export default function HomePage() {
       </section>
 
       <section className="section border-y border-border bg-surface" aria-labelledby="solutions">
-        <div className="container-content">
+        <div className="container-content text-center">
           <p className="eyebrow">Solutions</p>
           <h2 id="solutions" className="h2 mt-2">
             이런 문제를 해결합니다
@@ -83,17 +83,12 @@ export default function HomePage() {
 
       {featured.length > 0 && (
         <section className="section" aria-labelledby="featured">
-          <div className="container-content">
-            <div className="flex items-end justify-between gap-4">
-              <div>
-                <p className="eyebrow">Featured Projects</p>
-                <h2 id="featured" className="h2 mt-2">
-                  대표 프로젝트
-                </h2>
-              </div>
-              <Link href="/tools" className="hidden text-sm font-medium text-accent hover:underline sm:block">
-                모든 프로젝트 보기 →
-              </Link>
+          <div className="container-content text-center">
+            <div>
+              <p className="eyebrow">Featured Projects</p>
+              <h2 id="featured" className="h2 mt-2">
+                대표 프로젝트
+              </h2>
             </div>
             <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {featured.map((p) => (
@@ -104,7 +99,7 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>
-            <Link href="/tools" className="mt-8 inline-block text-sm font-medium text-accent hover:underline sm:hidden">
+            <Link href="/tools" className="mt-8 inline-block text-sm font-medium text-accent hover:underline">
               모든 프로젝트 보기 →
             </Link>
           </div>
@@ -112,7 +107,7 @@ export default function HomePage() {
       )}
 
       <section className="section border-y border-border bg-surface" aria-labelledby="approach">
-        <div className="container-content">
+        <div className="container-content text-center">
           <p className="eyebrow">Work Approach</p>
           <h2 id="approach" className="h2 mt-2">
             일하는 방식

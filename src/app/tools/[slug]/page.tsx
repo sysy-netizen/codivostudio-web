@@ -46,12 +46,12 @@ export default function ToolDetailPage({ params }: { params: { slug: string } })
 
   return (
     <>
-      <div className="container-content py-12 sm:py-16">
+      <div className="container-content py-12 text-center sm:py-16">
         <Link href="/tools" className="inline-flex items-center gap-1 text-sm text-muted hover:text-foreground">
           <ArrowLeft size={15} aria-hidden="true" /> 전체 프로젝트
         </Link>
-        <div className="mt-6 max-w-3xl">
-          <div className="flex flex-wrap gap-1.5">
+        <div className="mx-auto mt-6 max-w-3xl">
+          <div className="flex flex-wrap justify-center gap-1.5">
             <Badge variant="accent">{typeLabels[project.type]}</Badge>
             <Badge>{categoryLabels[project.category]}</Badge>
             <Badge>{statusLabels[project.status]}</Badge>
@@ -59,7 +59,7 @@ export default function ToolDetailPage({ params }: { params: { slug: string } })
           <h1 className="mt-4 text-[32px] font-bold leading-tight tracking-tight sm:text-5xl">{project.title}</h1>
           <p className="mt-4 text-base text-muted sm:text-lg">{project.summary}</p>
           {(project.publicUrl || project.githubUrl) && (
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-wrap justify-center gap-3">
               {project.publicUrl && (
                 <a href={project.publicUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants()}>
                   서비스 이용하기 <ExternalLink size={15} aria-hidden="true" />
@@ -74,21 +74,21 @@ export default function ToolDetailPage({ params }: { params: { slug: string } })
           )}
         </div>
 
-        <div className="mt-12 max-w-3xl">
+        <div className="mx-auto mt-12 max-w-3xl">
           <Block title="프로젝트 소개">{project.description}</Block>
           {project.problem && <Block title="개발 배경과 문제">{project.problem}</Block>}
           {(project.solution || project.features?.length) && (
             <Block title="해결 방식과 핵심 기능">
               {project.solution && <p>{project.solution}</p>}
               {project.features && (
-                <ul className="mt-3 list-disc space-y-1 pl-5">
+                <ul className="mt-3 list-inside list-disc space-y-1">
                   {project.features.map((f) => <li key={f}>{f}</li>)}
                 </ul>
               )}
             </Block>
           )}
           <Block title="사용 기술">
-            <ul className="flex flex-wrap gap-2">
+            <ul className="flex flex-wrap justify-center gap-2">
               {project.technologies.map((t) => <li key={t}><Badge>{t}</Badge></li>)}
             </ul>
           </Block>

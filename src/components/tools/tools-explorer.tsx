@@ -36,7 +36,7 @@ function FilterGroup<T extends string>({
   onChange: (v: T) => void;
 }) {
   return (
-    <div role="group" aria-label={label} className="flex flex-wrap items-center gap-2">
+    <div role="group" aria-label={label} className="flex flex-wrap items-center justify-center gap-2">
       <span className="mr-1 text-sm text-muted">{label}</span>
       {options.map((o) => (
         <button
@@ -72,12 +72,12 @@ export function ToolsExplorer({ projects }: { projects: Project[] }) {
 
   return (
     <div>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 text-center">
         <FilterGroup label="유형" options={typeOptions} value={type} onChange={setType} />
         <FilterGroup label="분류" options={categoryOptions} value={category} onChange={setCategory} />
       </div>
 
-      <p className="mt-8 text-sm text-muted" aria-live="polite">
+      <p className="mt-8 text-center text-sm text-muted" aria-live="polite">
         {filtered.length}개의 프로젝트
       </p>
 

@@ -23,16 +23,16 @@ export default function AboutPage() {
       <PageHeader eyebrow="ABOUT" title="복잡한 실무를 더 단순하게 만드는 기술 스튜디오" description={profile.intro} />
 
       <section className="section" aria-labelledby="profile">
-        <div className="container-content">
+        <div className="container-content text-center">
           <h2 id="profile" className="h2">전문가 프로필</h2>
-          <div className="card mt-8 flex flex-col gap-6 sm:flex-row sm:items-center">
+          <div className="card mt-8 flex flex-col items-center gap-6">
             {profile.photo && (
               <Image src={profile.photo} alt={`${profile.name} 프로필 사진`} width={120} height={120} className="h-28 w-28 rounded-xl object-cover" />
             )}
             <div>
               <p className="text-2xl font-bold">{profile.name}</p>
               <p className="mt-1 text-muted">{profile.role}</p>
-              <ul className="mt-4 flex flex-wrap gap-2">
+              <ul className="mt-4 flex flex-wrap justify-center gap-2">
                 {profile.areas.map((a) => (
                   <li key={a}><Badge variant="accent">{a}</Badge></li>
                 ))}
@@ -54,7 +54,7 @@ export default function AboutPage() {
       </section>
 
       <section className="section border-y border-border bg-surface" aria-labelledby="auto">
-        <div className="container-content">
+        <div className="container-content text-center">
           <p className="eyebrow">Automotive Data</p>
           <h2 id="auto" className="h2 mt-2">자동차 데이터 전문 분야</h2>
           <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -65,7 +65,7 @@ export default function AboutPage() {
               </li>
             ))}
           </ol>
-          <p className="mt-8 flex gap-2 text-sm text-muted">
+          <p className="mt-8 flex justify-center gap-2 text-left text-sm text-muted">
             <Info size={16} className="mt-1 shrink-0" aria-hidden="true" />
             {dataNotice}
           </p>
@@ -73,10 +73,10 @@ export default function AboutPage() {
       </section>
 
       <section className="section" aria-labelledby="dev">
-        <div className="container-content">
+        <div className="container-content text-center">
           <p className="eyebrow">Software Development</p>
           <h2 id="dev" className="h2 mt-2">소프트웨어 개발 전문 분야</h2>
-          <p className="mt-4 max-w-2xl text-muted">
+          <p className="mx-auto mt-4 max-w-2xl text-muted">
             Python, pandas, Excel/CSV, REST API, JSON, 업무 자동화, AI 코딩 도구를 활용한 개발, Next.js 기반 웹 도구 제작.
           </p>
           <div className="mt-10 grid gap-5 md:grid-cols-3">
@@ -99,7 +99,7 @@ export default function AboutPage() {
       </section>
 
       <section className="section border-t border-border bg-surface" aria-labelledby="philosophy">
-        <div className="container-content">
+        <div className="container-content text-center">
           <p className="eyebrow">Philosophy</p>
           <h2 id="philosophy" className="h2 mt-2">작업 철학</h2>
           <ul className="mt-10 grid gap-5 md:grid-cols-3">
@@ -110,7 +110,7 @@ export default function AboutPage() {
               </li>
             ))}
           </ul>
-          <div className="mt-12 flex flex-wrap gap-3">
+          <div className="mt-12 flex flex-wrap justify-center gap-3">
             <Link href="/tools" className={buttonVariants()}>프로젝트 보기</Link>
             <Link href="/contact" className={buttonVariants({ variant: "outline" })}>프로젝트 문의</Link>
           </div>
