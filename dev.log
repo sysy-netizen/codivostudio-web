@@ -1,0 +1,48 @@
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3100
+
+ ✓ Starting...
+ ✓ Ready in 1833ms
+ ○ Compiling /tools/[slug] ...
+ ✓ Compiled /tools/[slug] in 3s (620 modules)
+ GET /tools/bulk-shipping-excel-converter 200 in 4080ms
+ ✓ Compiled / in 262ms (624 modules)
+ GET / 200 in 529ms
+ ✓ Compiled /about in 175ms (617 modules)
+ GET /about 200 in 438ms
+ ✓ Compiled /tools in 362ms (646 modules)
+ GET /tools 200 in 659ms
+ GET /tools/bulk-shipping-excel-converter 200 in 101ms
+ ✓ Compiled /contact in 199ms (663 modules)
+ GET /contact 200 in 454ms
+ ✓ Compiled /_not-found in 116ms (666 modules)
+ GET /nope 404 in 293ms
+ ✓ Compiled /sitemap.xml in 235ms (406 modules)
+ ⨯ Error: Page "/sitemap.xml/[[...__metadata_id__]]/route" is missing exported function "generateStaticParams()", which is required with "output: export" config.
+    at DevServer.renderToResponseWithComponentsImpl (C:\codivo_studio\codivostudio-web_ver2\node_modules\next\dist\server\base-server.js:1079:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async DevServer.renderPageComponent (C:\codivo_studio\codivostudio-web_ver2\node_modules\next\dist\server\base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (C:\codivo_studio\codivostudio-web_ver2\node_modules\next\dist\server\base-server.js:1962:32)
+    at async DevServer.pipeImpl (C:\codivo_studio\codivostudio-web_ver2\node_modules\next\dist\server\base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\codivo_studio\codivostudio-web_ver2\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\codivo_studio\codivostudio-web_ver2\node_modules\next\dist\server\base-server.js:818:17)
+    at async C:\codivo_studio\codivostudio-web_ver2\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\codivo_studio\codivostudio-web_ver2\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\codivo_studio\codivostudio-web_ver2\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\codivo_studio\codivostudio-web_ver2\node_modules\next\dist\server\lib\router-server.js:179:21)
+    at async handleRequest (C:\codivo_studio\codivostudio-web_ver2\node_modules\next\dist\server\lib\router-server.js:359:24)
+    at async requestHandlerImpl (C:\codivo_studio\codivostudio-web_ver2\node_modules\next\dist\server\lib\router-server.js:383:13)
+    at async Server.requestListener (C:\codivo_studio\codivostudio-web_ver2\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  page: '/sitemap.xml'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 841ms (931 modules)
+ GET /sitemap.xml 500 in 4507ms
+ ✓ Compiled /robots.txt in 132ms (450 modules)
+ GET /robots.txt 200 in 221ms
+ GET / 200 in 236ms
+ ⨯ Error: Page "/sitemap.xml/[[...__metadata_id__]]/route" is missing exported function "generateStaticParams()", which is required with "output: export" config.
+    at DevServer.renderToResponseWithComponentsImpl (C:\codivo_studio\codivostudio-web_ver2\node_modules\next\dist\server\base-server.js:1079:27) {
+  page: '/sitemap.xml'
+}
+ GET /sitemap.xml 500 in 55ms
