@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { categoryLabels, statusLabels, typeLabels } from "@/lib/projects";
+import { categoryLabels, typeLabels } from "@/lib/projects";
+import { StatusBadge } from "./status-badge";
 import type { Project } from "@/types/project";
 
 export function ProjectCard({ project }: { project: Project }) {
@@ -21,7 +22,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <div className="flex flex-wrap justify-center gap-1.5">
           <Badge variant="accent">{typeLabels[project.type]}</Badge>
           <Badge>{categoryLabels[project.category]}</Badge>
-          <Badge>{statusLabels[project.status]}</Badge>
+          <StatusBadge status={project.status} />
         </div>
         <h3 className="mt-4 text-lg font-bold tracking-tight">
           <Link

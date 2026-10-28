@@ -14,7 +14,7 @@ export const projects: Project[] = [
     description:
       "온라인 셀러가 주문 엑셀과 송장 엑셀을 수작업으로 대조하던 과정을 자동화한 웹 도구입니다.",
     type: "tool",
-    category: "automation",
+    category: "smartstore",
     status: "live",
     // TODO: 실제 사용 기술 확인 후 수정
     technologies: ["Python", "Excel", "Next.js"],
@@ -35,7 +35,7 @@ export const projects: Project[] = [
     description:
       "네이버 스마트스토어 셀러가 상품 등록 전에 판매가와 마진을 계산할 수 있는 웹 도구입니다. 일반과세자 기준으로 부가세와 수수료를 반영합니다.",
     type: "tool",
-    category: "data",
+    category: "smartstore",
     status: "live",
     technologies: ["Next.js", "TypeScript"],
     problem: "상품을 등록하기 전에 수수료, 부가세, 택배비까지 감안한 판매가와 마진을 일일이 계산해야 했습니다.",

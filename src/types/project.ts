@@ -1,5 +1,5 @@
 export type ProjectType = "tool" | "project";
-export type ProjectCategory = "automotive" | "data" | "automation" | "web" | "other";
+export type ProjectCategory = "smartstore" | "automotive" | "data" | "automation" | "web" | "other";
 export type ProjectStatus = "live" | "completed" | "in-progress";
 
 export interface Project {

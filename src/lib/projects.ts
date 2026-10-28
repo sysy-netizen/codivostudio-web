@@ -7,6 +7,7 @@ export const typeLabels: Record<ProjectType, string> = {
 };
 
 export const categoryLabels: Record<ProjectCategory, string> = {
+  smartstore: "스마트스토어 셀러용",
   automotive: "Automotive Data",
   data: "Data Processing",
   automation: "Automation",

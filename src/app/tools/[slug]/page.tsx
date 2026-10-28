@@ -6,12 +6,12 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { CtaSection } from "@/components/shared/cta-section";
 import { ProjectCard } from "@/components/tools/project-card";
+import { StatusBadge } from "@/components/tools/status-badge";
 import {
   categoryLabels,
   getProjectBySlug,
   getPublishedProjects,
   getRelatedProjects,
-  statusLabels,
   typeLabels,
 } from "@/lib/projects";
 import { buildMetadata } from "@/lib/metadata";
@@ -54,7 +54,7 @@ export default function ToolDetailPage({ params }: { params: { slug: string } })
           <div className="flex flex-wrap justify-center gap-1.5">
             <Badge variant="accent">{typeLabels[project.type]}</Badge>
             <Badge>{categoryLabels[project.category]}</Badge>
-            <Badge>{statusLabels[project.status]}</Badge>
+            <StatusBadge status={project.status} />
           </div>
           <h1 className="mt-4 text-[32px] font-bold leading-tight tracking-tight sm:text-5xl">{project.title}</h1>
           <p className="mt-4 text-base text-muted sm:text-lg">{project.summary}</p>
