@@ -7,6 +7,7 @@ import { PageHeader } from "@/components/shared/page-header";
 import { automotiveExpertise, dataNotice, philosophy, profile } from "@/data/profile";
 import { skillLevelLabels, skills, type SkillLevel } from "@/data/skills";
 import { buildMetadata } from "@/lib/metadata";
+import { site } from "@/data/site";
 
 export const metadata = buildMetadata({
   title: "소개 | CODIVO STUDIO",
@@ -21,6 +22,16 @@ export default function AboutPage() {
   return (
     <>
       <PageHeader eyebrow="ABOUT" title="복잡한 실무를 더 단순하게 만드는 기술 스튜디오" description={profile.intro} />
+
+      <section className="container-content pt-10 sm:pt-14" aria-label="브랜드 의미">
+        <div className="mx-auto max-w-4xl rounded-card border-l-4 border-accent bg-accent-soft p-5 sm:p-6">
+          <p className="font-semibold text-accent">브랜드 의미</p>
+          <p className="mt-2 text-[15px] leading-7 sm:text-base">
+            CODIVO는 <strong className="font-semibold">Code + Vivo</strong>의 합성어로,{" "}
+            <span className="whitespace-nowrap">{site.brandMeaning.detail}</span>
+          </p>
+        </div>
+      </section>
 
       <section className="section" aria-label="프로필과 작업 철학">
         <div className="container-content text-center">

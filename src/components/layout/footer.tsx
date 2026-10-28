@@ -8,6 +8,7 @@ export function Footer() {
         <div>
           <p className="text-[15px] font-bold tracking-[0.06em]">{site.name}</p>
           <p className="mt-2 text-sm text-muted">{site.taglineEn}</p>
+          <p className="mt-1 text-xs text-muted">{site.brandMeaning.short}</p>
         </div>
         <nav aria-label="푸터 메뉴">
           <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
