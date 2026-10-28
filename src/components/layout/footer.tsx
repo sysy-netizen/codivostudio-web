@@ -29,9 +29,12 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-border">
-        <p className="container-content py-5 text-center text-xs text-muted">
-          Built by Kasey · {site.name}
-        </p>
+        <div className="container-content flex flex-col items-center gap-1 py-5 text-center text-xs text-muted sm:flex-row sm:justify-between">
+          <p>
+            © {new Date().getFullYear()} {site.name}. All rights reserved.
+          </p>
+          <p>Built by Kasey</p>
+        </div>
       </div>
     </footer>
   );
