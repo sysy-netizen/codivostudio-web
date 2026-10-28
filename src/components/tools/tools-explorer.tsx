@@ -10,19 +10,26 @@ import type { Project, ProjectCategory, ProjectType } from "@/types/project";
 type TypeFilter = "all" | ProjectType;
 type CategoryFilter = "all" | ProjectCategory;
 
-const typeOptions: { value: TypeFilter; label: string }[] = [
-  { value: "all", label: "전체" },
-  { value: "tool", label: typeLabels.tool },
-  { value: "project", label: typeLabels.project },
-];
+// 프로젝트가 하나도 없는 유형/분류는 필터에서 숨긴다 (프로젝트가 추가되면 자동으로 나타남)
+function buildTypeOptions(projects: Project[]): { value: TypeFilter; label: string }[] {
+  const used = new Set(projects.map((p) => p.type));
+  return [
+    { value: "all", label: "전체" },
+    ...(Object.keys(typeLabels) as ProjectType[])
+      .filter((value) => used.has(value))
+      .map((value) => ({ value, label: typeLabels[value] })),
+  ];
+}
 
-const categoryOptions: { value: CategoryFilter; label: string }[] = [
-  { value: "all", label: "전체" },
-  ...(Object.keys(categoryLabels) as ProjectCategory[]).map((value) => ({
-    value,
-    label: categoryLabels[value],
-  })),
-];
+function buildCategoryOptions(projects: Project[]): { value: CategoryFilter; label: string }[] {
+  const used = new Set(projects.map((p) => p.category));
+  return [
+    { value: "all", label: "전체" },
+    ...(Object.keys(categoryLabels) as ProjectCategory[])
+      .filter((value) => used.has(value))
+      .map((value) => ({ value, label: categoryLabels[value] })),
+  ];
+}
 
 function FilterGroup<T extends string>({
   label,
@@ -61,6 +68,9 @@ function FilterGroup<T extends string>({
 export function ToolsExplorer({ projects }: { projects: Project[] }) {
   const [type, setType] = useState<TypeFilter>("all");
   const [category, setCategory] = useState<CategoryFilter>("all");
+
+  const typeOptions = useMemo(() => buildTypeOptions(projects), [projects]);
+  const categoryOptions = useMemo(() => buildCategoryOptions(projects), [projects]);
 
   const filtered = useMemo(
     () =>
