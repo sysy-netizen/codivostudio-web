@@ -22,8 +22,7 @@ export const projects: Project[] = [
     solution: "주문 파일과 송장 파일을 업로드하면 자동으로 매칭해 하나의 파일로 병합합니다.",
     features: ["네이버·쿠팡 주문 파일 지원", "택배 송장 파일 자동 매칭", "병합된 엑셀 파일 다운로드"],
     // TODO: 스크린샷을 /public/images/projects/ 에 추가하고 thumbnail/screenshots 지정
-    // TODO: 운영 URL 접속 가능 여부 확인 (기존 사이트의 /tools/excel-converter 경로)
-    publicUrl: "https://codivostudio.com/tools/excel-converter",
+    publicUrl: "https://excel-merge-five.vercel.app/tools/excel-converter",
     featured: true,
     published: true,
     publishedAt: "2026-10-27",
