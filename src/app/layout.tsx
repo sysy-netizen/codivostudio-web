@@ -14,7 +14,13 @@ export const metadata: Metadata = {
   title: "CODIVO STUDIO | 데이터 분석 & 소프트웨어 개발",
   description: site.description,
   applicationName: site.name,
-  icons: { icon: "/favicon.ico" },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: "/apple-icon.png",
+  },
 };
 
 const jsonLd = {
