@@ -30,7 +30,16 @@ export function Header() {
       <div className="container-content flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5" aria-label="CODIVO STUDIO 홈">
           <Image src="/images/brand/logo.png" alt="" width={42} height={28} className="h-7 w-auto" priority />
-          <span className="text-[15px] font-bold tracking-[0.06em]">CODIVO STUDIO</span>
+          <span className="flex flex-col leading-none sm:flex-row sm:items-center sm:gap-3">
+            <span className="text-[15px] tracking-[0.06em]">
+              <b className="font-extrabold">COD</b>
+              <b className="font-extrabold text-accent">IVO</b> <span className="font-normal text-muted">STUDIO</span>
+            </span>
+            <span aria-hidden="true" className="hidden h-4 w-px bg-zinc-300 sm:block" />
+            <span className="mt-1 text-[10px] font-medium tracking-[0.22em] text-muted sm:mt-0">
+              code + <span className="text-accent">vivo</span>
+            </span>
+          </span>
         </Link>
 
         <nav aria-label="주 메뉴" className="hidden md:block">
