@@ -28,4 +28,28 @@ export const projects: Project[] = [
     published: true,
     publishedAt: "2026-10-27",
   },
+  {
+    id: "margin-calculator",
+    slug: "margin-calculator",
+    title: "마진/정산 계산기",
+    summary: "원가와 비용을 넣어 판매가를 정하거나, 정한 판매가의 예상 마진을 확인합니다.",
+    description:
+      "네이버 스마트스토어 셀러가 상품 등록 전에 판매가와 마진을 계산할 수 있는 웹 도구입니다. 일반과세자 기준으로 부가세와 수수료를 반영합니다.",
+    type: "tool",
+    category: "data",
+    status: "live",
+    technologies: ["Next.js", "TypeScript"],
+    problem: "상품을 등록하기 전에 수수료, 부가세, 택배비까지 감안한 판매가와 마진을 일일이 계산해야 했습니다.",
+    solution: "원가와 비용을 입력하면 목표 마진에 맞는 판매가를, 판매가를 입력하면 예상 마진을 바로 계산합니다.",
+    features: [
+      "목표 마진율 또는 목표 순이익에서 판매가 계산",
+      "판매가에서 예상 마진 계산",
+      "부가세·택배비·결제/판매 수수료율 반영",
+      "판매가 올림 단위 설정",
+    ],
+    publicUrl: "https://margin-calculator-lime.vercel.app/tools/margin-calculator",
+    featured: true,
+    published: true,
+    publishedAt: "2026-10-28",
+  },
 ];
