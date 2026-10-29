@@ -31,7 +31,7 @@ Next.js 16 (App Router), React 19, TypeScript (strict), Tailwind CSS v4 (via `@t
 - Routes in `app/`: `/` (home), `/articles`, `/articles/[slug]`, `/about`, `/contact`, `/admin`. All pull from `blog-data.ts`.
 - `/articles/[slug]` uses `generateStaticParams` over `articles`; `params` is a `Promise` (awaited). The body text is the same placeholder paragraph for every article, since only the metadata is per-article.
 - `/admin` is a static mock dashboard. The "새 아티클" button does nothing, the "이번 달" count is hard-coded, and there is no auth. It only displays `articles`.
-- `components/article-list.tsx` is the shared list renderer. `app/layout.tsx` sets the Noto Sans KR font (`next/font`) and Vercel Analytics (production only). **`SiteHeader` / `SiteFooter` exist but are not imported anywhere**, so no page currently renders navigation; mount them in `layout.tsx` if needed.
+- `components/article-list.tsx` is the shared list renderer. `app/layout.tsx` sets the Noto Sans KR font (`next/font`) and Vercel Analytics (production only). `SiteHeader` (client component: hamburger on mobile, inline links from `md`) and `SiteFooter` are mounted there. `/admin` is intentionally not in the header nav (marked `noindex`). `Article.content?: string[]` holds body paragraphs; the article page falls back to a placeholder when it is absent.
 - UI copy is Korean. Styling is inline Tailwind utilities, with many pages written as long single-line JSX.
 - `cn()` in `lib/utils.ts` (clsx + tailwind-merge) is the class-merging helper.
 

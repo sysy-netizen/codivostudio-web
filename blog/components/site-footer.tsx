@@ -10,7 +10,7 @@ export function SiteFooter() {
         </div>
         <div className="flex gap-5 text-xs text-black/50">
           <Link href="/about" className="hover:text-black">소개</Link>
-          <span>© 2024 Code+Vivo</span>
+          <span>© {new Date().getFullYear()} Code+Vivo</span>
         </div>
       </div>
     </footer>

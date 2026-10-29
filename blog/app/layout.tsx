@@ -1,6 +1,8 @@
 import { Analytics } from '@vercel/analytics/next'
 import { Noto_Sans_KR } from 'next/font/google'
 import type { Metadata, Viewport } from 'next'
+import { SiteFooter } from '@/components/site-footer'
+import { SiteHeader } from '@/components/site-header'
 import './globals.css'
 
 const notoSansKr = Noto_Sans_KR({
@@ -12,7 +14,6 @@ const notoSansKr = Noto_Sans_KR({
 export const metadata: Metadata = {
   title: 'Code+Vivo studio blog',
   description: 'Code+Vivo studio blog의 생각과 기록을 담은 블로그',
-  generator: 'v0.app',
   icons: {
     icon: [
       {
@@ -48,7 +49,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${notoSansKr.variable} antialiased`}>
+        <SiteHeader />
         {children}
+        <SiteFooter />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
