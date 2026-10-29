@@ -8,7 +8,7 @@ const links = [
   { href: '/', label: '홈' },
   { href: '/about', label: '소개' },
   { href: '/articles', label: '아티클' },
-  { href: '/contact', label: '연락처' },
+  { href: '/admin', label: '관리자' },
 ]
 
 export function SiteHeader() {
