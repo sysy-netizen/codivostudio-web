@@ -8,10 +8,10 @@ export default function HomePage() {
     <section className="mx-auto grid max-w-7xl gap-14 px-6 pb-24 pt-24 lg:grid-cols-[1.25fr_0.75fr] lg:px-10 lg:pb-32 lg:pt-36">
       <div>
         <p className="mb-10 text-xs font-semibold uppercase tracking-[0.2em] text-black/45">독립적인 기록 · 2026</p>
-        <h1 className="max-w-4xl text-6xl font-medium leading-[0.92] tracking-[-0.07em] sm:text-8xl">더 <span className="italic">사려 깊은</span> 인터넷을 위한 생각</h1>
+        <h1 className="max-w-4xl text-6xl font-medium leading-[0.92] tracking-[-0.07em] sm:text-8xl">Code+Vivo <span className="italic">studio blog</span></h1>
       </div>
       <div className="flex flex-col justify-end lg:pb-2">
-        <p className="max-w-sm text-lg leading-8 text-black/65">Code+Vivo studio blog는 디자인, 기술, 그리고 창작 과정에 대한 생각을 나누는 작은 공간입니다.</p>
+        <p className="max-w-sm text-lg leading-8 text-black/65">각종 이야기를 나눕니다.</p>
         <Link href="/articles" className="mt-8 flex w-fit items-center gap-2 border-b border-black pb-2 text-sm font-medium">아티클 읽기 <ArrowUpRight aria-hidden="true" size={16} /></Link>
       </div>
     </section>

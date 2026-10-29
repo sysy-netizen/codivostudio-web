@@ -12,8 +12,8 @@ export default function ContactPage() {
       <div className="mt-16 grid gap-10 border-t border-black/10 pt-8 sm:grid-cols-[1fr_auto] sm:items-end">
         <div>
           <p className="text-sm text-black/50">이메일</p>
-          <a href="mailto:hello@codevivo.studio" className="mt-3 flex items-center gap-2 text-2xl font-medium tracking-[-0.03em] hover:underline">
-            <Mail aria-hidden="true" /> hello@codevivo.studio
+          <a href="mailto:kaseycodivo@gmail.com" className="mt-3 flex items-center gap-2 text-2xl font-medium tracking-[-0.03em] hover:underline">
+            <Mail aria-hidden="true" /> kaseycodivo@gmail.com
           </a>
         </div>
         <Link href="/articles" className="inline-flex items-center gap-2 text-sm font-semibold hover:underline">아티클 둘러보기 <ArrowUpRight aria-hidden="true" /></Link>
