@@ -1,6 +1,6 @@
 export const site = {
   name: "CODIVO STUDIO",
-  url: "https://codivostudio.com",
+  url: "https://www.codivostudio.com",
   tagline: "데이터를 분석하고, 기술로 해결합니다.",
   taglineEn: "Data Intelligence. Practical Solutions.",
   description:
