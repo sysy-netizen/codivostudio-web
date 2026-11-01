@@ -88,3 +88,16 @@ export async function getAllArticles (supabase: SupabaseClient): Promise<Article
 	}
 	return (data as ArticleRow[]).map(toArticle)
 }
+
+/** 관리자용: 상태와 무관하게 slug로 글 하나를 가져온다. 로그인 세션을 가진 클라이언트를 넘겨야 한다. */
+export async function getArticleBySlug (supabase: SupabaseClient, slug: string): Promise<Article | null> {
+	const { data, error } = await supabase
+		.from('articles')
+		.select(columns)
+		.eq('slug', slug)
+		.maybeSingle()
+	if (error) {
+		throw new Error(`아티클을 불러오지 못했습니다: ${error.message}`)
+	}
+	return data ? toArticle(data as ArticleRow) : null
+}
