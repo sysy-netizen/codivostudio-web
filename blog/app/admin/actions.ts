@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { getArticleBySlug } from '@/lib/articles'
 
 export interface CreateArticleState {
 	error?: string
@@ -21,13 +22,17 @@ function revalidateArticlePaths (slug: string) {
 	revalidatePath(`/articles/${slug}`)
 }
 
-export async function createArticle (_state: CreateArticleState, formData: FormData): Promise<CreateArticleState> {
-	const supabase = await createClient()
-	const { data: { user } } = await supabase.auth.getUser()
-	if (!user) {
-		redirect('/login')
-	}
+type ParsedArticleInput = {
+	title: string
+	slug: string
+	category: string
+	excerpt: string
+	content: string[]
+	readMinutes: number
+	status: 'draft' | 'published'
+}
 
+function parseArticleInput (formData: FormData): ParsedArticleInput | { error: string } {
 	const title = String(formData.get('title') ?? '').trim()
 	const slug = String(formData.get('slug') ?? '').trim().toLowerCase()
 	const category = String(formData.get('category') ?? '').trim()
@@ -46,21 +51,84 @@ export async function createArticle (_state: CreateArticleState, formData: FormD
 		return { error: '읽는 시간(분)을 올바르게 입력해 주세요.' }
 	}
 
+	return { title, slug, category, excerpt, content, readMinutes, status }
+}
+
+export async function createArticle (_state: CreateArticleState, formData: FormData): Promise<CreateArticleState> {
+	const supabase = await createClient()
+	const { data: { user } } = await supabase.auth.getUser()
+	if (!user) {
+		redirect('/login')
+	}
+
+	const input = parseArticleInput(formData)
+	if ('error' in input) {
+		return input
+	}
+
 	const { error } = await supabase.from('articles').insert({
-		slug,
-		title,
-		excerpt,
-		category,
-		content,
-		read_minutes: readMinutes,
-		status,
-		published_at: status === 'published' ? new Date().toISOString() : null,
+		slug: input.slug,
+		title: input.title,
+		excerpt: input.excerpt,
+		category: input.category,
+		content: input.content,
+		read_minutes: input.readMinutes,
+		status: input.status,
+		published_at: input.status === 'published' ? new Date().toISOString() : null,
 	})
 	if (error) {
 		return { error: error.code === '23505' ? '이미 사용 중인 슬러그입니다.' : `글을 저장하지 못했습니다: ${error.message}` }
 	}
 
-	revalidateArticlePaths(slug)
+	revalidateArticlePaths(input.slug)
+	redirect('/admin')
+}
+
+export async function updateArticle (_state: CreateArticleState, formData: FormData): Promise<CreateArticleState> {
+	const supabase = await createClient()
+	const { data: { user } } = await supabase.auth.getUser()
+	if (!user) {
+		redirect('/login')
+	}
+
+	const originalSlug = String(formData.get('originalSlug') ?? '').trim()
+	if (!originalSlug) {
+		return { error: '수정할 글을 찾을 수 없습니다.' }
+	}
+
+	const input = parseArticleInput(formData)
+	if ('error' in input) {
+		return input
+	}
+
+	const existing = await getArticleBySlug(supabase, originalSlug)
+	if (!existing) {
+		return { error: '수정할 글을 찾을 수 없습니다.' }
+	}
+
+	const publishedAt = input.status === 'published' ? (existing.publishedAt ?? new Date().toISOString()) : null
+
+	const { error } = await supabase
+		.from('articles')
+		.update({
+			slug: input.slug,
+			title: input.title,
+			excerpt: input.excerpt,
+			category: input.category,
+			content: input.content,
+			read_minutes: input.readMinutes,
+			status: input.status,
+			published_at: publishedAt,
+		})
+		.eq('slug', originalSlug)
+	if (error) {
+		return { error: error.code === '23505' ? '이미 사용 중인 슬러그입니다.' : `글을 수정하지 못했습니다: ${error.message}` }
+	}
+
+	revalidateArticlePaths(originalSlug)
+	if (input.slug !== originalSlug) {
+		revalidateArticlePaths(input.slug)
+	}
 	redirect('/admin')
 }
 
