@@ -1,10 +1,11 @@
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
-import type { Article } from './blog-data'
+import type { Article } from '@/lib/articles'
 
 export function ArticleList({ items }: { items: Article[] }) {
   return (
     <div className="divide-y divide-black/10 border-y border-black/10">
+      {items.length === 0 && <p className="py-10 text-sm text-black/45">아직 게시된 글이 없습니다.</p>}
       {items.map((article, index) => (
         <Link key={article.slug} href={`/articles/${article.slug}`} className="group grid gap-5 py-6 transition-colors hover:bg-black/[0.03] sm:grid-cols-[56px_1fr_auto] sm:items-center sm:gap-8">
           <span className="font-mono text-xs text-black/35">0{index + 1}</span>

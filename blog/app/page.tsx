@@ -1,9 +1,12 @@
 import Link from 'next/link'
 import { ArrowDownRight, ArrowUpRight } from 'lucide-react'
 import { ArticleList } from '@/components/article-list'
-import { articles } from '@/components/blog-data'
+import { getPublishedArticles } from '@/lib/articles'
 
-export default function HomePage() {
+export const revalidate = 60
+
+export default async function HomePage() {
+  const articles = await getPublishedArticles(3)
   return <main>
     <section className="mx-auto grid max-w-7xl gap-14 px-6 pb-24 pt-24 lg:grid-cols-[1.25fr_0.75fr] lg:px-10 lg:pb-32 lg:pt-36">
       <div>
@@ -18,7 +21,7 @@ export default function HomePage() {
     <section className="border-t border-black/10 bg-[#f5f5f3]">
       <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
         <div className="mb-12 flex items-end justify-between"><div><p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-black/45">선별한 글</p><h2 className="text-3xl font-medium tracking-[-0.05em] sm:text-4xl">최근 아티클</h2></div><ArrowDownRight aria-hidden="true" size={24} /></div>
-        <ArticleList items={articles.slice(0, 3)} />
+        <ArticleList items={articles} />
       </div>
     </section>
   </main>
