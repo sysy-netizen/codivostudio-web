@@ -40,8 +40,8 @@ export async function createArticle (_state: CreateArticleState, formData: FormD
 	if (!title || !slug || !category || !excerpt) {
 		return { error: '제목, 슬러그, 카테고리, 요약을 모두 입력해 주세요.' }
 	}
-	if (!/^[a-z0-9-]+$/.test(slug)) {
-		return { error: '슬러그는 영문 소문자, 숫자, 하이픈만 사용할 수 있습니다.' }
+	if (!/^[\p{L}\p{N}-]+$/u.test(slug)) {
+		return { error: '슬러그에는 문자, 숫자, 하이픈만 사용할 수 있습니다.' }
 	}
 	if (!Number.isFinite(readMinutes) || readMinutes <= 0) {
 		return { error: '읽는 시간(분)을 올바르게 입력해 주세요.' }
