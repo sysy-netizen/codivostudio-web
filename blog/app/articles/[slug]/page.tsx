@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { getPublishedArticle, getPublishedArticles } from '@/lib/articles'
-import { linkifyText } from '@/lib/linkify'
+import { MarkdownContent } from '@/components/markdown-content'
 
 export const revalidate = 60
 
@@ -15,5 +15,5 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const { slug } = await params
   const article = await getPublishedArticle(slug)
   if (!article) notFound()
-  return <main className="mx-auto max-w-4xl px-6 py-24 lg:px-10 lg:py-36"><div className="mb-16 border-b border-black/10 pb-10"><p className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-black/45">{article.category} · {article.date} · {article.readTime}</p><h1 className="text-2xl font-medium leading-[0.95] tracking-[-0.07em] sm:text-5xl">{article.title}</h1><p className="mt-8 max-w-2xl text-xl leading-8 text-black/60">{article.excerpt}</p></div><article className="max-w-2xl text-lg leading-9 text-black/70">{(article.content.length > 0 ? article.content : defaultContent).map((paragraph, index) => <p key={index} className={index === 0 ? '' : 'mt-8'}>{linkifyText(paragraph)}</p>)}</article></main>
+  return <main className="mx-auto max-w-4xl px-6 py-24 lg:px-10 lg:py-36"><div className="mb-16 border-b border-black/10 pb-10"><p className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-black/45">{article.category} · {article.date} · {article.readTime}</p><h1 className="text-2xl font-medium leading-[0.95] tracking-[-0.07em] sm:text-5xl">{article.title}</h1><p className="mt-8 max-w-2xl text-xl leading-8 text-black/60">{article.excerpt}</p></div><article className="max-w-2xl text-lg leading-9 text-black/70 [&>*:first-child]:!mt-0"><MarkdownContent content={article.content.length > 0 ? article.content : defaultContent} /></article></main>
 }

@@ -1,7 +1,7 @@
 import { notFound, redirect } from 'next/navigation'
 import { getArticleBySlug } from '@/lib/articles'
 import { createClient } from '@/lib/supabase/server'
-import { linkifyText } from '@/lib/linkify'
+import { MarkdownContent } from '@/components/markdown-content'
 
 export default async function AdminArticlePreviewPage ({ params }: { params: Promise<{ slug: string }> }) {
 	const { slug } = await params
@@ -22,7 +22,7 @@ export default async function AdminArticlePreviewPage ({ params }: { params: Pro
 				<h1 className="text-2xl font-medium leading-[0.95] tracking-[-0.07em] sm:text-5xl">{article.title}</h1>
 				<p className="mt-8 max-w-2xl text-xl leading-8 text-black/60">{article.excerpt}</p>
 			</div>
-			<article className="max-w-2xl text-lg leading-9 text-black/70">{article.content.map((paragraph, index) => <p key={index} className={index === 0 ? '' : 'mt-8'}>{linkifyText(paragraph)}</p>)}</article>
+			<article className="max-w-2xl text-lg leading-9 text-black/70 [&>*:first-child]:!mt-0"><MarkdownContent content={article.content} /></article>
 		</main>
 	)
 }

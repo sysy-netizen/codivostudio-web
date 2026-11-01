@@ -8,11 +8,10 @@ export interface CreateArticleState {
 	error?: string
 }
 
+/** 본문은 마크다운 원문을 그대로 한 블록으로 저장한다 (줄바꿈 구조를 보존해야 리스트/코드블록이 깨지지 않는다). */
 function parseContent (raw: string): string[] {
-	return raw
-		.split(/\n\s*\n/)
-		.map((paragraph) => paragraph.trim())
-		.filter(Boolean)
+	const trimmed = raw.trim()
+	return trimmed ? [trimmed] : []
 }
 
 function revalidateArticlePaths (slug: string) {

@@ -55,7 +55,7 @@ export function NewArticleForm () {
 			<label htmlFor="excerpt" className="text-sm text-black/60">요약</label>
 			<textarea id="excerpt" name="excerpt" required rows={2} className="border border-black/20 px-4 py-3 text-base outline-none focus:border-black" />
 
-			<label htmlFor="content" className="text-sm text-black/60">본문 (문단 사이는 빈 줄로 구분)</label>
+			<label htmlFor="content" className="text-sm text-black/60">본문 (마크다운 지원 — #, ##, **굵게**, - 목록, 링크 등)</label>
 			<textarea id="content" name="content" rows={10} className="border border-black/20 px-4 py-3 text-base outline-none focus:border-black" />
 
 			<label htmlFor="readMinutes" className="text-sm text-black/60">읽는 시간(분)</label>
