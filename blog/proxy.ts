@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { SESSION_COOKIE, verifySessionToken } from '@/lib/auth'
+import { updateSession } from '@/lib/supabase/proxy'
 
 export async function proxy (request: NextRequest) {
-	const token = request.cookies.get(SESSION_COOKIE)?.value
-	if (await verifySessionToken(token)) {
-		return NextResponse.next()
+	const { response, isAuthenticated } = await updateSession(request)
+	if (isAuthenticated) {
+		return response
 	}
 	return NextResponse.redirect(new URL('/login', request.url))
 }
