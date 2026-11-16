@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { AdSlot } from '@/components/ad-slot'
-import { AD_SLOTS } from '@/lib/ad-slots'
+import { AD_SLOTS, ADS_ENABLED } from '@/lib/ad-slots'
 import type { Article } from '@/lib/articles'
 
 /** adAfter: 이 개수만큼 글이 나온 뒤에 광고를 한 칸 넣는다. 생략하면 광고를 넣지 않는다. */
@@ -21,7 +21,7 @@ export function ArticleList({ items, adAfter }: { items: Article[]; adAfter?: nu
           </div>
           <div className="flex items-center gap-2 text-xs text-black/45 sm:flex-col sm:items-end"><span>{article.readTime}</span><ArrowUpRight aria-hidden="true" size={16} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></div>
         </Link>
-        {adAfter === index + 1 && items.length > adAfter && <div className="py-6"><AdSlot slot={AD_SLOTS.articleList} /></div>}
+        {ADS_ENABLED && adAfter === index + 1 && items.length > adAfter && <div className="py-6"><AdSlot slot={AD_SLOTS.articleList} /></div>}
         </Fragment>
       ))}
     </div>

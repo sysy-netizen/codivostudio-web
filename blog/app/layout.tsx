@@ -4,6 +4,7 @@ import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
+import { ADS_ENABLED } from '@/lib/ad-slots'
 import './globals.css'
 
 const notoSansKr = Noto_Sans_KR({
@@ -54,7 +55,7 @@ export default function RootLayout({
         {children}
         <SiteFooter />
         {process.env.NODE_ENV === 'production' && <Analytics />}
-        {process.env.NODE_ENV === 'production' && (
+        {process.env.NODE_ENV === 'production' && ADS_ENABLED && (
           <Script
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7889109774195055"
