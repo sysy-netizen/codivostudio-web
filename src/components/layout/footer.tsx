@@ -14,11 +14,7 @@ export function Footer() {
           <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
             {site.nav.map((item) => (
               <li key={item.href}>
-                <Link
-                  href={item.href}
-                  {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  className="text-muted hover:text-foreground"
-                >
+                <Link href={item.href} className="text-muted hover:text-foreground">
                   {item.label}
                 </Link>
               </li>

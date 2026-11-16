@@ -11,14 +11,19 @@ export const site = {
     detail: "계속 살아 움직이며 개선되는 코드를 의미합니다.",
   },
   email: "kaseycodivo@gmail.com",
+  // 별도 사이트(Vercel 프로젝트). 연락처 페이지의 블로그 카드에 새 창 링크로 표시된다.
+  blog: {
+    title: "Code+Vivo studio blog",
+    description: "각종 이야기를 나눕니다.",
+    cta: "블로그 둘러보기",
+    href: "https://blog.codivostudio.com",
+  },
   // TODO: 실제 계정이 확정되면 추가 (가짜 링크 금지)
   profileLinks: [] as { label: string; href: string }[],
   nav: [
     { label: "HOME", href: "/" },
     { label: "ABOUT", href: "/about" },
     { label: "TOOLS", href: "/tools" },
-    // 별도 사이트(Vercel 프로젝트)라서 새 창으로 연다
-    { label: "BLOG", href: "https://blog.codivostudio.com", external: true },
     { label: "CONTACT", href: "/contact" },
   ],
 };

@@ -48,7 +48,6 @@ export function Header() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   aria-current={isActive(pathname, item.href) ? "page" : undefined}
                   className={cn(
                     "rounded-md px-3.5 py-2 text-sm font-medium transition-colors hover:text-foreground",
@@ -81,7 +80,6 @@ export function Header() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   aria-current={isActive(pathname, item.href) ? "page" : undefined}
                   className={cn(
                     "block py-3 text-base font-medium",

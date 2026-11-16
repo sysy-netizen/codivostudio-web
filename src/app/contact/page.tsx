@@ -1,6 +1,7 @@
-import { Check } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 import { PageHeader } from "@/components/shared/page-header";
 import { EmailActions } from "@/components/contact/email-actions";
+import { buttonVariants } from "@/components/ui/button";
 import { contactScopes } from "@/data/services";
 import { site } from "@/data/site";
 import { buildMetadata } from "@/lib/metadata";
@@ -51,6 +52,16 @@ export default function ContactPage() {
                 ))}
               </ul>
             )}
+          </div>
+          <div className="card flex flex-col gap-6 text-left sm:flex-row sm:items-center sm:justify-between lg:col-span-2">
+            <div>
+              <h2 className="text-sm font-semibold text-accent">블로그</h2>
+              <p className="mt-4 text-xl font-semibold sm:text-2xl">{site.blog.title}</p>
+              <p className="mt-2 text-sm text-muted">{site.blog.description}</p>
+            </div>
+            <a href={site.blog.href} target="_blank" rel="noopener noreferrer" className={buttonVariants()}>
+              {site.blog.cta} <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
           </div>
         </div>
       </section>
