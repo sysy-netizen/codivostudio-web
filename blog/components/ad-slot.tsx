@@ -9,10 +9,9 @@ declare global {
 }
 
 const AD_CLIENT = 'ca-pub-7889109774195055'
-const AD_SLOT = '5032173006'
 
 /** Google AdSense 광고 한 칸. 운영 환경에서만 광고를 요청하며, 같은 칸에는 한 번만 요청한다. */
-export function AdSlot() {
+export function AdSlot({ slot }: { slot: string }) {
   const insRef = useRef<HTMLModElement>(null)
 
   useEffect(() => {
@@ -36,7 +35,7 @@ export function AdSlot() {
       className="adsbygoogle"
       style={{ display: 'block' }}
       data-ad-client={AD_CLIENT}
-      data-ad-slot={AD_SLOT}
+      data-ad-slot={slot}
       data-ad-format="auto"
       data-full-width-responsive="true"
     />
