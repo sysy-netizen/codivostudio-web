@@ -17,6 +17,8 @@ export const site = {
     { label: "HOME", href: "/" },
     { label: "ABOUT", href: "/about" },
     { label: "TOOLS", href: "/tools" },
+    // 별도 사이트(Vercel 프로젝트)라서 새 창으로 연다
+    { label: "BLOG", href: "https://blog.codivostudio.com", external: true },
     { label: "CONTACT", href: "/contact" },
   ],
 };
