@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/next'
 import { Noto_Sans_KR } from 'next/font/google'
 import type { Metadata, Viewport } from 'next'
+import Script from 'next/script'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 import './globals.css'
@@ -53,6 +54,14 @@ export default function RootLayout({
         {children}
         <SiteFooter />
         {process.env.NODE_ENV === 'production' && <Analytics />}
+        {process.env.NODE_ENV === 'production' && (
+          <Script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7889109774195055"
+            crossOrigin="anonymous"
+            strategy="afterInteractive"
+          />
+        )}
       </body>
     </html>
   )

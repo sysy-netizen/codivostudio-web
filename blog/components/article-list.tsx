@@ -1,13 +1,17 @@
+import { Fragment } from 'react'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
+import { AdSlot } from '@/components/ad-slot'
 import type { Article } from '@/lib/articles'
 
-export function ArticleList({ items }: { items: Article[] }) {
+/** adAfter: 이 개수만큼 글이 나온 뒤에 광고를 한 칸 넣는다. 생략하면 광고를 넣지 않는다. */
+export function ArticleList({ items, adAfter }: { items: Article[]; adAfter?: number }) {
   return (
     <div className="divide-y divide-black/10 border-y border-black/10">
       {items.length === 0 && <p className="py-10 text-sm text-black/45">아직 게시된 글이 없습니다.</p>}
       {items.map((article, index) => (
-        <Link key={article.slug} href={`/articles/${article.slug}`} className="group grid gap-5 py-6 transition-colors hover:bg-black/[0.03] sm:grid-cols-[56px_1fr_auto] sm:items-center sm:gap-8">
+        <Fragment key={article.slug}>
+        <Link href={`/articles/${article.slug}`} className="group grid gap-5 py-6 transition-colors hover:bg-black/[0.03] sm:grid-cols-[56px_1fr_auto] sm:items-center sm:gap-8">
           <span className="font-mono text-xs text-black/35">0{index + 1}</span>
           <div>
             <div className="mb-2 flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.16em] text-black/45"><span>{article.category}</span><span className="h-px w-5 bg-black/20" /><span>{article.date}</span></div>
@@ -16,6 +20,8 @@ export function ArticleList({ items }: { items: Article[] }) {
           </div>
           <div className="flex items-center gap-2 text-xs text-black/45 sm:flex-col sm:items-end"><span>{article.readTime}</span><ArrowUpRight aria-hidden="true" size={16} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></div>
         </Link>
+        {adAfter === index + 1 && items.length > adAfter && <div className="py-6"><AdSlot /></div>}
+        </Fragment>
       ))}
     </div>
   )
