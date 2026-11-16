@@ -20,7 +20,12 @@ export const projects: Project[] = [
     technologies: ["Python", "Excel", "Next.js"],
     problem: "주문 파일과 송장 파일을 사람이 직접 대조·병합하는 반복 작업이 필요했습니다.",
     solution: "주문 파일과 송장 파일을 업로드하면 자동으로 매칭해 하나의 파일로 병합합니다.",
-    features: ["네이버·쿠팡 주문 파일 지원", "택배 송장 파일 자동 매칭", "병합된 엑셀 파일 다운로드"],
+    features: [
+      "네이버·쿠팡 주문 파일 지원",
+      "택배 송장 파일 자동 매칭",
+      "병합된 엑셀 파일 다운로드",
+      "업로드·다운로드 폴더 지정 (크롬·엣지)",
+    ],
     // TODO: 스크린샷을 /public/images/projects/ 에 추가하고 thumbnail/screenshots 지정
     publicUrl: "https://excel.codivostudio.com/tools/excel-converter",
     featured: true,
@@ -44,6 +49,9 @@ export const projects: Project[] = [
       "목표 마진율 또는 목표 순이익에서 판매가 계산",
       "판매가에서 예상 마진 계산",
       "부가세·택배비·결제/판매 수수료율 반영",
+      "고객 배송비에는 결제수수료만 따로 반영 (판매수수료 제외)",
+      "매출세액·매입세액·납부할 부가세 계산표",
+      "수량별(1~5개, 10개) 순이익·개당 이익·마진율",
       "판매가 올림 단위 설정",
     ],
     publicUrl: "https://margin-calculator-lime.vercel.app/tools/margin-calculator",
